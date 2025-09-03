@@ -1,0 +1,17 @@
+# Env
+**/.env
+
+# Archivos de logs
+*.log
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos de compilación de Python
+*.pyc
+__pycache__/
+
+# Archivos de media y estáticos generados
+**/staticfiles/
+
