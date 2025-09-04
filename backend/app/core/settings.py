@@ -29,9 +29,9 @@ DEBUG = environ.get("DEBUG", "") == "1"
 
 ALLOWED_HOSTS = ["localhost", "api"]
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'app.core.urls'
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'app.core.wsgi.application'
 
 ##############################################################################
 # Application definition
