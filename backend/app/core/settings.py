@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from os import environ
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 
 ##############################################################################
@@ -38,13 +41,20 @@ WSGI_APPLICATION = 'app.core.wsgi.application'
 ##############################################################################
 
 INSTALLED_APPS = [
+    # Django Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Third Party Apps
     'rest_framework',
+    'cloudinary',
+
+    #Local Apps
+    'dogs_api',
 ]
 
 ##############################################################################
@@ -130,9 +140,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 ##############################################################################
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -144,3 +154,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 ##############################################################################
 STATIC_URL = 'static/'
+
+##############################################################################
+# Cloudinary Configuration
+# https://cloudinary.com/documentation/django_integration
+##############################################################################
+
+CLOUDINARY_FOLDER = environ.get("CLOUDINARY_FOLDER", "dev")
+CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
