@@ -116,7 +116,23 @@ urlpatterns = [
 
 ---
 
-### 5. Migraciones
+### 5. Settear correctamente el nombre de la app
+
+Modificar el atributo name de la appcionfig en `backend/app/nombre_app/apps.py` de la siguiente manera
+
+```python
+from django.apps import AppConfig
+
+
+class nombreAppConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'app.nombre_app'
+
+```
+
+---
+
+### 6. Migraciones
 
 ```bash
 docker compose exec backend python manage.py makemigrations nombre_app

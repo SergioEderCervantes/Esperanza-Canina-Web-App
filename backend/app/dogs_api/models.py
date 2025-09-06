@@ -21,6 +21,7 @@ class Dog(models.Model):
         validators=[MinValueValidator(0),MaxValueValidator(30)],
         verbose_name= "Año de edad"
     )
+    # TODO: que este campo sea opcional, poner un help text diciendo que se usa para cuando el perrito tiene menos de un año
     age_month = models.IntegerField(
         validators = [MinValueValidator(0),MaxValueValidator(11)],
         verbose_name= "Mes de edad"
@@ -30,7 +31,7 @@ class Dog(models.Model):
         choices = GENRE_CHOICES,
         verbose_name = "Genero"
     )
-    adoption_state = models.BooleandField(
+    adoption_state = models.BooleanField(
         default = False,
         help_text = "True si esta adptado",
         verbose_name = "Estado de adopcion"
@@ -84,4 +85,5 @@ class Dog_image(models.Model):
 class Beheavior(models.Model):
     beheavior_name = models.CharField()
     beheavior_description = models.TextField()
+    # TODO: poner el str y el meta
     

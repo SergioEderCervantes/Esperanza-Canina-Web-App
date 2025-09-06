@@ -32,6 +32,11 @@ DEBUG = environ.get("DEBUG", "") == "1"
 
 ALLOWED_HOSTS = ["localhost", "api"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
 ROOT_URLCONF = 'app.core.urls'
 
 WSGI_APPLICATION = 'app.core.wsgi.application'
@@ -54,7 +59,8 @@ INSTALLED_APPS = [
     'cloudinary',
 
     #Local Apps
-    'dogs_api',
+    'app.dogs_api',
+    'app.vet_api',
 ]
 
 ##############################################################################

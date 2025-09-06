@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DogsApiConfig(AppConfig):
+class VetApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app.dogs_api'
+    name = 'app.vet_api'

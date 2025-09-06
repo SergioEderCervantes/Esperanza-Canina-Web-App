@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dogs_api import models
+from app.dogs_api import models
 
 admin.site.register(models.Dog)
 admin.site.register(models.Beheavior)
