@@ -159,6 +159,10 @@ STATIC_URL = 'static/'
 # Cloudinary Configuration
 # https://cloudinary.com/documentation/django_integration
 ##############################################################################
-
+cloudinary.config(
+    cloud_name =  environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key = environ.get("CLOUDINARY_API_KEY"),
+    api_secret = environ.get("CLOUDINARY_API_SECRET"),
+)
 CLOUDINARY_FOLDER = environ.get("CLOUDINARY_FOLDER", "dev")
 CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
