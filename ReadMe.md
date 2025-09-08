@@ -102,10 +102,12 @@ patitasWebApp/
    cd patitasWebApp
    ```
 
-2. Settear las Variables de entorno (Por el momento solo de backend):
+2. Settear las Variables de entorno:
 
    ```bash
    mv backend/.env.example backend/.env
+
+   mv frontend/.env.local
    ```
 
 3. Construir y levantar servicios:

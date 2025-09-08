@@ -14,7 +14,16 @@ services:
       timeout: 2s
       retries: 10
     
-  
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.local
+    depends_on:
+      - backend
+      
+
   api:
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     build: 
