@@ -15,43 +15,38 @@ Se encarga de mostrar la interfaz pública de la aplicación: landing, catálogo
 
 ## 📂 Estructura de carpetas del frontend
 
+```bash
 frontend/
-│── app/ # Páginas y rutas públicas
-│ ├── page.tsx # Landing page
-│ ├── perritos/ # Catálogo y detalle de perritos
-│ │ ├── page.tsx
-│ │ └── [slug]/page.tsx
-│ ├── ayuda/ # Donaciones y voluntariado
-│ │ └── page.tsx
-│ └── adopcion/ # Formulario de adopción
-│ └── page.tsx
+├── app/                     # Páginas y rutas públicas
+│   ├── page.tsx             # Landing page
+│   ├── perritos/            # Catálogo y detalle de perritos
+│   │   ├── page.tsx
+│   │   └── [slug]/page.tsx  # Vista individual
+│   ├── ayuda/               # Donaciones y voluntariado
+│   │   └── page.tsx
+│   └── adopcion/            # Formulario de adopción
+│       └── page.tsx
 │
-├── components/ # Componentes reutilizables
-│ ├── ui/ # Botones, inputs, tarjetas genéricas
-│ ├── layout/ # Navbar, Footer, Layout principal
-│ └── perritos/ # Componentes específicos de catálogo
+├── components/              # Componentes reutilizables
+│   ├── ui/                  # Botones, inputs, tarjetas genéricas
+│   ├── layout/              # Navbar, Footer, Layout principal
+│   └── perritos/            # Componentes específicos de catálogo
 │
-├── lib/ # Funciones auxiliares y conexión API
-│ ├── api.ts # Cliente para consumir la API Django
-│ ├── fetchDogs.ts # Funciones de perritos
-│ └── utils.ts # Helpers generales
+├── lib/                     # Funciones auxiliares y conexión API
+│   ├── api.ts               # Cliente para consumir la API Django
+│   ├── fetchDogs.ts         # Funciones de perritos
+│   └── utils.ts             # Helpers generales
 │
-├── styles/ # Estilos globales y utilitarios
-│ ├── globals.css # Tailwind base + resets
-│ └── variables.css # Paleta de colores, fuentes
+├── styles/                  # Estilos globales y utilitarios
+│   └── globals.css          # Tailwind base + resets
+│   
 │
-├── types/ # Tipos TypeScript compartidos
-│ ├── perrito.d.ts # Modelo de datos Perrito
-│ ├── adopcion.d.ts # Modelo de formulario de adopción
-│ └── index.d.ts # Tipos globales
+├── types/                   # Tipos TypeScript compartidos
+│   ├── perrito.d.ts         # Modelo de datos Perrito
+│   └── adopcion.d.ts        # Modelo de formulario de adopción
 │
-└── public/ # Archivos estáticos (logos, imágenes, íconos)
-├── images/
-└── icons/
-
-markdown
-Copiar código
-
+└── public/                  # Archivos estáticos (logos, imágenes, íconos)
+```
 ---
 
 ## 📌 Convenciones
