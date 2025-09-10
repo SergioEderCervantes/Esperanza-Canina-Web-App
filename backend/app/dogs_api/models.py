@@ -70,7 +70,7 @@ class Dog_image(models.Model):
     # picture = models.ImageField(upload_to="dog_pictures/")
     image = CloudinaryField(
         'image',
-        folder = f"{settings.CLOUDINARY_FOLDER}/dog_images",
+        folder = f"dog_images/{settings.CLOUDINARY_FOLDER}",
         tags = [settings.CLOUDINARY_TAG]
     )
     is_primary = models.BooleanField(
