@@ -16,15 +16,19 @@ class Dog(models.Model):
         "M": "Mediano",
         "L": "Grande",
     }
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=100,
+        verbose_name= "Nombre"
+    )
     age_year = models.IntegerField(
         validators=[MinValueValidator(0),MaxValueValidator(30)],
-        verbose_name= "Año de edad"
+        verbose_name= "Año de edad",
+        default= 0
     )
-    # TODO: que este campo sea opcional, poner un help text diciendo que se usa para cuando el perrito tiene menos de un año
     age_month = models.IntegerField(
         validators = [MinValueValidator(0),MaxValueValidator(11)],
-        verbose_name= "Mes de edad"
+        verbose_name= "Mes de edad",
+        default= 0
     )
     genre = models.CharField(
         max_length = 1,
@@ -33,7 +37,7 @@ class Dog(models.Model):
     )
     adoption_state = models.BooleanField(
         default = False,
-        help_text = "True si esta adptado",
+        help_text = "Seleccionar si esta adptado",
         verbose_name = "Estado de adopcion"
     )
     size = models.CharField(
@@ -71,7 +75,7 @@ class Dog_image(models.Model):
     )
     is_primary = models.BooleanField(
         default = False,
-        help_text = "True si es la imagen principal",
+        help_text = "Seleccionar si es la imagen principal",
     )
 
     def __str__(self):
@@ -85,5 +89,13 @@ class Dog_image(models.Model):
 class Beheavior(models.Model):
     beheavior_name = models.CharField()
     beheavior_description = models.TextField()
-    # TODO: poner el str y el meta
+
+    class Meta:
+        db_table = "comportamientos"
+        verbose_name = "Comportamiento"
+        verbose_name_plural = "Comportamientos"
+    
+
+    def __str__(self):
+        return self.beheavior_name
     
