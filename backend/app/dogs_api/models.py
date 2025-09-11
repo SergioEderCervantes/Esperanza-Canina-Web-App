@@ -3,7 +3,9 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.conf import settings
 from datetime import date
 from cloudinary.models import CloudinaryField
-# Create your models here.
+
+
+# TODO: Comentar los Modelos, descripcion simple
 class Dog(models.Model):
 
     GENRE_CHOICES = {
@@ -59,7 +61,7 @@ class Dog(models.Model):
     def __str__(self):
         return self.name
     
-    def get_dog_life_stage(self):
+    def dog_life_stage(self):
         if self.age_year == 0 and self.age_month < 6:
             return "Cachorro"
         elif self.age_year < 2:
@@ -69,7 +71,7 @@ class Dog(models.Model):
         else:
             return "Adulto Mayor"
         
-    def get_primary_image(self):
+    def primary_image(self):
     
         # Intentar obtener la imagen marcada como principal
         primary_img = self.images.filter(is_primary=True).first()
@@ -82,6 +84,8 @@ class Dog(models.Model):
             return first_img.image.url
         
         return None
+    
+    
 
 
     class Meta:
@@ -104,11 +108,15 @@ class Dog_image(models.Model):
 
     def __str__(self):
         return f"Imagen de {self.dog.name}"
+    
+    def url(self):
+        return self.image.url
 
     class Meta:
         db_table = "fotos_perros"
         verbose_name = "Foto de perro"
         verbose_name_plural = "Fotos de perros"
+
 
 class Beheavior(models.Model):
     beheavior_name = models.CharField()

@@ -1,23 +1,44 @@
 from rest_framework import serializers
 from app.dogs_api.models import Dog, Dog_image , Beheavior
 
+
+# TODO: Comentar que son todos los serializers
 class DogTopSerializer(serializers.ModelSerializer): 
     class Meta:
-        model: Dog
+        model = Dog
         fields = ['id', 'name', 'get_primary_image']
 
 
-class BeheaviorSimpleSerializer(serializers.ModelSerializer):
+class SimpleDogBehaviorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beheavior
         fields = ['id', 'beheavior_name']
 
 class DogListSerializer(serializers.ModelSerializer):
-    beheaviors = BeheaviorSimpleSerializer(many=True, read_only=True)
+    beheaviors = SimpleDogBehaviorSerializer(many=True, read_only=True)
     size_display = serializers.CharField(source='get_size_display', read_only=True)
     genre_display = serializers.CharField(source='get_genre_display', read_only=True)
     class Meta:
-        model: Dog
-        fields = ['id', 'name','size_display','beheaviors','get_dog_life_stage' 'get_primary_image','genre_display']
-
+        model = Dog
+        fields = ['id', 'name','size_display','beheaviors','dog_life_stage', 'primary_image','genre_display']
         
+
+class DetailedDogBehaviorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Beheavior
+        fields = ['id', 'beheavior_name', 'beheavior_description']
+        
+class DogImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dog_image
+        fields = ['id', 'url']
+
+
+class DetailedDogSerializer(serializers.ModelSerializer):
+    beheaviors = DetailedDogBehaviorSerializer(many=True, read_only=True)
+    images = DogImagesSerializer(many = True, read_only= True)
+    size_display = serializers.CharField(source='get_size_display', read_only=True)
+    genre_display = serializers.CharField(source='get_genre_display', read_only=True)
+    class Meta:
+        model = Dog
+        fields = ['id', 'name', 'size_display', 'beheaviors', 'dog_life_stage', 'images', 'genre_display', 'description']
