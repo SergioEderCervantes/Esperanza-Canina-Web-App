@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.dogs_api.models import Dog, Dog_image , Beheavior
+from app.dogs_api.models import Dog, DogImage , Beheavior
 
 
 # TODO: Comentar que son todos los serializers
@@ -38,7 +38,7 @@ class DetailedDogBehaviorSerializer(serializers.ModelSerializer):
         
 class DogImagesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Dog_image
+        model = DogImage
         fields = ['id', 'url']
 
 

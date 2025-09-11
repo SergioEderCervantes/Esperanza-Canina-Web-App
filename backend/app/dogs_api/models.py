@@ -93,7 +93,7 @@ class Dog(models.Model):
         verbose_name = "Perro"
         verbose_name_plural = "Perros"
 
-class Dog_image(models.Model):
+class DogImage(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="images")
     # picture = models.ImageField(upload_to="dog_pictures/")
     image = CloudinaryField(
@@ -119,8 +119,16 @@ class Dog_image(models.Model):
 
 
 class Beheavior(models.Model):
-    beheavior_name = models.CharField()
-    beheavior_description = models.TextField()
+    beheavior_name = models.CharField(
+        max_length=30,
+        unique=True,  
+        verbose_name="Nombre del Comportamiento"
+    )
+    beheavior_description = models.TextField(
+        blank=True, 
+        null=True,
+        verbose_name="Descripción del Comportamiento"
+    )
 
     class Meta:
         db_table = "comportamientos"
