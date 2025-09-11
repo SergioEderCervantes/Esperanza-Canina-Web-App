@@ -58,6 +58,30 @@ class Dog(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_dog_life_stage(self):
+        if self.age_year == 0 and self.age_month < 6:
+            return "Cachorro"
+        elif self.age_year < 2:
+            return "Joven"
+        elif self.age_year < 7:
+            return "Adulto"
+        else:
+            return "Adulto Mayor"
+        
+    def get_primary_image(self):
+    
+        # Intentar obtener la imagen marcada como principal
+        primary_img = self.images.filter(is_primary=True).first()
+        if primary_img and primary_img.image:
+            return primary_img.image.url
+        
+        # Si no hay imagen principal tomar la primera disponible
+        first_img = self.images.first()
+        if first_img and first_img.image:
+            return first_img.image.url
+        
+        return None
 
 
     class Meta:
