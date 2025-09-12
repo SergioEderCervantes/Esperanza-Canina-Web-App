@@ -71,6 +71,8 @@ class Dog(models.Model):
         else:
             return "Adulto Mayor"
         
+    dog_life_stage.short_description = "Etapa de vida"
+        
     def primary_image(self):
     
         # Intentar obtener la imagen marcada como principal

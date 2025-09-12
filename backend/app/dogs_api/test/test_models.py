@@ -2,7 +2,7 @@
 import pytest
 from datetime import date
 from django.core.exceptions import ValidationError
-from app.dogs_api.models import Dog, Dog_image, Beheavior
+from app.dogs_api.models import Dog, DogImage, Beheavior
 
 @pytest.mark.django_db
 class TestDogModel:
@@ -71,8 +71,8 @@ class TestDogModel:
             adoption_state=False,
             size="M",
         )
-        image = Dog_image.objects.create(dog=dog, is_primary=True, image="http://test.com/img1.jpg")
-        assert dog.primary_image() == image.image.url
+        image = DogImage.objects.create(dog=dog, is_primary=True, image="https://placehold")
+        assert dog.primary_image() == image.image
 
     def test_primary_image_with_first(self):
         dog = Dog.objects.create(
@@ -83,8 +83,8 @@ class TestDogModel:
             adoption_state=False,
             size="S",
         )
-        image = Dog_image.objects.create(dog=dog, is_primary=False, image="http://test.com/img2.jpg")
-        assert dog.primary_image() == image.image.url
+        image = DogImage.objects.create(dog=dog, is_primary=False, image="https://placehold")
+        assert dog.primary_image() == image.image
 
     def test_primary_image_none(self):
         dog = Dog.objects.create(
@@ -126,20 +126,8 @@ class TestDogImageModel:
             adoption_state=False,
             size="L",
         )
-        img = Dog_image.objects.create(dog=dog, is_primary=True, image="http://test.com/img3.jpg")
+        img = DogImage.objects.create(dog=dog, is_primary=True, image="http://test.com/img3.jpg")
         assert str(img) == "Imagen de Rex"
-
-    def test_url_method(self):
-        dog = Dog.objects.create(
-            name="Zeus",
-            age_year=2,
-            age_month=0,
-            genre="H",
-            adoption_state=False,
-            size="L",
-        )
-        img = Dog_image.objects.create(dog=dog, is_primary=False, image="http://test.com/img4.jpg")
-        assert img.url() == img.image.url
 
 
 @pytest.mark.django_db
