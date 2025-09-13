@@ -14,8 +14,6 @@ from os import environ
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 
 ##############################################################################
@@ -57,6 +55,7 @@ INSTALLED_APPS = [
     #Third Party Apps
     'rest_framework',
     'cloudinary',
+    'django_filters',
 
     #Local Apps
     'app.dogs_api',

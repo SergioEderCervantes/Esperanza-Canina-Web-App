@@ -10,6 +10,7 @@ psycopg2-binary = "*"
 cloudinary = "*"
 pytest = "*"
 pytest-django = "*"
+django-filter = {extras = ["templates"], version = "*"}
 
 [dev-packages]
 
