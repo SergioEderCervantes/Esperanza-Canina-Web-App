@@ -20,5 +20,6 @@ from app.dogs_api.views import DogListView, DogTopView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/dogs/', include('app.dogs_api.urls')),
+    path('api/perritos/', include('app.dogs_api.urls')),
+    path('api/top/', DogTopView.as_view(), name='dog-top-list'),
 ]

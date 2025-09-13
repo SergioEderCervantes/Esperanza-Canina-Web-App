@@ -47,6 +47,7 @@ class DetailedDogSerializer(serializers.ModelSerializer):
     images = DogImagesSerializer(many = True, read_only= True)
     size_display = serializers.CharField(source='get_size_display', read_only=True)
     genre_display = serializers.CharField(source='get_genre_display', read_only=True)
+    dog_life_stage = serializers.CharField(read_only=True) 
     class Meta:
         model = Dog
         fields = ['id', 'name', 'size_display', 'beheaviors', 'dog_life_stage', 'images', 'genre_display', 'description']
