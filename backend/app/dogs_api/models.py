@@ -3,6 +3,8 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.conf import settings
 from datetime import date
 from cloudinary.models import CloudinaryField
+from django.core.exceptions import ValidationError 
+import random
 
 
 # TODO: Comentar los Modelos, descripcion simple
@@ -18,9 +20,22 @@ class Dog(models.Model):
         "M": "Mediano",
         "L": "Grande",
     }
+
+    MALE_DOG_NAMES = [
+        "Max", "Rocky", "Bruno", "Thor", "Milo", "Rex", "Simba", "Zeus", 
+        "Jack", "Toby", "Bobby", "Chester", "Duke", "Tommy", "Rocco"
+    ]
+    FEMALE_DOG_NAMES = [
+        "Luna", "Kira", "Maya", "Daisy", "Nina", "Sasha", "Nala", "Lola",
+        "Canela", "Mila", "Molly", "Akira", "Bella", "Greta", "Dulce", "Kiara"
+    ]
+    NEUTRAL_NAMES = [
+        "Coco", "Lucky", "Chispa","Terry"
+    ]
     name = models.CharField(
         max_length=100,
-        verbose_name= "Nombre"
+        verbose_name= "Nombre",
+        blank= True
     )
     age_year = models.IntegerField(
         validators=[MinValueValidator(0),MaxValueValidator(30)],
@@ -87,6 +102,22 @@ class Dog(models.Model):
         
         return None
     
+    def clean(self):
+        # Valida que no haya años y meses de edad en 0 al mismo tiempo
+        if self.age_year == 0 and self.age_month == 0:
+            raise ValidationError("El año y el mes de edad no pueden ser ambos cero.")
+    
+    def save(self, *args, **kwargs):
+        if not self.name or not self.name.strip():
+            # Elige lista por genero
+            if self.genre == "H":
+                base_list = self.MALE_DOG_NAMES + self.NEUTRAL_NAMES
+            elif self.genre == "M":
+                base_list = self.FEMALE_DOG_NAMES + self.NEUTRAL_NAMES
+            else:
+                base_list = self.MALE_DOG_NAMES + self.FEMALE_DOG_NAMES + self.NEUTRAL_NAMES
+            self.name = random.choice(base_list)
+        super().save(*args, **kwargs)
     
 
 
