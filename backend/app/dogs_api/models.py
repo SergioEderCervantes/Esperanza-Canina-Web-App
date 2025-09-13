@@ -10,6 +10,7 @@ import random
 # TODO: Comentar los Modelos, descripcion simple
 class Dog(models.Model):
 
+    # TODO: Cambiar la clave, M de Macho y H de hembra
     GENRE_CHOICES = {
         "H": "Macho",
         "M": "Hembra",

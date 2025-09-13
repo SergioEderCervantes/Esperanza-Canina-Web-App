@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'cloudinary',
     'django_filters',
+    'drf_spectacular',
 
     #Local Apps
     'app.dogs_api',
@@ -171,3 +172,9 @@ cloudinary.config(
 )
 CLOUDINARY_FOLDER = environ.get("CLOUDINARY_FOLDER", "dev")
 CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
+##############################################################################
+# DJANGO REST FRAMEWORK CONFIGURATION
+##############################################################################
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}

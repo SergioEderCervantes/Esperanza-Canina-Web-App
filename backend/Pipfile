@@ -11,6 +11,8 @@ cloudinary = "*"
 pytest = "*"
 pytest-django = "*"
 django-filter = {extras = ["templates"], version = "*"}
+drf-spectacular = "*"
+drf-spectacular-sidecar = "*"
 
 [dev-packages]
 
