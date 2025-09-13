@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.dogs_api.views import DogListView, DogTopView
+# from app.dogs_api.views import DogListView, DogTopView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/perritos/', include('app.dogs_api.urls')),
-    path('api/top/', DogTopView.as_view(), name='dog-top-list'),
 ]
