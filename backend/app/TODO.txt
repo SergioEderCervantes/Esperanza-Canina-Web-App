@@ -7,7 +7,7 @@ Pulir la descripcion de varios query params en Swagger
 Buscar mejores practicas de las vistas (data encapsulado en la response, versionamiento)
 Checar el rendimiento real con +200 perros, para ver si hace falta cambiar el filtrado
 Hacer test de vistas
-Lintear el proyecto (Estoy en ello)
+Prestar atencion en los linters, fixear lo que dicen y maybe automatizar con un pre-commit 
 
 TODOS de la parte del panel de admin
 
