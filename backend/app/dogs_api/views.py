@@ -4,7 +4,7 @@ from app.dogs_api.models import Dog
 from app.dogs_api.serializers import DogListSerializer, DogTopSerializer, DetailedDogSerializer
 from app.dogs_api.filters import DogFilter
 from app.dogs_api.pagination import DogListNumPagination
-from drf_spectacular.utils import extend_schema, OpenApiParameter,  OpenApiTypes
+from drf_spectacular.utils import extend_schema
 
 @extend_schema(
     summary="Lista solo los primeros 3 perros, los que acaban de ser agregados",
