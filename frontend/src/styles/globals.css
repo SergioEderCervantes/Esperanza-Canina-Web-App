@@ -4,6 +4,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #1f2937;
 }
 
 @theme inline {
