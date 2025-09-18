@@ -12,14 +12,5 @@ exclude = ["migrations", "venv", "__pycache__"]
 [tool.ruff.lint.per-file-ignores]
 "*/migrations/*.py" = ["ALL"]
 
-
-[tool.black]
-line-length = 88
-target-version = ["py312"]
-exclude = '''
-/(
-  migrations
-  | venv
-  | __pycache__
-)/
-'''
+[tool.bandit]
+exclude_dirs = ["test"]
