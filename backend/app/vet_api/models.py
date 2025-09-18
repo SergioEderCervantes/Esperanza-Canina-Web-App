@@ -50,13 +50,13 @@ class Medical_record(models.Model):
         blank=True,
         null=True,
     )
+
     class Meta:
         verbose_name = "Registro Medico"
         verbose_name_plural = "Registros Medicos"
 
     def __str__(self):
         return f"Expediente Medico de {self.dog.name}"
-
 
 
 # ESTO SI DECIDIMOS TENER MAS DE UN REPORTE POR PERRITO

@@ -75,7 +75,7 @@ class Dog(models.Model):
         help_text="Seleccionar si esta adptado",
         verbose_name="Estado de adopcion",
     )
-    description = models.TextField(blank=True,default="", verbose_name="Descripcion")
+    description = models.TextField(blank=True, default="", verbose_name="Descripcion")
     size = models.CharField(max_length=1, choices=SIZE_CHOICES, verbose_name="Tamaño")
     arrive_date = models.DateField(default=date.today, verbose_name="Fecha de llegada")
     beheaviors = models.ManyToManyField("Beheavior")
@@ -87,6 +87,7 @@ class Dog(models.Model):
 
     def __str__(self):
         return self.name
+
     def save(self, *args, **kwargs):
         if not self.name or not self.name.strip():
             # Elige lista por genero
@@ -132,7 +133,6 @@ class Dog(models.Model):
             raise ValidationError("El año y el mes de edad no pueden ser ambos cero.")
 
 
-
 class DogImage(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="images")
     # picture = models.ImageField(upload_to="dog_pictures/")
@@ -145,6 +145,7 @@ class DogImage(models.Model):
         default=False,
         help_text="Seleccionar si es la imagen principal",
     )
+
     class Meta:
         db_table = "fotos_perros"
         verbose_name = "Foto de perro"
@@ -155,7 +156,6 @@ class DogImage(models.Model):
 
     def url(self):
         return self.image.url
-
 
 
 class Beheavior(models.Model):
