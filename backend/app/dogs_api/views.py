@@ -1,6 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema,OpenApiParameter, OpenApiTypes
 from rest_framework import filters, generics
+
 
 from app.dogs_api.filters import DogFilter
 from app.dogs_api.models import Dog
@@ -22,7 +23,47 @@ class DogTopView(generics.ListAPIView):
 
 
 @extend_schema(
-    summary="Lista todos los perros, con filtros y paginacion",
+    summary="Lista todos los perros, con filtros y paginación",
+    parameters=[
+        OpenApiParameter(
+            name="life_stage",
+            description="Etapa de vida del perro",
+            required=False,
+            type=OpenApiTypes.STR,
+            enum=["Cachorro", "Joven", "Adulto", "Adulto Mayor"],
+            location=OpenApiParameter.QUERY,
+        ),
+        OpenApiParameter(
+            name="size",
+            description="Tamaño del perro",
+            required=False,
+            type=OpenApiTypes.STR,
+            enum=["Chico", "Mediano", "Grande"],
+            location=OpenApiParameter.QUERY,
+        ),
+        OpenApiParameter(
+            name="genre",
+            description="Género del perro",
+            required=False,
+            type=OpenApiTypes.STR,
+            enum=["Macho", "Hembra"],
+            location=OpenApiParameter.QUERY,
+        ),
+        OpenApiParameter(
+            name="search",
+            description="Un término de búsqueda.",
+            required=False,
+            type=OpenApiTypes.STR,
+            location=OpenApiParameter.QUERY,
+        ),
+        OpenApiParameter(
+            name="beheaviors",
+            description="Comportamientos del perro.",
+            required=False,
+            type=OpenApiTypes.STR,
+            location=OpenApiParameter.QUERY
+        ),
+    ],
     responses=DogListSerializer(many=True),
 )
 class DogListView(generics.ListAPIView):
