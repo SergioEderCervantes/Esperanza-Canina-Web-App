@@ -1,8 +1,6 @@
 TODOS de la parte de la API:
 
 Comentar los Modelos, descripcion simple
-Cambiar la clave, M de Macho y H de hembra
-Bug de Swagger que devuelve un 400 cuando se incluyen behaviors en la query param
 Pulir la descripcion de varios query params en Swagger
 Buscar mejores practicas de las vistas (data encapsulado en la response, versionamiento)
 Checar el rendimiento real con +200 perros, para ver si hace falta cambiar el filtrado

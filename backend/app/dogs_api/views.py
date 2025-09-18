@@ -17,7 +17,7 @@ from app.dogs_api.serializers import (
     responses=DogTopSerializer(many=True),
 )
 class DogTopView(generics.ListAPIView):
-    queryset = Dog.objects.order_by("-arrive_date")[:3]
+    queryset = Dog.objects.order_by("-id")[:3]
     serializer_class = DogTopSerializer
 
 
