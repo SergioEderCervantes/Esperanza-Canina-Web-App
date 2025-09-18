@@ -3,7 +3,7 @@
 /* Estilos globales de la pagina */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #f4f4f4;
 }
 
 @theme inline {
@@ -15,7 +15,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #ffffff;
     --foreground: #ededed;
   }
 }

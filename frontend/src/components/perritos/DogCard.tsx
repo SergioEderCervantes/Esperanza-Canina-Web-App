@@ -1,0 +1,76 @@
+// components/perritos/DogCard.tsx
+
+export enum DogStatus {
+  Disponible = "Disponible",
+  EnProceso = "En proceso",
+  Adoptado = "Adoptado",
+}
+
+type Dog = {
+  id: number;
+  name: string;
+  age: string;
+  sex: string;
+  size: string;
+  tags: string[];
+  description: string;
+  status: DogStatus;
+  refugeTime: string;
+};
+
+export default function DogCard({ dog }: { dog: Dog }) {
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      {/* Imagen (por ahora un placeholder) */}
+      <div className="h-40 bg-gray-200 flex items-center justify-center text-gray-500">
+        Foto de {dog.name}
+      </div>
+
+      {/* Contenido */}
+      <div className="p-4">
+        {/* Estado */}
+        <span
+          className={`text-xs px-2 py-1 rounded-full ${
+            dog.status === "Disponible"
+              ? "bg-green-100 text-green-700"
+              : dog.status === "En proceso"
+              ? "bg-yellow-100 text-yellow-700"
+              : "bg-gray-200 text-gray-600"
+          }`}
+        >
+          {dog.status}
+        </span>
+
+        <h2 className="text-lg font-bold mt-2">{dog.name}</h2>
+        <p className="text-sm text-gray-600">
+          {dog.age} • {dog.sex} • {dog.size}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 my-2">
+          {dog.tags.map((tag) => (
+            <span
+              key={tag}
+              className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Descripción */}
+        <p className="text-gray-600 text-sm line-clamp-2">{dog.description}</p>
+
+        {/* Footer */}
+        <div className="flex justify-between items-center mt-4">
+          <span className="text-xs text-gray-500">
+            En refugio: {dog.refugeTime}
+          </span>
+          <button className="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700">
+            Ver perfil
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
