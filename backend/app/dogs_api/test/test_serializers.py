@@ -1,18 +1,18 @@
 # tests/test_serializers.py
 import pytest
-from app.dogs_api.models import Dog, DogImage, Beheavior
+
+from app.dogs_api.models import Beheavior, Dog, DogImage
 from app.dogs_api.serializers import (
+    DetailedDogBehaviorSerializer,
+    DetailedDogSerializer,
+    DogListSerializer,
     DogTopSerializer,
     SimpleDogBehaviorSerializer,
-    DogListSerializer,
-    DetailedDogBehaviorSerializer,
-    DogImagesSerializer,
-    DetailedDogSerializer
 )
+
 
 @pytest.mark.django_db
 class TestDogSerializers:
-
     def test_dog_top_serializer(self):
         dog = Dog.objects.create(
             name="Firulais",
@@ -22,7 +22,9 @@ class TestDogSerializers:
             adoption_state=False,
             size="M",
         )
-        DogImage.objects.create(dog=dog, is_primary=True, image="http://test.com/img1.jpg")
+        DogImage.objects.create(
+            dog=dog, is_primary=True, image="http://test.com/img1.jpg"
+        )
         serializer = DogTopSerializer(dog)
         data = serializer.data
         assert "id" in data
@@ -31,8 +33,7 @@ class TestDogSerializers:
 
     def test_simple_behavior_serializer(self):
         behavior = Beheavior.objects.create(
-            beheavior_name="Juguetón",
-            beheavior_description="Le gusta jugar"
+            beheavior_name="Juguetón", beheavior_description="Le gusta jugar"
         )
         serializer = SimpleDogBehaviorSerializer(behavior)
         data = serializer.data
@@ -50,11 +51,12 @@ class TestDogSerializers:
             size="L",
         )
         behavior = Beheavior.objects.create(
-            beheavior_name="Protector",
-            beheavior_description="Cuida mucho"
+            beheavior_name="Protector", beheavior_description="Cuida mucho"
         )
         dog.beheaviors.add(behavior)
-        DogImage.objects.create(dog=dog, is_primary=False, image="http://test.com/img2.jpg")
+        DogImage.objects.create(
+            dog=dog, is_primary=False, image="http://test.com/img2.jpg"
+        )
 
         serializer = DogListSerializer(dog)
         data = serializer.data
@@ -68,14 +70,12 @@ class TestDogSerializers:
 
     def test_detailed_behavior_serializer(self):
         behavior = Beheavior.objects.create(
-            beheavior_name="Tranquilo",
-            beheavior_description="No ladra mucho"
+            beheavior_name="Tranquilo", beheavior_description="No ladra mucho"
         )
         serializer = DetailedDogBehaviorSerializer(behavior)
         data = serializer.data
         assert data["beheavior_name"] == "Tranquilo"
         assert data["beheavior_description"] == "No ladra mucho"
-
 
     def test_detailed_dog_serializer(self):
         dog = Dog.objects.create(
@@ -85,14 +85,15 @@ class TestDogSerializers:
             genre="H",
             adoption_state=False,
             size="M",
-            description="Un perro fuerte"
+            description="Un perro fuerte",
         )
         behavior = Beheavior.objects.create(
-            beheavior_name="Guardia",
-            beheavior_description="Cuida la casa"
+            beheavior_name="Guardia", beheavior_description="Cuida la casa"
         )
         dog.beheaviors.add(behavior)
-        DogImage.objects.create(dog=dog, is_primary=True, image="http://test.com/img4.jpg")
+        DogImage.objects.create(
+            dog=dog, is_primary=True, image="http://test.com/img4.jpg"
+        )
 
         serializer = DetailedDogSerializer(dog)
         data = serializer.data

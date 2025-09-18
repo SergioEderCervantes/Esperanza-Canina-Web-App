@@ -1,12 +1,12 @@
 # tests/test_models.py
+
 import pytest
-from datetime import date
-from django.core.exceptions import ValidationError
-from app.dogs_api.models import Dog, DogImage, Beheavior
+
+from app.dogs_api.models import Beheavior, Dog, DogImage
+
 
 @pytest.mark.django_db
 class TestDogModel:
-
     def test_str_returns_name(self):
         dog = Dog.objects.create(
             name="Firulais",
@@ -71,7 +71,9 @@ class TestDogModel:
             adoption_state=False,
             size="M",
         )
-        image = DogImage.objects.create(dog=dog, is_primary=True, image="https://placehold")
+        image = DogImage.objects.create(
+            dog=dog, is_primary=True, image="https://placehold"
+        )
         assert dog.primary_image() == image.image
 
     def test_primary_image_with_first(self):
@@ -83,7 +85,9 @@ class TestDogModel:
             adoption_state=False,
             size="S",
         )
-        image = DogImage.objects.create(dog=dog, is_primary=False, image="https://placehold")
+        image = DogImage.objects.create(
+            dog=dog, is_primary=False, image="https://placehold"
+        )
         assert dog.primary_image() == image.image
 
     def test_primary_image_none(self):
@@ -107,8 +111,7 @@ class TestDogModel:
             size="S",
         )
         behavior = Beheavior.objects.create(
-            beheavior_name="Juguetón",
-            beheavior_description="Le gusta correr y jugar"
+            beheavior_name="Juguetón", beheavior_description="Le gusta correr y jugar"
         )
         dog.beheaviors.add(behavior)
         assert behavior in dog.beheaviors.all()
@@ -116,7 +119,6 @@ class TestDogModel:
 
 @pytest.mark.django_db
 class TestDogImageModel:
-
     def test_str_returns_dog_name(self):
         dog = Dog.objects.create(
             name="Rex",
@@ -126,16 +128,17 @@ class TestDogImageModel:
             adoption_state=False,
             size="L",
         )
-        img = DogImage.objects.create(dog=dog, is_primary=True, image="http://test.com/img3.jpg")
+        img = DogImage.objects.create(
+            dog=dog, is_primary=True, image="http://test.com/img3.jpg"
+        )
         assert str(img) == "Imagen de Rex"
 
 
 @pytest.mark.django_db
 class TestBehaviorModel:
-
     def test_str_returns_name(self):
         behavior = Beheavior.objects.create(
             beheavior_name="Tranquilo",
-            beheavior_description="Es calmado y no ladra mucho"
+            beheavior_description="Es calmado y no ladra mucho",
         )
         assert str(behavior) == "Tranquilo"

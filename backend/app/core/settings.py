@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from os import environ
 from pathlib import Path
-from django.core.management.utils import get_random_secret_key
-import cloudinary
 
+import cloudinary
+from django.core.management.utils import get_random_secret_key
 
 ##############################################################################
 # GENERAL
@@ -35,9 +35,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
 ]
 
-ROOT_URLCONF = 'app.core.urls'
+ROOT_URLCONF = "app.core.urls"
 
-WSGI_APPLICATION = 'app.core.wsgi.application'
+WSGI_APPLICATION = "app.core.wsgi.application"
 
 ##############################################################################
 # Application definition
@@ -45,22 +45,20 @@ WSGI_APPLICATION = 'app.core.wsgi.application'
 
 INSTALLED_APPS = [
     # Django Default Apps
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    #Third Party Apps
-    'rest_framework',
-    'cloudinary',
-    'django_filters',
-    'drf_spectacular',
-
-    #Local Apps
-    'app.dogs_api',
-    'app.vet_api',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # Third Party Apps
+    "rest_framework",
+    "cloudinary",
+    "django_filters",
+    "drf_spectacular",
+    # Local Apps
+    "app.dogs_api",
+    "app.vet_api",
 ]
 
 ##############################################################################
@@ -68,13 +66,13 @@ INSTALLED_APPS = [
 ##############################################################################
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 
@@ -84,14 +82,14 @@ MIDDLEWARE = [
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
@@ -117,7 +115,7 @@ DATABASES = {
 }
 
 # Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 ##############################################################################
@@ -127,16 +125,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -146,9 +144,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 ##############################################################################
 
-LANGUAGE_CODE = 'es-mx'
+LANGUAGE_CODE = "es-mx"
 
-TIME_ZONE = 'America/Mexico_City'
+TIME_ZONE = "America/Mexico_City"
 
 USE_I18N = True
 
@@ -159,16 +157,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 ##############################################################################
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 ##############################################################################
 # Cloudinary Configuration
 # https://cloudinary.com/documentation/django_integration
 ##############################################################################
 cloudinary.config(
-    cloud_name =  environ.get("CLOUDINARY_CLOUD_NAME"),
-    api_key = environ.get("CLOUDINARY_API_KEY"),
-    api_secret = environ.get("CLOUDINARY_API_SECRET"),
+    cloud_name=environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=environ.get("CLOUDINARY_API_KEY"),
+    api_secret=environ.get("CLOUDINARY_API_SECRET"),
 )
 CLOUDINARY_FOLDER = environ.get("CLOUDINARY_FOLDER", "dev")
 CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
@@ -176,5 +174,5 @@ CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
 # DJANGO REST FRAMEWORK CONFIGURATION
 ##############################################################################
 REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
