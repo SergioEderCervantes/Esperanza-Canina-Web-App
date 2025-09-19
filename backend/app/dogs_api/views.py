@@ -67,7 +67,7 @@ class DogTopView(generics.ListAPIView):
     responses=DogListSerializer(many=True),
 )
 class DogListView(generics.ListAPIView):
-    queryset = Dog.objects.filter(adoption_state=False)
+    queryset = Dog.objects.filter(adoption_state=False).order_by('-id')
     serializer_class = DogListSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_class = DogFilter
