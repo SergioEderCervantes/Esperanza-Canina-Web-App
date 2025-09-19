@@ -1,25 +1,33 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema,OpenApiParameter, OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter, OpenApiTypes, extend_schema
 from rest_framework import filters, generics
-
+from rest_framework.response import Response
 
 from app.dogs_api.filters import DogFilter
 from app.dogs_api.models import Dog
 from app.dogs_api.pagination import DogListNumPagination
 from app.dogs_api.serializers import (
+    DetailedDogResponseSerializer,
     DetailedDogSerializer,
     DogListSerializer,
+    DogTopResponseSerializer,
     DogTopSerializer,
 )
 
 
 @extend_schema(
     summary="Lista solo los primeros 3 perros, los que acaban de ser agregados",
-    responses=DogTopSerializer(many=True),
+    responses=DogTopResponseSerializer,
 )
 class DogTopView(generics.ListAPIView):
     queryset = Dog.objects.order_by("-id")[:3]
     serializer_class = DogTopSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({"data": serializer.data})
+
 
 
 @extend_schema(
@@ -75,8 +83,16 @@ class DogListView(generics.ListAPIView):
     search_fields = ["name"]
 
 
-@extend_schema(summary="Detalle de un perro por ID", responses=DetailedDogSerializer)
+@extend_schema(
+    summary="Detalle de un perro por ID",
+    responses=DetailedDogResponseSerializer,
+)
 class DogDetailView(generics.RetrieveAPIView):
     queryset = Dog.objects.filter(adoption_state=False)
     serializer_class = DetailedDogSerializer
     lookup_field = "pk"
+
+def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response({"data": serializer.data})

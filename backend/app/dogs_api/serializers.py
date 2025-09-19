@@ -14,6 +14,8 @@ class DogTopSerializer(serializers.ModelSerializer):
     def get_primary_image(self, obj):
         return obj.primary_image()
 
+class DogTopResponseSerializer(serializers.Serializer):
+    data = DogTopSerializer(many=True)
 
 class SimpleDogBehaviorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -74,3 +76,6 @@ class DetailedDogSerializer(serializers.ModelSerializer):
             "genre_display",
             "description",
         ]
+
+class DetailedDogResponseSerializer(serializers.Serializer):
+    data = DetailedDogSerializer()

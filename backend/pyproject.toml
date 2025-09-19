@@ -13,4 +13,4 @@ exclude = ["migrations", "venv", "__pycache__"]
 "*/migrations/*.py" = ["ALL"]
 
 [tool.bandit]
-exclude_dirs = ["test"]
+exclude_dirs = ["test","seed"]

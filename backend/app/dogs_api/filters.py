@@ -1,8 +1,9 @@
 # app/dogs_api/filters.py
 
 import django_filters
+from django.db.models import Case, CharField, Value, When
+
 from app.dogs_api.models import Dog
-from django.db.models import Case, When, Value, CharField
 
 
 class DogFilter(django_filters.FilterSet):

@@ -5,7 +5,6 @@ from rest_framework.test import APIClient
 from app.dogs_api.models import Dog
 from app.dogs_api.serializers import (
     DetailedDogSerializer,
-    DogListSerializer,
     DogTopSerializer,
 )
 
