@@ -1,47 +1,32 @@
 from django.contrib import admin
-from django.contrib.admin import SimpleListFilter
-from django.utils.html import format_html
+from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import Group, User
+from unfold.admin import ModelAdmin
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
-from app.dogs_api import models
+from app.dogs_api.models import Dog
 
-
-class AdoptionStateFilter(SimpleListFilter):
-    title = "Estado de adopción"
-    parameter_name = "adoption_state"
-
-    def lookups(self, request, model_admin):
-        return (
-            ("1", "Adoptados"),
-            ("0", "No Adoptados"),
-        )
-
-    def queryset(self, request, queryset):
-        if self.value() == "1":
-            return queryset.filter(adoption_state=True)
-        if self.value() == "0":
-            return queryset.filter(adoption_state=False)
-        return queryset
+# Acomodar los base models de User y Groups
+admin.site.unregister(User)
+admin.site.unregister(Group)
 
 
-class DogAdmin(admin.ModelAdmin):
-    list_display = ("name", "dog_life_stage", "adoption_state", "view_image_button")
-    list_editable = ("adoption_state",)
-    list_filter = (AdoptionStateFilter,)
-    exclude = ("adoption_state",)
-
-    def view_image_button(self, obj):
-        if obj.primary_image() is not None:
-            return format_html(
-                '<img src="{}" width="70" style="margin-right:8px; border-radius:4px;" />'
-                '<a href="{}" target="_blank">Ampliar</a>',
-                obj.primary_image(),
-                obj.primary_image(),
-            )
-        return "Sin foto"
-
-    view_image_button.short_description = "Imagen"
+@admin.register(User)
+class UserAdmin(BaseUserAdmin, ModelAdmin):
+    # Forms loaded from `unfold.forms`
+    form = UserChangeForm
+    add_form = UserCreationForm
+    change_password_form = AdminPasswordChangeForm
 
 
-admin.site.register(models.Beheavior)
-admin.site.register(models.DogImage)
-admin.site.register(models.Dog, DogAdmin)
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+    pass
+
+
+# Configuracion del panel de admin de nosotros
+
+@admin.register(Dog)
+class DogAdminCLass(ModelAdmin):
+    pass
