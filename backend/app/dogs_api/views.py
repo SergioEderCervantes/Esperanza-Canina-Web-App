@@ -92,7 +92,8 @@ class DogDetailView(generics.RetrieveAPIView):
     serializer_class = DetailedDogSerializer
     lookup_field = "pk"
 
-def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        return Response({"data": serializer.data})
+    # Override del retrieve para wrappear la informacion en data
+    def retrieve(self, request, *args, **kwargs):
+            instance = self.get_object()
+            serializer = self.get_serializer(instance)
+            return Response({"data": serializer.data})

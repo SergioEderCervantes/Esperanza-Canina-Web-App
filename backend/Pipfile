@@ -13,7 +13,6 @@ pytest-django = "*"
 django-filter = {extras = ["templates"], version = "*"}
 drf-spectacular = "*"
 drf-spectacular-sidecar = "*"
-types-django-filter = "*"
 
 [requires]
 python_version = "3.13"
