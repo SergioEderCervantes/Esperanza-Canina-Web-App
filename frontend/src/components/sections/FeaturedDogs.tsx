@@ -1,41 +1,51 @@
-import DogCard from "../ui/DogCard";
+import DogCard from "@/components/perritos/DogCard";
+import { Dog } from "@/types/dog";
+import { DogStatus } from "@/types/dog";
+import Link from "next/link";
+
 
 const featuredDogsData: Dog[] = [
   {
     id: 1,
     name: 'Rocky',
-    imageUrl: '/perro1.jpg',
-    status: 'Disponible',
     age: '2 años',
+    imageUrl: '/perro1.jpg',
+    sex: 'Macho',
     size: 'Grande (25kg)',
-    gender: 'Macho',
-    description: 'Rocky es leal y protector, ideal para una familia activa.'
+    tags: ['Juguetón', 'Activo'],
+    description: 'Rocky es leal y protector, ideal para una familia activa.',
+    status: DogStatus.Disponible,
+    refugeTime: '3 meses',
   },
   {
     id: 2,
     name: 'Luna',
-    imageUrl: '/perro2.jpg',
-    status: 'En proceso',
     age: '1 año',
+    imageUrl: '/perro2.jpg',
+    sex: 'Hembra',
     size: 'Mediano (15kg)',
-    gender: 'Hembra',
-    description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.'
+    tags: ['Curiosa', 'Sociable'],
+    description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
+    status: DogStatus.EnProceso,
+    refugeTime: '1 mes',
   },
   {
     id: 3,
     name: 'Max',
     imageUrl: '/perro3.jpg',
-    status: 'Disponible',
+    status: DogStatus.Disponible,
     age: '3 años',
     size: 'Pequeño (8kg)',
-    gender: 'Macho',
-    description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.'
+    sex: 'Macho',
+    description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
+    tags: ['Tranquilo', 'Cariñoso'],
+    refugeTime: '6 meses',
   },
 ];
 
 export const FeaturedDogs = () => {
   return (
-    <section className="mx-auto bg-white md:p-16 py-16 px-8">
+    <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-neutral-800 mb-4">Perritos Destacados</h2>
         <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
@@ -44,15 +54,16 @@ export const FeaturedDogs = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mx-12">
         {featuredDogsData.map((dog) => (
-          <DogCard key={dog.id} {...dog} />
+          <DogCard key={dog.id} dog={dog} />
+          
         ))}
       </div>
 
       <div className="text-center">
         <button className="bg-neutral-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-neutral-700 transition-colors">
-          Ver Todos los Perritos
+          <Link href="/perritos">Ver todos los perritos</Link>
         </button>
       </div>
     </section>
