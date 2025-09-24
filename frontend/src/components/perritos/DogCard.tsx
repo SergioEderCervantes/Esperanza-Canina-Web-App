@@ -1,5 +1,7 @@
 // components/perritos/DogCard.tsx
 
+import { ButtonDogCard } from "../ui/buttonDogCard";
+
 export enum DogStatus {
   Disponible = "Disponible",
   EnProceso = "En proceso",
@@ -66,9 +68,7 @@ export default function DogCard({ dog }: { dog: Dog }) {
           <span className="text-xs text-gray-500">
             En refugio: {dog.refugeTime}
           </span>
-          <button className="bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700">
-            Ver perfil
-          </button>
+          <ButtonDogCard text="Ver perfil" />
         </div>
       </div>
     </div>

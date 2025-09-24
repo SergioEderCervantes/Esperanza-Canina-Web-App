@@ -1,4 +1,5 @@
 import DogCard, { DogStatus } from "@/components/perritos/DogCard";
+import { ButtonPagination } from "@/components/ui/buttonPagination";
 
 export default function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
@@ -50,7 +51,7 @@ export default function PerritosPage() {
   ];
 
   return (
-    <main className="max-w-7xl mx-auto p-6 bg-gray-100">
+    <main className="mx-auto p-6 bg-gray-100">
       {/* Encabezado */}
       <div className="text-center m-12">
         <h1 className="text-3xl font-bold text-black ">
@@ -62,7 +63,7 @@ export default function PerritosPage() {
       </div>
 
       {/* Filtros */}
-      <div className="flex flex-wrap gap-4 mb-8 bg-white">
+      <div className="flex flex-wrap gap-4 mb-8 bg-white p-5 rounded-md">
         <input
           type="text"
           placeholder="Buscar por nombre..."
@@ -74,7 +75,7 @@ export default function PerritosPage() {
           <option>Mediano</option>
           <option>Grande</option>
         </select>
-        <select className="border rounded-md px-4 py-2 border-gray-400">
+        <select className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-400">
           <option>Todas las edades</option>
           <option>Cachorro</option>
           <option>Adulto</option>
@@ -83,7 +84,7 @@ export default function PerritosPage() {
       </div>
 
       {/* Grid de tarjetas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500">
         {dogs.map((dog) => (
           <DogCard key={dog.id} dog={dog} />
         ))}
@@ -91,15 +92,7 @@ export default function PerritosPage() {
 
       {/* Paginación */}
       <div className="flex justify-center mt-10 gap-2">
-        <button className="px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300">
-          1
-        </button>
-        <button className="px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300">
-          2
-        </button>
-        <button className="px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300">
-          3
-        </button>
+        <ButtonPagination page={1} />
       </div>
     </main>
   );

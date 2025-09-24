@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
+import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
 
 //Layout global de la app (navbar, footer, etc)
 const geistSans = Geist({
@@ -25,28 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <div>
-        {/* Aquí iría la navbar */}
-        <section className="bg-white flex  justify-between items-center px-8 py-4 shadow-md text-black">
-          <div className="flex justify-around items-center gap-2 text-[24px] font-bold">            
-            <img src="" alt="" />
-            <a href="">Esperanza Canina</a>
-          </div>
-          <div className="flex justify-between align-start items-center gap-6 text-[18px] font-bold">
-            <a href="">Inicio</a>
-            <a href="">Adoptar</a>
-            <a href="">Apoyanos</a>
-          </div>
-        </section>
-      </div>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Nav />
+       
         {children}
+
+        <Footer />
       </body>
-      <div>
-        
-      </div>
+
     </html>
   );
 }
