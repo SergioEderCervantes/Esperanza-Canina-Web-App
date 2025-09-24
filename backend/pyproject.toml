@@ -1,0 +1,16 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.select = ["E", "F", "W", "I", "B", "DJ"]
+# E,F,W → PEP8 y errores comunes
+# I → imports
+# B → bugbear (malas prácticas Python)
+# DJ → reglas específicas de Django/DRF
+lint.ignore = ["E203", "E501"]   # compatibilidad con black
+exclude = ["migrations", "venv", "__pycache__"]
+
+[tool.ruff.lint.per-file-ignores]
+"*/migrations/*.py" = ["ALL"]
+
+[tool.bandit]
+exclude_dirs = ["test","seed"]

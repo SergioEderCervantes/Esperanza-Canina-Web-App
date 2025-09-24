@@ -8,8 +8,15 @@ django = "==5.2.6"
 djangorestframework = "*"
 psycopg2-binary = "*"
 cloudinary = "*"
-
-[dev-packages]
+pytest = "*"
+pytest-django = "*"
+django-filter = {extras = ["templates"], version = "*"}
+drf-spectacular = "*"
+drf-spectacular-sidecar = "*"
 
 [requires]
 python_version = "3.13"
+
+[dev-packages]
+ruff = "*"
+bandit = "*"

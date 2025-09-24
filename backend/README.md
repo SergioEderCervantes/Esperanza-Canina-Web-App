@@ -175,6 +175,93 @@ El backend incluye un **Django Admin** personalizado para gestionar:
 
 ---
 
+
+## Linters y Formatters
+
+Este proyecto utiliza un conjunto de herramientas para asegurar la calidad, consistencia y seguridad del código. A continuación se describe cada una y cómo utilizarla.
+
+> IMPORTANTE: las que mas se van a usar es Ruff y Bandit, no se todavia si debamos usar mypy 
+
+### `Ruff`
+
+**¿Qué hace?**
+Es un linter y formateador de código Python extremadamente rápido, escrito en Rust. Ayuda a encontrar y corregir errores, malas prácticas y problemas de estilo. En este proyecto, está configurado para reemplazar a `flake8`, `isort` y otras herramientas similares.
+
+**¿Cómo se ejecuta?**
+
+*   **Para revisar todo el proyecto:**
+    ```bash
+    pipenv run ruff check .
+    ```
+
+*   **Para formatear todo el proyecto:**
+    ```bash
+    pipenv run ruff format .
+    ```
+
+*   **Para revisar un archivo específico:**
+    ```bash
+    pipenv run ruff check app/dogs_api/views.py
+    ```
+
+*   **Para formatear un archivo específico:**
+    ```bash
+    pipenv run ruff format app/dogs_api/views.py
+    ```
+
+### `Black`
+
+**¿Qué hace?**
+Es un formateador de código "sin concesiones" (`uncompromising`). Se asegura de que el código tenga un estilo consistente en todo el proyecto, eliminando discusiones sobre el formato.
+
+**¿Cómo se ejecuta?**
+
+*   **Para formatear todo el proyecto:**
+    ```bash
+    pipenv run black .
+    ```
+
+*   **Para formatear un archivo específico:**
+    ```bash
+    pipenv run black app/dogs_api/views.py
+    ```
+
+### `Mypy`
+
+**¿Qué hace?**
+Es un verificador de tipos estáticos para Python. Ayuda a detectar errores relacionados con tipos de datos antes de que el código se ejecute, lo que hace el código más robusto y fácil de mantener.
+
+**¿Cómo se ejecuta?**
+
+*   **Para revisar todo el proyecto:**
+    ```bash
+    pipenv run mypy .
+    ```
+
+*   **Para revisar un archivo específico:**
+    ```bash
+    pipenv run mypy app/dogs_api/views.py
+    ```
+
+### `Bandit`
+
+**¿Qué hace?**
+Es una herramienta diseñada para encontrar problemas de seguridad comunes en el código Python. Analiza el código en busca de vulnerabilidades conocidas.
+
+**¿Cómo se ejecuta?**
+
+*   **Para revisar todo el proyecto:**
+    ```bash
+    pipenv run bandit -r .
+    ```
+
+*   **Para revisar un archivo específico:**
+    ```bash
+    pipenv run bandit app/dogs_api/views.py
+    ```
+
+---
+
 ## 📄 Notas
 
 * Se recomienda mantener las apps pequeñas y enfocadas en un dominio (ejemplo: `dogs`, `adoptions`, `donations`).
@@ -182,4 +269,3 @@ El backend incluye un **Django Admin** personalizado para gestionar:
 * Antes de hacer push, ejecutar los tests para garantizar la estabilidad.
 
 ---
-    
