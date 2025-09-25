@@ -6,6 +6,7 @@ export enum DogStatus {
 
 export interface Dog  {
   id: number;
+  slug:string;
   name: string;
   age: string;
   imageUrl: string;
@@ -14,6 +15,7 @@ export interface Dog  {
   tags: string[];
   description: string;
   status: DogStatus;
+  breed: string;
   refugeTime: string;
 
 };

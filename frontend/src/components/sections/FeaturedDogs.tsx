@@ -1,53 +1,35 @@
-import DogCard from "@/components/perritos/DogCard";
-import { Dog } from "@/types/dog";
-import { DogStatus } from "@/types/dog";
+import { DogTop, perritosTopRetrieve } from "@/api";
 import Link from "next/link";
+import DogTopCard from "../perritos/DogTopCard";
 
 
-const featuredDogsData: Dog[] = [
-  {
-    id: 1,
-    name: 'Rocky',
-    age: '2 años',
-    imageUrl: '/perro1.jpg',
-    sex: 'Macho',
-    size: 'Grande (25kg)',
-    tags: ['Juguetón', 'Activo'],
-    description: 'Rocky es leal y protector, ideal para una familia activa.',
-    status: DogStatus.Disponible,
-    refugeTime: '3 meses',
-  },
-  {
-    id: 2,
-    name: 'Luna',
-    age: '1 año',
-    imageUrl: '/perro2.jpg',
-    sex: 'Hembra',
-    size: 'Mediano (15kg)',
-    tags: ['Curiosa', 'Sociable'],
-    description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
-    status: DogStatus.EnProceso,
-    refugeTime: '1 mes',
-  },
-  {
-    id: 3,
-    name: 'Max',
-    imageUrl: '/perro3.jpg',
-    status: DogStatus.Disponible,
-    age: '3 años',
-    size: 'Pequeño (8kg)',
-    sex: 'Macho',
-    description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
-    tags: ['Tranquilo', 'Cariñoso'],
-    refugeTime: '6 meses',
-  },
-];
+export const FeaturedDogs = async () => {
+  // Esto esta horrible y no deberia de ser aqui pero para mañana its okay
+  const res = await perritosTopRetrieve({ security: [] });
+  let dogs_data: DogTop[];
+  if (!res.data?.data) {
+    return (
+      <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-neutral-800 mb-4">
+            Perritos Destacados
+          </h2>
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            No hay perritos
+          </p>
+        </div>
+      </section>
+    );
+  }
 
-export const FeaturedDogs = () => {
+  dogs_data = res.data?.data;
+
   return (
     <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-neutral-800 mb-4">Perritos Destacados</h2>
+        <h2 className="text-4xl font-bold text-neutral-800 mb-4">
+          Perritos Destacados
+        </h2>
         <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
           Conoce a algunos de nuestros adorables amigos que están buscando un
           hogar lleno de amor. ¡Tu próximo mejor amigo podría estar aquí!
@@ -55,9 +37,8 @@ export const FeaturedDogs = () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mx-12">
-        {featuredDogsData.map((dog) => (
-          <DogCard key={dog.id} dog={dog} />
-          
+        {dogs_data.map((dog) => (
+          <DogTopCard key={dog.id} dog={dog} />
         ))}
       </div>
 
