@@ -19,11 +19,11 @@ from app.dogs_api.serializers import (
     summary="Lista solo los primeros 3 perros, los que acaban de ser agregados",
     responses=DogTopResponseSerializer,
 )
-class DogTopView(generics.ListAPIView):
+class DogTopView(generics.RetrieveAPIView):
     queryset = Dog.objects.order_by("-id")[:3]
     serializer_class = DogTopSerializer
 
-    def list(self, request, *args, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({"data": serializer.data})
