@@ -7,44 +7,6 @@ import { DogList } from "@/api";
 
 export default async function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
- const featuredDogsData: Dog[] = [
-  {
- id: 1,
-    name: 'Rocky',
-    age: '2 años',
-    imageUrl: '/perro1.jpg',
-    sex: 'Macho',
-    size: 'Grande (25kg)',
-    tags: ['Juguetón', 'Activo'],
-    description: 'Rocky es leal y protector, ideal para una familia activa.',
-    status: DogStatus.Disponible,
-    refugeTime: '3 meses',
-  },
-  {
-    id: 2,
-    name: 'Luna',
-    age: '1 año',
-    imageUrl: '/perro2.jpg',
-    sex: 'Hembra',
-    size: 'Mediano (15kg)',
-    tags: ['Curiosa', 'Sociable'],
-    description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
-    status: DogStatus.EnProceso,
-    refugeTime: '1 mes',
-  },
-  {
-    id: 3,
-    name: 'Max',
-    imageUrl: '/perro3.jpg',
-    status: DogStatus.Disponible,
-    age: '3 años',
-    size: 'Pequeño (8kg)',
-    sex: 'Macho',
-    description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
-    tags: ['Tranquilo', 'Cariñoso'],
-    refugeTime: '6 meses',
-  },
-];
 // TODO quitar el la llamada aqui, no es buena practica
   const res = await perritosList({security : []})
   let dogs_data: DogList[] = [];

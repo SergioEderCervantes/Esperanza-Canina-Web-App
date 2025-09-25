@@ -1,50 +1,7 @@
 import { DogTop, perritosTopRetrieve } from "@/api";
-import DogCard from "@/components/perritos/DogCard";
-import { Dog } from "@/types/dog";
-import { DogStatus } from "@/types/dog";
 import Link from "next/link";
 import DogTopCard from "../perritos/DogTopCard";
-// import { DogList } from "@/api/types.gen"
 
-const featuredDogsData: Dog[] = [
-  {
-    id: 1,
-    name: "Rocky",
-    age: "2 años",
-    imageUrl: "/perro1.jpg",
-    sex: "Macho",
-    size: "Grande (25kg)",
-    tags: ["Juguetón", "Activo"],
-    description: "Rocky es leal y protector, ideal para una familia activa.",
-    status: DogStatus.Disponible,
-    refugeTime: "3 meses",
-  },
-  {
-    id: 2,
-    name: "Luna",
-    age: "1 año",
-    imageUrl: "/perro2.jpg",
-    sex: "Hembra",
-    size: "Mediano (15kg)",
-    tags: ["Curiosa", "Sociable"],
-    description: "Luna es curiosa y juguetona, se lleva bien con otros perros.",
-    status: DogStatus.EnProceso,
-    refugeTime: "1 mes",
-  },
-  {
-    id: 3,
-    name: "Max",
-    imageUrl: "/perro3.jpg",
-    status: DogStatus.Disponible,
-    age: "3 años",
-    size: "Pequeño (8kg)",
-    sex: "Macho",
-    description:
-      "Max es un perrito tranquilo y cariñoso, perfecto para compañía.",
-    tags: ["Tranquilo", "Cariñoso"],
-    refugeTime: "6 meses",
-  },
-];
 
 export const FeaturedDogs = async () => {
   // Esto esta horrible y no deberia de ser aqui pero para mañana its okay
@@ -80,9 +37,6 @@ export const FeaturedDogs = async () => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mx-12">
-        {/* {featuredDogsData.map((dog) => (
-          <DogCard key={dog.id} dog={dog} />
-        ))} */}
         {dogs_data.map((dog) => (
           <DogTopCard key={dog.id} dog={dog} />
         ))}
