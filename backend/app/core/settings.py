@@ -244,5 +244,4 @@ UNFOLD = {
         "important-dark": "var(--color-base-100)",
     },
 },
-
 }

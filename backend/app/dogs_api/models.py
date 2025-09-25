@@ -135,7 +135,6 @@ class Dog(models.Model):
 
 class DogImage(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="images")
-    # picture = models.ImageField(upload_to="dog_pictures/")
     image = CloudinaryField(
         "image",
         folder=f"dog_images/{settings.CLOUDINARY_FOLDER}",
@@ -157,6 +156,15 @@ class DogImage(models.Model):
     def url(self):
         return self.image.url
 
+    def save(self, *args, **kwargs):
+        # Si se está guardando como primaria, quitar la primaria de las demás
+        if self.is_primary:
+            DogImage.objects.filter(dog=self.dog, is_primary=True).exclude(pk=self.pk).update(is_primary=False)
+        else:
+            # Si ninguna imagen de ese perro es primaria después de guardar, esta se vuelve primaria
+            if not DogImage.objects.filter(dog=self.dog, is_primary=True).exclude(pk=self.pk).exists():
+                self.is_primary = True
+        super().save(*args, **kwargs)
 
 class Beheavior(models.Model):
     beheavior_name = models.CharField(
