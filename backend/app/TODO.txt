@@ -1,12 +1,10 @@
 TODOS de la parte de la API:
 
 Comentar los Modelos, descripcion simple
-Pulir la descripcion de varios query params en Swagger
-Buscar mejores practicas de las vistas (data encapsulado en la response, versionamiento)
 Checar el rendimiento real con +200 perros, para ver si hace falta cambiar el filtrado
-Hacer test de vistas
-Prestar atencion en los linters, fixear lo que dicen y maybe automatizar con un pre-commit 
+Checar Excel , analizarlo 
+Script que transforme Excel a la base de datos
+Modificar base de datos con la jaula
 
 TODOS de la parte del panel de admin
 
-muchas cosas yujuu (Sentarse con tiempo para ir definiendo que se tiene que cambiar y mejorar en el panel, y ponerlo aqui)

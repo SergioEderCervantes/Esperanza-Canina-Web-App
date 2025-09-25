@@ -28,7 +28,7 @@ SECRET_KEY = environ.get("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DEBUG", "") == "1"
 
-ALLOWED_HOSTS = ["localhost", "api"]
+ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
@@ -44,6 +44,11 @@ WSGI_APPLICATION = "app.core.wsgi.application"
 ##############################################################################
 
 INSTALLED_APPS = [
+    # Unfold Apps
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.inlines",  # optional, if special inlines are needed
     # Django Default Apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -175,4 +180,68 @@ CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
 ##############################################################################
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SESSION_COOKIE_AGE = 1209600  
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+##############################################################################
+# Unfold
+##############################################################################
+UNFOLD = {
+
+    "SITE_TITLE": "Administración de Esperanza Canina",
+    "SITE_HEADER": "Esperanza Canina",
+    
+    "SITE_DROPDOWN": [
+        {
+            "icon": "pets",
+            "title": ("Sitio Web"),
+            "link": "http://localhost:3000/",
+        },
+        
+    ],
+    "SITE_SYMBOL": "pets",
+    "LOGIN": {
+        # "image": lambda request: ("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQUUKb_E4DWBUWpOJDP_FSA3ZQOgPWoA8uOPOd3zo6TaU0MCXHarhW05900NPFBAVW0c2okk3jAVcMm6xvem1mSUZeYauVNTXAbl8qX0Q"),
+
+    },
+
+    "BORDER_RADIUS": "11px",
+"COLORS": {
+    "base": {
+        
+        "50": "oklch(98.5% .002 247.839)",
+        "100": "oklch(96.7% .003 264.542)",
+        "200": "oklch(92.8% .006 264.531)",
+        "300": "oklch(87.2% .01 258.338)",
+        "400": "oklch(70.7% .022 261.325)",
+        "500": "oklch(55.1% .027 264.364)",
+        "600": "oklch(44.6% .03 256.802)",
+        "700": "oklch(37.3% .034 259.733)",
+        "800": "oklch(27.8% .033 256.848)",
+        "900": "oklch(21% .034 264.665)",
+        "950": "oklch(13% .028 261.692)",
+    },
+    "primary": {
+    
+        "50": "oklch(96% .014 257.6)",
+        "100": "oklch(93% .033 257.4)",
+        "200": "oklch(88% .065 257.3)",
+        "300": "oklch(81% .117 257.1)",
+        "400": "oklch(71% .188 257.1)",
+        "500": "oklch(62% .245 257)", 
+        "600": "oklch(54% .255 257)",
+        "700": "oklch(47% .236 257.2)",
+        "800": "oklch(41% .194 257.5)",
+        "900": "oklch(35% .149 257.8)",
+        "950": "oklch(28% .112 257.5)",
+    },
+    "font": {
+        "subtle-light": "var(--color-base-500)",
+        "subtle-dark": "var(--color-base-400)",
+        "default-light": "var(--color-base-600)",
+        "default-dark": "var(--color-base-300)",
+        "important-light": "var(--color-base-900)",
+        "important-dark": "var(--color-base-100)",
+    },
+},
 }
