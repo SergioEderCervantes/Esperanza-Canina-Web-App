@@ -6,7 +6,7 @@ from django.utils.html import format_html
 from unfold.admin import ModelAdmin
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
-from app.dogs_api.models import Dog, DogImage
+from app.dogs_api.models import Dog, DogImage, Beheavior
 
 # Acomodar los base models de User y Groups
 admin.site.unregister(User)
@@ -49,6 +49,9 @@ class DogAdminCLass(ModelAdmin):
     list_display = ("name", "adoption_state_display", "primary_image_thumbnail")
     search_fields = ("name",)
     list_filter = ("adoption_state",)
+    # filter_horizontal = ("beheaviors",)
+    fields = ("name", "age_year", "age_month", "genre", "adoption_state", 
+              "description", "size", "arrive_date", "beheaviors")
 
     def adoption_state_display(self, obj):
         return "Adoptado" if obj.adoption_state else "No adoptado"
@@ -63,10 +66,15 @@ class DogAdminCLass(ModelAdmin):
             )
         return "-"
     primary_image_thumbnail.short_description = "Imagen primaria"
+    
+@admin.register(Beheavior)
+class BeheaviorAdmin(ModelAdmin):
+    list_display = ("beheavior_name", "beheavior_description")
+    search_fields = ("beheavior_name",)
 
 @admin.register(DogImage)
 class DogImageAdmin(ModelAdmin):
-    list_display = ("dog_id", "dog", "image_thumbnail", "is_primary")
+    list_display = ("dog_id", "dog", "image_thumbnail")
     search_fields = ("dog__name",)
     list_filter = ("dog",)
     list_display_links = ("dog",)
