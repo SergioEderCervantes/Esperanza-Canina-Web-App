@@ -179,18 +179,18 @@ export type PerritosRetrieveResponses = {
 
 export type PerritosRetrieveResponse = PerritosRetrieveResponses[keyof PerritosRetrieveResponses];
 
-export type PerritosTopListData = {
+export type PerritosTopRetrieveData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/api/perritos/top/';
 };
 
-export type PerritosTopListResponses = {
-    200: Array<DogTopResponse>;
+export type PerritosTopRetrieveResponses = {
+    200: DogTopResponse;
 };
 
-export type PerritosTopListResponse = PerritosTopListResponses[keyof PerritosTopListResponses];
+export type PerritosTopRetrieveResponse = PerritosTopRetrieveResponses[keyof PerritosTopRetrieveResponses];
 
 export type SchemaRetrieveData = {
     body?: never;

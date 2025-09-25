@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopListData, PerritosTopListResponses, SchemaRetrieveData, SchemaRetrieveResponses } from './types.gen';
+import type { PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopRetrieveData, PerritosTopRetrieveResponses, SchemaRetrieveData, SchemaRetrieveResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -63,8 +63,8 @@ export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: 
 /**
  * Lista solo los primeros 3 perros, los que acaban de ser agregados
  */
-export const perritosTopList = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopListData, ThrowOnError>) => {
-    return (options?.client ?? client).get<PerritosTopListResponses, unknown, ThrowOnError>({
+export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopRetrieveData, ThrowOnError>) => {
+    return (options?.client ?? client).get<PerritosTopRetrieveResponses, unknown, ThrowOnError>({
         security: [
             {
                 in: 'cookie',

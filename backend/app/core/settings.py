@@ -28,7 +28,7 @@ SECRET_KEY = environ.get("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DEBUG", "") == "1"
 
-ALLOWED_HOSTS = ["localhost", "api"]
+ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
