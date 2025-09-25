@@ -18,8 +18,10 @@
   :root {
     --background: #ffffff;
     --foreground: #ededed;
+    --font: 'Alan Sans', sans-serif;
   }
 }
+
 
 body {
   background: var(--background);
