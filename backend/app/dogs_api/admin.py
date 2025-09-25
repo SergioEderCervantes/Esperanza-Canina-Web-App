@@ -2,10 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, User
-from unfold.admin import ModelAdmin
-from django.contrib.admin import SimpleListFilter
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 from django.utils.html import format_html
+from unfold.admin import ModelAdmin
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 from app.dogs_api.models import Dog, DogImage
 
@@ -31,7 +30,7 @@ class GroupAdmin(BaseGroupAdmin, ModelAdmin):
 class DogImageInline(admin.TabularInline):
     model = DogImage
     extra = 1
-    fields = ("image_thumbnail", "is_primary")
+    fields = ("image_thumbnail", "image", "is_primary")
     readonly_fields = ("image_thumbnail",)
     show_change_link = True
 
@@ -64,7 +63,7 @@ class DogAdminCLass(ModelAdmin):
             )
         return "-"
     primary_image_thumbnail.short_description = "Imagen primaria"
-    
+
 @admin.register(DogImage)
 class DogImageAdmin(ModelAdmin):
     list_display = ("dog_id", "dog", "image_thumbnail", "is_primary")
@@ -72,7 +71,7 @@ class DogImageAdmin(ModelAdmin):
     list_filter = ("dog",)
     list_display_links = ("dog",)
     readonly_fields = ("image_preview",)
-    fields = ("dog", "image_preview", "is_primary") 
+    fields = ("dog", "image_preview", "image", "is_primary")
 
     def image_thumbnail(self, obj):
         if obj.image:
@@ -91,6 +90,4 @@ class DogImageAdmin(ModelAdmin):
             )
         return "-"
     image_preview.short_description = "Vista previa"
-    
-    
-    
+

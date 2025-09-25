@@ -1,4 +1,3 @@
-import requests
 
 from app.dogs_api.models import Dog
 from app.dogs_api.serializers import AdoptionRequestSerializer

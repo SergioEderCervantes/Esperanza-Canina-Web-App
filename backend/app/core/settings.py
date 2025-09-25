@@ -181,7 +181,7 @@ CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
-SESSION_COOKIE_AGE = 1209600  
+SESSION_COOKIE_AGE = 1209600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 ##############################################################################
 # Unfold
@@ -190,14 +190,14 @@ UNFOLD = {
 
     "SITE_TITLE": "Administración de Esperanza Canina",
     "SITE_HEADER": "Esperanza Canina",
-    
+
     "SITE_DROPDOWN": [
         {
             "icon": "pets",
             "title": ("Sitio Web"),
             "link": "http://localhost:3000/",
         },
-        
+
     ],
     "SITE_SYMBOL": "pets",
     "LOGIN": {
@@ -208,7 +208,7 @@ UNFOLD = {
     "BORDER_RADIUS": "11px",
 "COLORS": {
     "base": {
-        
+
         "50": "oklch(98.5% .002 247.839)",
         "100": "oklch(96.7% .003 264.542)",
         "200": "oklch(92.8% .006 264.531)",
@@ -222,13 +222,13 @@ UNFOLD = {
         "950": "oklch(13% .028 261.692)",
     },
     "primary": {
-    
+
         "50": "oklch(96% .014 257.6)",
         "100": "oklch(93% .033 257.4)",
         "200": "oklch(88% .065 257.3)",
         "300": "oklch(81% .117 257.1)",
         "400": "oklch(71% .188 257.1)",
-        "500": "oklch(62% .245 257)", 
+        "500": "oklch(62% .245 257)",
         "600": "oklch(54% .255 257)",
         "700": "oklch(47% .236 257.2)",
         "800": "oklch(41% .194 257.5)",
