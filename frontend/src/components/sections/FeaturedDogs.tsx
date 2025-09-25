@@ -7,6 +7,7 @@ import Link from "next/link";
 const featuredDogsData: Dog[] = [
   {
     id: 1,
+    slug: 'rocky',
     name: 'Rocky',
     age: '2 años',
     imageUrl: '/perro1.jpg',
@@ -16,9 +17,11 @@ const featuredDogsData: Dog[] = [
     description: 'Rocky es leal y protector, ideal para una familia activa.',
     status: DogStatus.Disponible,
     refugeTime: '3 meses',
+    breed: 'Pastor Alemán',
   },
   {
     id: 2,
+    slug: 'luna',
     name: 'Luna',
     age: '1 año',
     imageUrl: '/perro2.jpg',
@@ -28,9 +31,11 @@ const featuredDogsData: Dog[] = [
     description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
     status: DogStatus.EnProceso,
     refugeTime: '1 mes',
+    breed: 'Labrador Retriever',
   },
   {
     id: 3,
+    slug: 'max',
     name: 'Max',
     imageUrl: '/perro3.jpg',
     status: DogStatus.Disponible,
@@ -40,6 +45,7 @@ const featuredDogsData: Dog[] = [
     description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
     tags: ['Tranquilo', 'Cariñoso'],
     refugeTime: '6 meses',
+    breed: 'Golden Retriever',
   },
 ];
 

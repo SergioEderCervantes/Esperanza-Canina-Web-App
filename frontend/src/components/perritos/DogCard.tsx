@@ -1,18 +1,15 @@
 // components/perritos/DogCard.tsx
 
-import { ButtonDogCard } from "@/components/ui/buttonDogCard";
-import { Dog } from "@/types/dog";
+import { ButtonDogCard } from "@/components/ui/buttonDogCard"
+import type { Dog } from "@/types/dog"
+import Link from "next/link"
 
 export default function DogCard({ dog }: { dog: Dog }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
       {/* Imagen */}
-      <div className="h-60 bg-gray-200 flex items-center justify-center text-gray-500">
-        <img
-          src={dog.imageUrl || "/placeholder-dog.png"}
-          alt={dog.name}
-          className="w-full h-full object-cover"
-        />
+      <div className="h-80 bg-gray-200 flex items-center justify-center text-gray-500">
+        <img src={dog.imageUrl || "/placeholder-dog.png"} alt={dog.name} className="w-full h-full object-cover" />
       </div>
 
       {/* Contenido */}
@@ -23,8 +20,8 @@ export default function DogCard({ dog }: { dog: Dog }) {
             dog.status === "Disponible"
               ? "bg-green-100 text-green-700"
               : dog.status === "En proceso"
-              ? "bg-yellow-100 text-yellow-700"
-              : "bg-gray-200 text-gray-600"
+                ? "bg-yellow-100 text-yellow-700"
+                : "bg-gray-200 text-gray-600"
           }`}
         >
           {dog.status}
@@ -38,10 +35,7 @@ export default function DogCard({ dog }: { dog: Dog }) {
         {/* Tags */}
         <div className="flex flex-wrap gap-2 my-2">
           {dog.tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md"
-            >
+            <span key={tag} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">
               {tag}
             </span>
           ))}
@@ -52,12 +46,13 @@ export default function DogCard({ dog }: { dog: Dog }) {
 
         {/* Footer */}
         <div className="flex justify-between items-center mt-4">
-          <span className="text-xs text-gray-500">
-            En refugio: {dog.refugeTime}
-          </span>
-          <ButtonDogCard text="Ver perfil" />
+          <span className="text-xs text-gray-500">En refugio: {dog.refugeTime}</span>
+
+          <Link href={`/perritos/${dog.slug}`}>
+            <ButtonDogCard text={"Adoptar"} />
+          </Link>
         </div>
       </div>
     </div>
-  );
+  )
 }

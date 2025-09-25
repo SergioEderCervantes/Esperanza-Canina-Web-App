@@ -7,7 +7,8 @@ export default function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
  const featuredDogsData: Dog[] = [
   {
- id: 1,
+    id: 1,
+    slug: 'rocky',
     name: 'Rocky',
     age: '2 años',
     imageUrl: '/perro1.jpg',
@@ -17,9 +18,11 @@ export default function PerritosPage() {
     description: 'Rocky es leal y protector, ideal para una familia activa.',
     status: DogStatus.Disponible,
     refugeTime: '3 meses',
+    breed: 'Pastor Alemán',
   },
   {
     id: 2,
+    slug: 'luna',
     name: 'Luna',
     age: '1 año',
     imageUrl: '/perro2.jpg',
@@ -29,9 +32,11 @@ export default function PerritosPage() {
     description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
     status: DogStatus.EnProceso,
     refugeTime: '1 mes',
+    breed: 'Labrador Retriever',
   },
   {
     id: 3,
+    slug: 'max',
     name: 'Max',
     imageUrl: '/perro3.jpg',
     status: DogStatus.Disponible,
@@ -41,6 +46,7 @@ export default function PerritosPage() {
     description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
     tags: ['Tranquilo', 'Cariñoso'],
     refugeTime: '6 meses',
+    breed: 'Golden Retriever',
   },
 ];
 
