@@ -3,6 +3,7 @@ from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, User
 from unfold.admin import ModelAdmin
+from django.contrib.admin import SimpleListFilter
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 from app.dogs_api.models import Dog
@@ -18,10 +19,12 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
+    icon = "person"
 
 
 @admin.register(Group)
 class GroupAdmin(BaseGroupAdmin, ModelAdmin):
+    icon = "group"
     pass
 
 
@@ -30,3 +33,4 @@ class GroupAdmin(BaseGroupAdmin, ModelAdmin):
 @admin.register(Dog)
 class DogAdminCLass(ModelAdmin):
     pass
+
