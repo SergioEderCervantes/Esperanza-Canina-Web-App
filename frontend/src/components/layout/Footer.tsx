@@ -1,5 +1,6 @@
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaPaw, FaPhone, FaEnvelope } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -33,8 +34,8 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:text-white transition-colors">Adoptar</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Ayudanos</a></li>
+            <li><Link href="#" className="hover:text-white transition-colors">Adoptar</Link></li>
+            <li><Link href="#" className="hover:text-white transition-colors">Ayudanos</Link></li>
             
           </ul>
         </div>

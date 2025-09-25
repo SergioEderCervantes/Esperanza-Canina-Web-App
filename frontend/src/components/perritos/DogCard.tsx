@@ -1,31 +1,18 @@
 // components/perritos/DogCard.tsx
 
-import { ButtonDogCard } from "../ui/buttonDogCard";
-
-export enum DogStatus {
-  Disponible = "Disponible",
-  EnProceso = "En proceso",
-  Adoptado = "Adoptado",
-}
-
-type Dog = {
-  id: number;
-  name: string;
-  age: string;
-  sex: string;
-  size: string;
-  tags: string[];
-  description: string;
-  status: DogStatus;
-  refugeTime: string;
-};
+import { ButtonDogCard } from "@/components/ui/buttonDogCard";
+import { Dog } from "@/types/dog";
 
 export default function DogCard({ dog }: { dog: Dog }) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Imagen (por ahora un placeholder) */}
-      <div className="h-40 bg-gray-200 flex items-center justify-center text-gray-500">
-        Foto de {dog.name}
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
+      {/* Imagen */}
+      <div className="h-60 bg-gray-200 flex items-center justify-center text-gray-500">
+        <img
+          src={dog.imageUrl || "/placeholder-dog.png"}
+          alt={dog.name}
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Contenido */}
@@ -43,7 +30,7 @@ export default function DogCard({ dog }: { dog: Dog }) {
           {dog.status}
         </span>
 
-        <h2 className="text-lg font-bold mt-2">{dog.name}</h2>
+        <h2 className="text-lg font-bold mt-2 text-gray-500">{dog.name}</h2>
         <p className="text-sm text-gray-600">
           {dog.age} • {dog.sex} • {dog.size}
         </p>

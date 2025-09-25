@@ -1,54 +1,48 @@
-import DogCard, { DogStatus } from "@/components/perritos/DogCard";
+import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
+import { Dog, DogStatus } from "@/types/dog";
+import Image from "next/image";
 
 export default function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
-  const dogs = [
-    {
-      id: 1,
-      name: "Max",
-      age: "2 años",
-      sex: "Macho",
-      size: "Grande",
-      tags: ["Juguetón", "Sociable", "Activo"],
-      description: "Max es un perro muy cariñoso que adora jugar en el patio.",
-      status: DogStatus.Disponible,
-      refugeTime: "3 meses",
-    },
-    {
-      id: 2,
-      name: "Luna",
-      age: "1 año",
-      sex: "Hembra",
-      size: "Mediano",
-      tags: ["Cariñosa", "Tranquila", "Obediente"],
-      description: "Luna es una perra muy dulce y tranquila.",
-      status: DogStatus.Disponible,
-      refugeTime: "1 mes",
-    },
-    {
-      id: 3,
-      name: "Luna",
-      age: "1 año",
-      sex: "Hembra",
-      size: "Mediano",
-      tags: ["Cariñosa", "Tranquila", "Obediente"],
-      description: "Luna es una perra muy dulce y tranquila.",
-      status: DogStatus.Disponible,
-      refugeTime: "1 mes",
-    },
-    {
-      id: 4,
-      name: "Luna",
-      age: "1 año",
-      sex: "Hembra",
-      size: "Mediano",
-      tags: ["Cariñosa", "Tranquila", "Obediente"],
-      description: "Luna es una perra muy dulce y tranquila aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.llllllllllllllmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-      status: DogStatus.Disponible,
-      refugeTime: "1 mes",
-    },
-  ];
+ const featuredDogsData: Dog[] = [
+  {
+ id: 1,
+    name: 'Rocky',
+    age: '2 años',
+    imageUrl: '/perro1.jpg',
+    sex: 'Macho',
+    size: 'Grande (25kg)',
+    tags: ['Juguetón', 'Activo'],
+    description: 'Rocky es leal y protector, ideal para una familia activa.',
+    status: DogStatus.Disponible,
+    refugeTime: '3 meses',
+  },
+  {
+    id: 2,
+    name: 'Luna',
+    age: '1 año',
+    imageUrl: '/perro2.jpg',
+    sex: 'Hembra',
+    size: 'Mediano (15kg)',
+    tags: ['Curiosa', 'Sociable'],
+    description: 'Luna es curiosa y juguetona, se lleva bien con otros perros.',
+    status: DogStatus.EnProceso,
+    refugeTime: '1 mes',
+  },
+  {
+    id: 3,
+    name: 'Max',
+    imageUrl: '/perro3.jpg',
+    status: DogStatus.Disponible,
+    age: '3 años',
+    size: 'Pequeño (8kg)',
+    sex: 'Macho',
+    description: 'Max es un perrito tranquilo y cariñoso, perfecto para compañía.',
+    tags: ['Tranquilo', 'Cariñoso'],
+    refugeTime: '6 meses',
+  },
+];
 
   return (
     <main className="mx-auto p-6 bg-gray-100">
@@ -85,7 +79,7 @@ export default function PerritosPage() {
 
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500">
-        {dogs.map((dog) => (
+        {featuredDogsData.map((dog) => (
           <DogCard key={dog.id} dog={dog} />
         ))}
       </div>
