@@ -72,7 +72,7 @@ export type PaginatedDogListList = {
     count: number;
     next?: string | null;
     previous?: string | null;
-    results: Array<DogList>;
+    data: Array<DogList>;
 };
 
 export type SimpleDogBehavior = {

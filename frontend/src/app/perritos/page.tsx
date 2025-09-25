@@ -2,8 +2,10 @@ import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
 import { Dog, DogStatus } from "@/types/dog";
 import Image from "next/image";
+import { perritosList } from "@/api/sdk.gen"
+import { DogList } from "@/api";
 
-export default function PerritosPage() {
+export default async function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
  const featuredDogsData: Dog[] = [
   {
@@ -43,6 +45,14 @@ export default function PerritosPage() {
     refugeTime: '6 meses',
   },
 ];
+// TODO quitar el la llamada aqui, no es buena practica
+  const res = await perritosList({security : []})
+  let dogs_data: DogList[] = [];
+  if (res.data?.data){
+    dogs_data = res.data.data
+  }
+
+
 
   return (
     <main className="mx-auto p-6 bg-gray-100">
@@ -79,9 +89,9 @@ export default function PerritosPage() {
 
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500">
-        {featuredDogsData.map((dog) => (
-          <DogCard key={dog.id} dog={dog} />
-        ))}
+        {dogs_data && dogs_data.length > 0
+          ? dogs_data.map((dog) => <DogCard key={dog.id} dog={dog} />)
+          : <div className="col-span-full text-center text-gray-700 py-8">No hay perritos que enseñar</div>}
       </div>
 
       {/* Paginación */}
