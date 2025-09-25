@@ -176,3 +176,5 @@ CLOUDINARY_TAG = environ.get("CLOUDINARY_TAG", "dev")
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+SESSION_COOKIE_AGE = 1209600  
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
