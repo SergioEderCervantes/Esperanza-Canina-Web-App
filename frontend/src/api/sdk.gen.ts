@@ -23,17 +23,6 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  */
 export const perritosList = <ThrowOnError extends boolean = false>(options?: Options<PerritosListData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosListResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/',
         ...options
     });
@@ -44,17 +33,6 @@ export const perritosList = <ThrowOnError extends boolean = false>(options?: Opt
  */
 export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: Options<PerritosRetrieveData, ThrowOnError>) => {
     return (options.client ?? client).get<PerritosRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/{id}/',
         ...options
     });
@@ -65,17 +43,6 @@ export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: 
  */
 export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopRetrieveData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosTopRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/top/',
         ...options
     });
@@ -89,17 +56,6 @@ export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(option
  */
 export const schemaRetrieve = <ThrowOnError extends boolean = false>(options?: Options<SchemaRetrieveData, ThrowOnError>) => {
     return (options?.client ?? client).get<SchemaRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/schema/',
         ...options
     });
