@@ -14,5 +14,7 @@ import type { ClientOptions as ClientOptions2 } from './types.gen';
 export type CreateClientConfig<T extends ClientOptions = ClientOptions2> = (override?: Config<ClientOptions & T>) => Config<Required<ClientOptions> & T>;
 
 export const client = createClient(createConfig<ClientOptions2>({
-    baseUrl: 'http://api:8000'
+    baseUrl: 'http://localhost:8000'
+    // Si alguien alguna vez lo quiere correr dentro de docker, que active esto
+    // baseUrl: 'http://api:8000'
 }));
