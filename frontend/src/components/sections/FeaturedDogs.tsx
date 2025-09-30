@@ -2,24 +2,37 @@ import { DogTop, perritosTopRetrieve } from "@/api";
 import Link from "next/link";
 import DogTopCard from "../perritos/DogTopCard";
 
-
-export const FeaturedDogs = async () => {
-  // Esto esta horrible y no deberia de ser aqui pero para mañana its okay
-  const res = await perritosTopRetrieve({ security: [] });
-  let dogs_data: DogTop[];
-  if (!res.data?.data) {
-    return (
+function fallback(){
+  return (
       <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-neutral-800 mb-4">
             Perritos Destacados
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            No hay perritos
+            No se encontraron perritos
           </p>
         </div>
       </section>
     );
+}
+
+
+export const FeaturedDogs = async () => {
+  let res;
+  try{
+    res = await perritosTopRetrieve();
+
+  } catch (e){
+    // Fallback component en caso de que la query falle
+    console.log("Error en Query top: ", e);
+    return fallback();
+  }
+
+  let dogs_data: DogTop[];
+  // Fallback component en caso de que no se obtengan datos del fetch
+  if (!res.data?.data) {
+    return fallback();
   }
 
   dogs_data = res.data?.data;

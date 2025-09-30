@@ -1,6 +1,6 @@
 {
   "input": "http://localhost:8000/api/schema/", 
-  "output": "src/api",                     
+  "output": "src/apiNew",                     
   "client": "fetch",                       
   "baseUrl": "process.env.NEXT_PUBLIC_API_URL"
 }
