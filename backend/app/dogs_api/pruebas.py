@@ -3,7 +3,8 @@ import time
 
 from docx import Document
 
-from app.dogs_api.adoption_form_domain import DatosDelAnimal
+from app.dogs_api.adoption_form_domain import make_example_form
+import pprint
 
 
 def fill_docx(template_path: str, output_path: str, context: dict):
@@ -56,9 +57,10 @@ def docx_to_pdf(input_path, output_path):
 
 if __name__ == "__main__":
     start = time.time()
-    domain = DatosDelAnimal("Fluky", 5, "Mediano", "Macho")
-    data = domain.__dict__
-    fill_docx("app/form_templates/prueba_form_2.docx", "app/form_templates/filled_form.docx", data)
+    domain = make_example_form()
+    data = domain.make_data_dict()
+
+    fill_docx("app/form_templates/Prueba_formulario_1.docx", "app/form_templates/filled_form.docx", data)
     docx_to_pdf("app/form_templates/filled_form.docx", "app/form_templates/")
     end = time.time()
     print(f"Tiempo de ejecución: {end - start:.2f} segundos")

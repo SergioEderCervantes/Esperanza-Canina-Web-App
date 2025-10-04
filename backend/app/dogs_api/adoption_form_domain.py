@@ -60,11 +60,68 @@ class FormularioAdopcion:
     sobre_el_espacio: EspacioDondeVivira
     sobre_el_cuidado: CuidadoYCalidadDeVida
 
+    def make_data_dict(self)-> dict:
+        result = {}
+        result.update(self.datos_del_animal.__dict__)
+        result.update(self.datos_del_solicitante.__dict__)
+        result.update(self.sobre_el_espacio.__dict__)
+        result.update(self.sobre_el_cuidado.__dict__)
+        return result
 
-# Ejemplo de uso (inicialización vacía)
-# formulario = FormularioAdopcion(
-#     animal_data=DatosDelAnimal(),
-#     solicitante_data=DatosDelSolicitante(),
-#     espacio_data=EspacioDondeVivira(),
-#     cuidado_data=CuidadoYCalidadDeVida()
-# )
+
+def make_example_form() -> FormularioAdopcion:
+
+    datos_animal = DatosDelAnimal(
+        dog_name="Firulais",
+        dog_age=3,
+        dog_size="Mediano",
+        dog_genre="Macho"
+    )
+
+    datos_solicitante = DatosDelSolicitante(
+        adpt_name="Juan Pérez",
+        adpt_age=30,
+        adpt_address="Calle Falsa 123",
+        adpt_form_field1="Metro Centro",
+        adpt_form_field2="5551234567",
+        adpt_form_field3="5557654321",
+        adpt_form_field4="9am-6pm",
+        adpt_form_field5="juan.perez@email.com",
+        adpt_form_field6="Ingeniero",
+        adpt_form_field7=True,
+        adopt_form_field8="No aplica"
+    )
+
+    espacio_vivira = EspacioDondeVivira(
+        living_form_field1="Todos de acuerdo",
+        living_form_field3=True,
+        living_form_field4="Gato",
+        living_form_field5="Veterinario anual",
+        living_form_field6=True,
+        living_form_field7="No aplica",
+        living_form_field8="En la sala",
+        living_form_field9="Juan Pérez",
+        living_form_field10="Propia",
+        living_form_field11="Llevaría al perro conmigo"
+    )
+
+    cuidado_calidad = CuidadoYCalidadDeVida(
+        dogcare_field1="Juan Pérez",
+        dogcare_field2=True,
+        dogcare_field3="5, 8",
+        dogcare_field4=True,
+        dogcare_field5="No",
+        dogcare_field6="Lo llevo conmigo",
+        dogcare_field7="Sala, cocina, patio",
+        dogcare_field8="No suele",
+        dogcare_field9="Con familia"
+    )
+
+    formulario = FormularioAdopcion(
+        datos_del_animal=datos_animal,
+        datos_del_solicitante=datos_solicitante,
+        sobre_el_espacio=espacio_vivira,
+        sobre_el_cuidado=cuidado_calidad
+    )
+
+    return formulario

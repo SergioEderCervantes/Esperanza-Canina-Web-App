@@ -13,7 +13,6 @@ TODOS de la parte del panel de admin
 
 TODOS del envio del correo
 
-- Probar si el objeto de dominio gigante puede llenar bien la plantilla
 - Generar el serializer correctamente a partir del objeto de dominio
 - Generar la vista para aceptar el form del serializer
 - Generar el worflow desde el recibimiento del json desde la view hasta la generacion del formulario ya rellenado y aplanado
