@@ -1,12 +1,14 @@
 # tests/test_serializers.py
 import pytest
 
+from app.dogs_api.adoption_form_domain import FormularioAdopcion
 from app.dogs_api.models import Beheavior, Dog, DogImage
 from app.dogs_api.serializers import (
     DetailedDogBehaviorSerializer,
     DetailedDogSerializer,
     DogListSerializer,
     DogTopSerializer,
+    FormularioAdopcionSerializer,
     SimpleDogBehaviorSerializer,
 )
 
@@ -77,6 +79,7 @@ class TestDogSerializers:
         assert data["beheavior_name"] == "Tranquilo"
         assert data["beheavior_description"] == "No ladra mucho"
 
+
     def test_detailed_dog_serializer(self):
         dog = Dog.objects.create(
             name="Zeus",
@@ -106,3 +109,69 @@ class TestDogSerializers:
         assert data["beheaviors"][0]["beheavior_description"] == "Cuida la casa"
         assert len(data["images"]) == 1
         assert "url" in data["images"][0]
+
+
+    def test_deserialization_happy_path(self):
+        """
+        Prueba la deserialización de un JSON válido al objeto de dominio FormularioAdopcion.
+        """
+        json_data = {
+            "datos_del_animal": {
+                "dog_name": "Firulais",
+                "dog_age": 3,
+                "dog_size": "Mediano",
+                "dog_genre": "Macho",
+            },
+            "datos_del_solicitante": {
+                "adpt_name": "Juan Pérez",
+                "adpt_age": 30,
+                "adpt_address": "Calle Falsa 123",
+                "adpt_form_field1": "Metro Centro",
+                "adpt_form_field2": "5551234567",
+                "adpt_form_field3": "5557654321",
+                "adpt_form_field4": "9am-6pm",
+                "adpt_form_field5": "juan.perez@email.com",
+                "adpt_form_field6": "Ingeniero",
+                "adpt_form_field7": True,
+                "adopt_form_field8": "No aplica",
+            },
+            "sobre_el_espacio": {
+                "living_form_field1": "Todos de acuerdo",
+                "living_form_field3": True,
+                "living_form_field4": "Gato",
+                "living_form_field5": "Veterinario anual",
+                "living_form_field6": True,
+                "living_form_field7": "No aplica",
+                "living_form_field8": "En la sala",
+                "living_form_field9": "Juan Pérez",
+                "living_form_field10": "Propia",
+                "living_form_field11": "Llevaría al perro conmigo",
+            },
+            "sobre_el_cuidado": {
+                "dogcare_field1": "Juan Pérez",
+                "dogcare_field2": True,
+                "dogcare_field3": "5, 8",
+                "dogcare_field4": True,
+                "dogcare_field5": "No",
+                "dogcare_field6": "Lo llevo conmigo",
+                "dogcare_field7": "Sala, cocina, patio",
+                "dogcare_field8": "No suele",
+                "dogcare_field9": "Con familia",
+            },
+        }
+
+        serializer = FormularioAdopcionSerializer(data=json_data)
+
+        # Probar que el serializador es válido
+        assert serializer.is_valid(raise_exception=True)
+
+        # Probar la creación del objeto de dominio
+        domain_object = serializer.save()
+        assert isinstance(domain_object, FormularioAdopcion)
+
+        # Probar que los datos se asignaron correctamente
+        assert domain_object.datos_del_animal.dog_name == "Firulais"
+        assert domain_object.datos_del_solicitante.adpt_name == "Juan Pérez"
+        assert domain_object.sobre_el_espacio.living_form_field10 == "Propia"
+        assert domain_object.sobre_el_cuidado.dogcare_field2 is True
+

@@ -1,0 +1,44 @@
+{
+  "datos_del_animal": {
+    "dog_name": "Nombre del perrito",
+    "dog_age": "Edad del perrito",
+    "dog_size": "Tamaño del perrito",
+    "dog_genre": "Genero del perrito"
+  },
+  "datos_del_solicitante": {
+    "adpt_name": "Nombre completo",
+    "adpt_age": "Edad del adoptante",
+    "adpt_address": "Domicilio del adoptante",
+    "adpt_form_field1": "¿Hay algún Autobús/metro cercano a tu casa?",
+    "adpt_form_field2": "Numero de celular",
+    "adpt_form_field3": "Numero de emergencia/Respaldo",
+    "adpt_form_field4": "¿Horario en el cual te podríamos contactar?",
+    "adpt_form_field5": "Correo electrónico",
+    "adpt_form_field6": "Ocupación",
+    "adpt_form_field7": "¿Estás de acuerdo en que se dé seguimiento a esta adopción?",
+    "adopt_form_field8": "Si no, ¿Porqué? (adpt_form_field7=No)"
+  },
+  "sobre_el_espacio": {
+    "living_form_field1": "¿Tu familia esta de acuerdo con esta adopción? ¿Qué comentarios han hecho al respecto?",
+    "living_form_field3": "¿Tienes otras mascotas en casa?",
+    "living_form_field4": "¿Cuáles? (living_form_field3=Si)",
+    "living_form_field5": "¿Qué servicios y cuidados les das? (living_form_field3=Si)",
+    "living_form_field6": "¿Están esterilizados? (living_form_field3=Si)",
+    "living_form_field7": "Si no, por qué? (living_form_field6=No)",
+    "living_form_field8": "¿En qué parte duermen?",
+    "living_form_field9": "¿Quién es el responsable de ellos?",
+    "living_form_field10": "¿Vives en casa propia o rentada?",
+    "living_form_field11": "¿Qué pasaría con el perrito si tienes que cambiarte de casa o país?"
+  },
+  "sobre_el_cuidado": {
+    "dogcare_field1": "¿Qué te hace ser la persona indicada para adoptar a este perrito?",
+    "dogcare_field2": "¿Hay niños en casa?",
+    "dogcare_field3": "¿De qué edades? (dogcare_field2=Si)",
+    "dogcare_field4": "¿Están acostumbrados a convivir con perros? (dogcare_field2=Si)",
+    "dogcare_field5": "¿Qué harás con si tu adoptado muerde a alguno de los niños o adultos de la casa?",
+    "dogcare_field6": "¿Qué pasará con el perrito cuando salgas de vacaciones?",
+    "dogcare_field7": "¿En qué espacio va a dormir, comer y defecar tu perrito?",
+    "dogcare_field8": "Llegas a tu casa y encuentras tu ropa, calcetines y electrodomésticos inservibles: ¡TU PERRITO LAS DESPEDAZÓ!; ¿Qué harías en ese momento?",
+    "dogcare_field9": "Cuándo no estes en casa (Trabajo, escuela), ¿En donde se quedará el perrito? ¿Con quién se quedaría?"
+  }
+}

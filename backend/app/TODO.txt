@@ -13,7 +13,7 @@ TODOS de la parte del panel de admin
 
 TODOS del envio del correo
 
-- Generar el serializer correctamente a partir del objeto de dominio
+
 - Generar la vista para aceptar el form del serializer
 - Generar el worflow desde el recibimiento del json desde la view hasta la generacion del formulario ya rellenado y aplanado
 - Generar el cliente de correo de envio

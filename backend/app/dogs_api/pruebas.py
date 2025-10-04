@@ -4,7 +4,6 @@ import time
 from docx import Document
 
 from app.dogs_api.adoption_form_domain import make_example_form
-import pprint
 
 
 def fill_docx(template_path: str, output_path: str, context: dict):
@@ -30,7 +29,9 @@ def fill_docx(template_path: str, output_path: str, context: dict):
         # Reemplazamos todos los placeholders en el texto completo del párrafo
         for key, val in context.items():
             placeholder = f"{{{{{key}}}}}"
-            if isinstance(val, (int, float)):
+            if isinstance(val, bool):
+                val = "Si" if val else "No"
+            elif isinstance(val, (int, float)):
                 val = str(val)
             full_text = full_text.replace(placeholder, val)
 
