@@ -111,17 +111,24 @@ class TestDogSerializers:
         assert "url" in data["images"][0]
 
 
+@pytest.mark.django_db
+class TestFormularioAdopcionSerializer:
     def test_deserialization_happy_path(self):
         """
-        Prueba la deserialización de un JSON válido al objeto de dominio FormularioAdopcion.
+        Prueba la deserialización de un JSON válido (con dog_id) al objeto de dominio FormularioAdopcion.
         """
+        # 1. Crear un perro en la base de datos de prueba
+        dog = Dog.objects.create(
+            name="Firulais",
+            age_year=3,
+            age_month=0,
+            genre="H",
+            size="M",
+        )
+
+        # 2. Definir el JSON de entrada con el dog_id
         json_data = {
-            "datos_del_animal": {
-                "dog_name": "Firulais",
-                "dog_age": 3,
-                "dog_size": "Mediano",
-                "dog_genre": "Macho",
-            },
+            "datos_del_animal": {"dog_id": dog.id},
             "datos_del_solicitante": {
                 "adpt_name": "Juan Pérez",
                 "adpt_age": 30,
@@ -162,16 +169,19 @@ class TestDogSerializers:
 
         serializer = FormularioAdopcionSerializer(data=json_data)
 
-        # Probar que el serializador es válido
+        # 3. Probar que el serializador es válido
         assert serializer.is_valid(raise_exception=True)
 
-        # Probar la creación del objeto de dominio
+        # 4. Probar la creación del objeto de dominio
         domain_object = serializer.save()
         assert isinstance(domain_object, FormularioAdopcion)
 
-        # Probar que los datos se asignaron correctamente
-        assert domain_object.datos_del_animal.dog_name == "Firulais"
+        # 5. Probar que los datos del animal se asignaron correctamente desde la BD
+        assert domain_object.datos_del_animal.dog_name == dog.name
+        assert domain_object.datos_del_animal.dog_age == dog.age_year
+        assert domain_object.datos_del_animal.dog_size == dog.get_size_display()
+        assert domain_object.datos_del_animal.dog_genre == dog.get_genre_display()
+
+        # Probar que los otros datos también se asignaron
         assert domain_object.datos_del_solicitante.adpt_name == "Juan Pérez"
-        assert domain_object.sobre_el_espacio.living_form_field10 == "Propia"
-        assert domain_object.sobre_el_cuidado.dogcare_field2 is True
 

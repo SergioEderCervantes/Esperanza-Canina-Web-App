@@ -18,6 +18,7 @@ from app.dogs_api.serializers import (
     DogListSerializer,
     DogTopResponseSerializer,
     DogTopSerializer,
+    FormularioAdopcionSerializer,
 )
 
 
@@ -107,26 +108,24 @@ class DogDetailView(generics.RetrieveAPIView):
 
 @extend_schema(
     summary="Adoptar un perro",
-    description="Permite adoptar un perro mediante lógica personalizada.",
-    request={
-        "application/json": {
-            "type": "object",
-            "properties": {
-                "dog_id": {"type": "integer", "description": "ID del perro a adoptar"},
-                "adopter_name": {"type": "string", "description": "Nombre del adoptante"},
-            },
-            "required": ["dog_id", "adopter_name"],
-        }
-    },
+    description="Recibe el formulario de adopción para un perro.",
+    request=FormularioAdopcionSerializer,
     responses={
-        200: OpenApiResponse(description="Adopción exitosa"),
-        400: OpenApiResponse(description="Error en la adopción"),
+        200: OpenApiResponse(description="Formulario recibido con éxito."),
+        400: OpenApiResponse(description="Datos inválidos en el formulario."),
     },
 )
 class AdoptDogView(APIView):
     def post(self, request, *args, **kwargs):
-        dog_id = request.data.get("dog_id")
-        adopter_name = request.data.get("adopter_name")
-        if not dog_id or not adopter_name:
-            return Response({"error": "dog_id y adopter_name son requeridos."}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({"message": f"El perro {dog_id} ha sido adoptado por {adopter_name}."}, status=status.HTTP_200_OK)
+        # Deserializar el json, confirmar que los campos obligatorios esten
+        serializer = FormularioAdopcionSerializer(data=request.data)
+        # Corroborar que el perrito exista en la base de datos
+        serializer.is_valid(raise_exception=True)
+
+        domain_object = serializer.save()
+
+        # TODO: Añadir la lógica de negocio que necesites con el `domain_object`
+
+        return Response(
+            {"message": "Formulario recibido con éxito."}, status=status.HTTP_200_OK
+        )

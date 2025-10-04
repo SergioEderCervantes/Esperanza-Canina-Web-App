@@ -1,9 +1,6 @@
 {
   "datos_del_animal": {
-    "dog_name": "Nombre del perrito",
-    "dog_age": "Edad del perrito",
-    "dog_size": "Tamaño del perrito",
-    "dog_genre": "Genero del perrito"
+    "dog_id": "ID numérico del perro a adoptar"
   },
   "datos_del_solicitante": {
     "adpt_name": "Nombre completo",

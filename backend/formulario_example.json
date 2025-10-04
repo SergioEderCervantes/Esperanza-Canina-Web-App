@@ -1,9 +1,6 @@
 {
   "datos_del_animal": {
-    "dog_name": "Firulais",
-    "dog_age": 3,
-    "dog_size": "Mediano",
-    "dog_genre": "Macho"
+    "dog_id": 1
   },
   "datos_del_solicitante": {
     "adpt_name": "Juan Pérez",

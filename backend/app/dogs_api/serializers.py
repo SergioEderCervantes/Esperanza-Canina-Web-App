@@ -89,14 +89,9 @@ class DetailedDogResponseSerializer(serializers.Serializer):
 
 
 # Serializadores del objeto de dominio:
-class DatosDelAnimalSerializer(serializers.Serializer):
-    dog_name = serializers.CharField()
-    dog_age = serializers.IntegerField()
-    dog_size = serializers.CharField()
-    dog_genre = serializers.CharField()
+class DatosDelAnimalInputSerializer(serializers.Serializer):
+    dog_id = serializers.IntegerField()
 
-    def create(self, validated_data):
-        return DatosDelAnimal(**validated_data)
 
 class DatosDelSolicitanteSerializer(serializers.Serializer):
     adpt_name = serializers.CharField()
@@ -111,8 +106,6 @@ class DatosDelSolicitanteSerializer(serializers.Serializer):
     adpt_form_field7 = serializers.BooleanField(required=False, allow_null=True)
     adopt_form_field8 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
-    def create(self, validated_data):
-        return DatosDelSolicitante(**validated_data)
 
 class EspacioDondeViviraSerializer(serializers.Serializer):
     living_form_field1 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
@@ -126,8 +119,6 @@ class EspacioDondeViviraSerializer(serializers.Serializer):
     living_form_field10 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     living_form_field11 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
-    def create(self, validated_data):
-        return EspacioDondeVivira(**validated_data)
 
 class CuidadoYCalidadDeVidaSerializer(serializers.Serializer):
     dogcare_field1 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
@@ -140,30 +131,44 @@ class CuidadoYCalidadDeVidaSerializer(serializers.Serializer):
     dogcare_field8 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
     dogcare_field9 = serializers.CharField(required=False, allow_null=True, allow_blank=True)
 
-    def create(self, validated_data):
-        return CuidadoYCalidadDeVida(**validated_data)
-
 
 class FormularioAdopcionSerializer(serializers.Serializer):
-    datos_del_animal = DatosDelAnimalSerializer()
+    datos_del_animal = DatosDelAnimalInputSerializer()
     datos_del_solicitante = DatosDelSolicitanteSerializer()
     sobre_el_espacio = EspacioDondeViviraSerializer()
     sobre_el_cuidado = CuidadoYCalidadDeVidaSerializer()
 
     def create(self, validated_data):
-        datos_del_animal_data = validated_data.pop('datos_del_animal')
-        datos_del_solicitante_data = validated_data.pop('datos_del_solicitante')
-        sobre_el_espacio_data = validated_data.pop('sobre_el_espacio')
-        sobre_el_cuidado_data = validated_data.pop('sobre_el_cuidado')
+        # --- Handle datos_del_animal ---
+        animal_data = validated_data.pop("datos_del_animal")
+        dog_id = animal_data["dog_id"]
+        try:
+            dog = Dog.objects.get(pk=dog_id)
+            datos_del_animal_instance = DatosDelAnimal(
+                dog_name=dog.name,
+                dog_age=dog.age_year,
+                dog_size=dog.get_size_display(),
+                dog_genre=dog.get_genre_display(),
+            )
+        except Dog.DoesNotExist:
+            raise serializers.ValidationError(
+                {"datos_del_animal": {"dog_id": f"El perro con id={dog_id} no existe."}}
+            )
 
-        datos_del_animal_instance = DatosDelAnimal(**datos_del_animal_data)
-        datos_del_solicitante_instance = DatosDelSolicitante(**datos_del_solicitante_data)
-        sobre_el_espacio_instance = EspacioDondeVivira(**sobre_el_espacio_data)
-        sobre_el_cuidado_instance = CuidadoYCalidadDeVida(**sobre_el_cuidado_data)
+        # --- Handle other parts ---
+        datos_del_solicitante_instance = DatosDelSolicitante(
+            **validated_data.pop("datos_del_solicitante")
+        )
+        sobre_el_espacio_instance = EspacioDondeVivira(
+            **validated_data.pop("sobre_el_espacio")
+        )
+        sobre_el_cuidado_instance = CuidadoYCalidadDeVida(
+            **validated_data.pop("sobre_el_cuidado")
+        )
 
         return FormularioAdopcion(
             datos_del_animal=datos_del_animal_instance,
             datos_del_solicitante=datos_del_solicitante_instance,
             sobre_el_espacio=sobre_el_espacio_instance,
-            sobre_el_cuidado=sobre_el_cuidado_instance
+            sobre_el_cuidado=sobre_el_cuidado_instance,
         )
