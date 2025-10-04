@@ -1,7 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import OpenApiParameter, OpenApiTypes, extend_schema
-from rest_framework import filters, generics
+from drf_spectacular.utils import (
+    OpenApiParameter,
+    OpenApiResponse,
+    OpenApiTypes,
+    extend_schema,
+)
+from rest_framework import filters, generics, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from app.dogs_api.filters import DogFilter
 from app.dogs_api.models import Dog
@@ -97,3 +103,30 @@ class DogDetailView(generics.RetrieveAPIView):
             instance = self.get_object()
             serializer = self.get_serializer(instance)
             return Response({"data": serializer.data})
+
+
+@extend_schema(
+    summary="Adoptar un perro",
+    description="Permite adoptar un perro mediante lógica personalizada.",
+    request={
+        "application/json": {
+            "type": "object",
+            "properties": {
+                "dog_id": {"type": "integer", "description": "ID del perro a adoptar"},
+                "adopter_name": {"type": "string", "description": "Nombre del adoptante"},
+            },
+            "required": ["dog_id", "adopter_name"],
+        }
+    },
+    responses={
+        200: OpenApiResponse(description="Adopción exitosa"),
+        400: OpenApiResponse(description="Error en la adopción"),
+    },
+)
+class AdoptDogView(APIView):
+    def post(self, request, *args, **kwargs):
+        dog_id = request.data.get("dog_id")
+        adopter_name = request.data.get("adopter_name")
+        if not dog_id or not adopter_name:
+            return Response({"error": "dog_id y adopter_name son requeridos."}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": f"El perro {dog_id} ha sido adoptado por {adopter_name}."}, status=status.HTTP_200_OK)

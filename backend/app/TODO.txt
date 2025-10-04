@@ -8,3 +8,18 @@ Modificar base de datos con la jaula
 
 TODOS de la parte del panel de admin
 
+
+
+
+TODOS del envio del correo
+
+- Probar si el objeto de dominio gigante puede llenar bien la plantilla
+- Generar el serializer correctamente a partir del objeto de dominio
+- Generar la vista para aceptar el form del serializer
+- Generar el worflow desde el recibimiento del json desde la view hasta la generacion del formulario ya rellenado y aplanado
+- Generar el cliente de correo de envio
+- Generar el worflow desde el recibimiento en la view hasta el mandado del correo
+- Generar un manejo de errores eficaz y conectado a ntfy 
+- Generar suit de test de integracion
+- Implementar asincronia si es necesario
+- Test de integracion final

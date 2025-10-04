@@ -15,3 +15,5 @@ __pycache__/
 # Archivos de media y estáticos generados
 **/staticfiles/
 
+# Archivos autogenerados del formulario
+**/filled_form.*
