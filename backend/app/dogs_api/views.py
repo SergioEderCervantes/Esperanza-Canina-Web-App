@@ -20,6 +20,7 @@ from app.dogs_api.serializers import (
     DogTopSerializer,
     FormularioAdopcionSerializer,
 )
+from app.dogs_api.services import AdoptionFormManager
 
 
 @extend_schema(
@@ -34,7 +35,6 @@ class DogTopView(generics.RetrieveAPIView):
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response({"data": serializer.data})
-
 
 
 @extend_schema(
@@ -76,13 +76,13 @@ class DogTopView(generics.RetrieveAPIView):
             description="Comportamientos del perro.",
             required=False,
             type=OpenApiTypes.STR,
-            location=OpenApiParameter.QUERY
+            location=OpenApiParameter.QUERY,
         ),
     ],
     responses=DogListSerializer(many=True),
 )
 class DogListView(generics.ListAPIView):
-    queryset = Dog.objects.filter(adoption_state=False).order_by('-id')
+    queryset = Dog.objects.filter(adoption_state=False).order_by("-id")
     serializer_class = DogListSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_class = DogFilter
@@ -101,9 +101,9 @@ class DogDetailView(generics.RetrieveAPIView):
 
     # Override del retrieve para wrappear la informacion en data
     def retrieve(self, request, *args, **kwargs):
-            instance = self.get_object()
-            serializer = self.get_serializer(instance)
-            return Response({"data": serializer.data})
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response({"data": serializer.data})
 
 
 @extend_schema(
@@ -120,11 +120,15 @@ class AdoptDogView(APIView):
         # Deserializar el json, confirmar que los campos obligatorios esten
         serializer = FormularioAdopcionSerializer(data=request.data)
         # Corroborar que el perrito exista en la base de datos
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            return Response(
+                {"Message:": "Los datos recibidos no son validos"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         domain_object = serializer.save()
 
-        # TODO: Añadir la lógica de negocio que necesites con el `domain_object`
+        AdoptionFormManager(domain_object).execute()
 
         return Response(
             {"message": "Formulario recibido con éxito."}, status=status.HTTP_200_OK

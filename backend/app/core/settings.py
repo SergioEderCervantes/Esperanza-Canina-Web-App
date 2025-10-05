@@ -184,6 +184,18 @@ REST_FRAMEWORK = {
 SESSION_COOKIE_AGE = 1209600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 ##############################################################################
+# Email configuration
+##############################################################################
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = environ.get("GMAIL_ACCOUNT")
+EMAIL_HOST_PASSWORD = environ.get("GOOGLE_APP_PASSWORD")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DESTINATARY_EMAIL = "edercervantes66@gmail.com"
+##############################################################################
 # Unfold
 ##############################################################################
 UNFOLD = {
