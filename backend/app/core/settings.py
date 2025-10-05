@@ -194,7 +194,7 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = environ.get("GMAIL_ACCOUNT")
 EMAIL_HOST_PASSWORD = environ.get("GOOGLE_APP_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-DESTINATARY_EMAIL = "edercervantes66@gmail.com"
+DESTINATARY_EMAIL = ["edercervantes66@gmail.com"]
 ##############################################################################
 # Unfold
 ##############################################################################

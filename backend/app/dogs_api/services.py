@@ -13,7 +13,7 @@ from app.dogs_api.adoption_form_domain import FormularioAdopcion
 @dataclass
 class AdoptionFormManager:
     domain_object: FormularioAdopcion
-    TEMPLATE_DOCX_PATH: str = "pp/form_templates/Prueba_formulario_1.docx"
+    TEMPLATE_DOCX_PATH: str = "app/form_templates/Prueba_formulario_1.docx"
     FILLED_DOCX_PATH: str = "app/form_templates/filled_form.docx"
     FILLED_PDF_DIR: str = "app/form_templates/"
     FILLED_PDF_PATH: str = "app/form_templates/filled_form.pdf"
@@ -80,6 +80,7 @@ class AdoptionFormManager:
             from_email=settings.DEFAULT_FROM_EMAIL,
             to=settings.DESTINATARY_EMAIL,
         )
+        email.content_subtype = "html"
         email.attach_file(self.FILLED_PDF_PATH)
         try:
             email.send(fail_silently=False)

@@ -5,6 +5,7 @@ from drf_spectacular.utils import (
     OpenApiTypes,
     extend_schema,
 )
+import time
 from rest_framework import filters, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -117,6 +118,7 @@ class DogDetailView(generics.RetrieveAPIView):
 )
 class AdoptDogView(APIView):
     def post(self, request, *args, **kwargs):
+        start = time.time()
         # Deserializar el json, confirmar que los campos obligatorios esten
         serializer = FormularioAdopcionSerializer(data=request.data)
         # Corroborar que el perrito exista en la base de datos
@@ -129,7 +131,8 @@ class AdoptDogView(APIView):
         domain_object = serializer.save()
 
         AdoptionFormManager(domain_object).execute()
-
+        end = time.time()
+        print(f"Tiempo de ejecución: {end - start:.2f} segundos")
         return Response(
             {"message": "Formulario recibido con éxito."}, status=status.HTTP_200_OK
         )

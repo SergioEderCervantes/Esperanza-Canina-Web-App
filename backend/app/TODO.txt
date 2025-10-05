@@ -14,8 +14,6 @@ TODOS de la parte del panel de admin
 TODOS del envio del correo
 
 
-- Generar el worflow desde el recibimiento del json desde la view hasta la generacion del formulario ya rellenado y aplanado
-- Generar el cliente de correo de envio
 - Generar el worflow desde el recibimiento en la view hasta el mandado del correo
 - Generar un manejo de errores eficaz y conectado a ntfy 
 - Generar suit de test de integracion
