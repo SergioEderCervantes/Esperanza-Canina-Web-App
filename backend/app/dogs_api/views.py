@@ -1,5 +1,3 @@
-import time
-
 from django_filters.rest_framework import DjangoFilterBackend
 from django_q.tasks import async_task
 from drf_spectacular.utils import (
@@ -12,7 +10,6 @@ from rest_framework import filters, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from app.dogs_api.domain import FormularioAdopcion
 from app.dogs_api.filters import DogFilter
 from app.dogs_api.models import Dog
 from app.dogs_api.pagination import DogListNumPagination
@@ -120,26 +117,22 @@ class DogDetailView(generics.RetrieveAPIView):
 )
 class AdoptDogView(APIView):
     def post(self, request, *args, **kwargs):
-        start = time.time()
-        # Deserializar el json, confirmar que los campos obligatorios esten
         serializer = FormularioAdopcionSerializer(data=request.data)
-        # Corroborar que el perrito exista en la base de datos
         if not serializer.is_valid():
             return Response(
-                {"Message:": "Los datos recibidos no son validos"},
+                {"message": "Los datos recibidos no son válidos."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        # Aqui solo se prueba que el objeto de dominio se pueda crear, ver si pasa todas las validaciones internas
-        serializer.save()
-        # Aqui ya se hizo toda la validacion necesaria, se puede mandar el 200 ya al usuario, lo demas va para una tarea en background
-        # Se pasa nuevamente el json a la async_task porque no se puede pasar objetos de python completos
+
+        # La validación inicial es suficiente, el resto del procesamiento
+        # se hace en segundo plano para responder rápidamente al usuario.
         async_task(
             "app.dogs_api.tasks.process_adoption_form",
             request.data,
+            retries=1,  # Intentará la tarea 2 veces en total (1 original + 1 reintento)
+            retry=5,  # Espera 5 segundos antes de reintentar
         )
 
-        end = time.time()
-        print(f"Tiempo de ejecución: {end - start:.2f} segundos")
         return Response(
             {"message": "Formulario recibido con éxito."}, status=status.HTTP_200_OK
         )

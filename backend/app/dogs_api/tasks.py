@@ -1,6 +1,10 @@
+import logging
+
 from app.dogs_api.domain import FormularioAdopcion
 from app.dogs_api.serializers import FormularioAdopcionSerializer
 from app.dogs_api.services import AdoptionFormManager
+
+logger = logging.getLogger(__name__)
 
 
 def process_adoption_form(data_json):
@@ -14,5 +18,9 @@ def process_adoption_form(data_json):
         domain_object: FormularioAdopcion = serializer.save()
         # Ejecuta el servicio
         AdoptionFormManager(domain_object).execute()
-    except Exception as e:
-        print(e)
+    except Exception:
+        logger.error(
+            "Falló el procesamiento del formulario de adopción.",
+            exc_info=True,  # Adjunta la información completa de la excepción (traceback)
+        )
+        raise  # Vuelve a lanzar la excepción para que Django-Q sepa que la tarea falló
