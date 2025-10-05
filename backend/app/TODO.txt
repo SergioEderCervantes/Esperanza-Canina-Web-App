@@ -7,15 +7,3 @@ Script que transforme Excel a la base de datos
 Modificar base de datos con la jaula
 
 TODOS de la parte del panel de admin
-
-
-
-
-TODOS del envio del correo
-
-
-- Generar el worflow desde el recibimiento en la view hasta el mandado del correo
-- Generar un manejo de errores eficaz y conectado a ntfy 
-- Generar suit de test de integracion
-- Implementar asincronia si es necesario
-- Test de integracion final
