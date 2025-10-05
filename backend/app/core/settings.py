@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "django_filters",
     "drf_spectacular",
+    'django_q',
     # Local Apps
     "app.dogs_api",
     "app.vet_api",
@@ -195,6 +196,22 @@ EMAIL_HOST_USER = environ.get("GMAIL_ACCOUNT")
 EMAIL_HOST_PASSWORD = environ.get("GOOGLE_APP_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 DESTINATARY_EMAIL = ["edercervantes66@gmail.com"]
+##############################################################################
+# Django-Q configuration
+##############################################################################
+Q_CLUSTER = {
+    'name': 'DjangoQCluster',
+    'workers': 2,
+    'timeout': 90,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'redis': {
+        'host': 'redis',
+        'port': 6379,
+        'db': 0,
+    },
+}
 ##############################################################################
 # Unfold
 ##############################################################################
