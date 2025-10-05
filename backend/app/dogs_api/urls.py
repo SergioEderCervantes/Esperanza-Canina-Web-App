@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app.dogs_api.views import DogDetailView, DogListView, DogTopView, AdoptDogView
+from app.dogs_api.views import AdoptDogView, DogDetailView, DogListView, DogTopView
 
 urlpatterns = [
     path("", DogListView.as_view(), name="dog-list"),

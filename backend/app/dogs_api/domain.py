@@ -125,3 +125,21 @@ def make_example_form() -> FormularioAdopcion:
     )
 
     return formulario
+
+
+# Custom exceptions for the adoption process
+class AdoptionProcessError(Exception):
+    """Base exception for errors in the adoption process."""
+    pass
+
+class DocxFillError(AdoptionProcessError):
+    """Error while filling the .docx template."""
+    pass
+
+class PdfConversionError(AdoptionProcessError):
+    """Error converting .docx to .pdf."""
+    pass
+
+class EmailSendError(AdoptionProcessError):
+    """Error sending the adoption email."""
+    pass

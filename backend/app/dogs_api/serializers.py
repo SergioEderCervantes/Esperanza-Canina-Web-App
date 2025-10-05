@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from app.dogs_api.adoption_form_domain import (
+from app.dogs_api.domain import (
     CuidadoYCalidadDeVida,
     DatosDelAnimal,
     DatosDelSolicitante,
@@ -151,7 +151,7 @@ class FormularioAdopcionSerializer(serializers.Serializer):
                 dog_genre=dog.get_genre_display(),
             )
         except Dog.DoesNotExist:
-            raise serializers.ValidationError(
+            raise serializers.ValidationError(  # noqa: B904
                 {"datos_del_animal": {"dog_id": f"El perro con id={dog_id} no existe."}}
             )
 

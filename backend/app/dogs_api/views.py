@@ -1,3 +1,5 @@
+import time
+
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import (
     OpenApiParameter,
@@ -5,7 +7,6 @@ from drf_spectacular.utils import (
     OpenApiTypes,
     extend_schema,
 )
-import time
 from rest_framework import filters, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView

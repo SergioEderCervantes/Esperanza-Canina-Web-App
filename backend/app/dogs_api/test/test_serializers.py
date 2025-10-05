@@ -1,7 +1,7 @@
 # tests/test_serializers.py
 import pytest
 
-from app.dogs_api.adoption_form_domain import FormularioAdopcion
+from app.dogs_api.domain import FormularioAdopcion
 from app.dogs_api.models import Beheavior, Dog, DogImage
 from app.dogs_api.serializers import (
     DetailedDogBehaviorSerializer,
