@@ -78,6 +78,14 @@ class DogTopView(generics.RetrieveAPIView):
             type=OpenApiTypes.STR,
             location=OpenApiParameter.QUERY,
         ),
+        OpenApiParameter(
+            name="section",
+            description="Sección del perro (1 a 5).",
+            required=False,
+            type=OpenApiTypes.STR,
+            enum=["Sección 1", "Sección 2", "Sección 3", "Sección 4", "Sección 5"],
+            location=OpenApiParameter.QUERY,
+        ),
     ],
     responses=DogListSerializer(many=True),
 )
