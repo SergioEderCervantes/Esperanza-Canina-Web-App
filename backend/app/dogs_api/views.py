@@ -137,8 +137,6 @@ class AdoptDogView(APIView):
         async_task(
             "app.dogs_api.tasks.process_adoption_form",
             request.data,
-            retries=1,  # Intentará la tarea 2 veces en total (1 original + 1 reintento)
-            retry=5,  # Espera 5 segundos antes de reintentar
         )
 
         return Response(
