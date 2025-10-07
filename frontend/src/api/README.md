@@ -166,3 +166,24 @@ export function InteractiveDogList({ initialData }: { initialData: PaginatedDogL
   );
 }
 ```
+## Cosas a cambiar
+
+En detailed Dog cambiar la clase a 
+```tsx
+export type DetailedDog = {
+    readonly id: number;
+    /**
+     * Nombre
+     */
+    name?: string;// necesita el name?: para la generación del slug
+    readonly size_display: string;
+    readonly beheaviors: Array<DetailedDogBehavior>;
+    readonly dog_life_stage: string;
+    readonly images: Array<DogImages>;
+    readonly genre_display: string;
+    /**
+     * Descripcion
+     */
+    description?: string;
+};
+```

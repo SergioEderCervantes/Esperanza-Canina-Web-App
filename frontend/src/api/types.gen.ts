@@ -49,7 +49,7 @@ export type DogList = {
     /**
      * Nombre
      */
-    name?: string;
+    name: string;
     readonly size_display: string;
     readonly beheaviors: Array<SimpleDogBehavior>;
     readonly dog_life_stage: string;
