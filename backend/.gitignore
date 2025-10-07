@@ -17,3 +17,9 @@ __pycache__/
 
 # Archivos autogenerados del formulario
 **/filled_form.*
+
+#Archivos de excel, imagenes y json
+**/*.xlsx
+**/imagenes_perros/
+**/perros_procesados.json
+**/reporte*.txt
