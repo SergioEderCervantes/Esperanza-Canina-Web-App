@@ -189,7 +189,7 @@ def procesar_excel_perros(archivo_excel, fila_inicio=4):
                 'descripcion': observaciones,
                 'fecha_llegada': date.today().isoformat(),
                 'estado_adopcion': False,
-                'imagen_local': f"perro_id_{perro_id}.png"
+                'imagen_local': f"perro_id_{perro_id}.webp"
             }
             
             perros.append(perro)
