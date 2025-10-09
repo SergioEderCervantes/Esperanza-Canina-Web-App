@@ -36,3 +36,4 @@
 // export async function getDogById(id: number) {
 //     return await api.dogs.dogsRetrieve({ id });
 // }
+
