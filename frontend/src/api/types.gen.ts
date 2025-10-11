@@ -6,6 +6,36 @@ export type ClientOptions = {
     // baseUrl: 'http://api:8000' | 'http://localhost:8000' | (string & {});
 };
 
+export type CuidadoYCalidadDeVida = {
+    dogcare_field1?: string | null;
+    dogcare_field2?: boolean | null;
+    dogcare_field3?: string | null;
+    dogcare_field4?: boolean | null;
+    dogcare_field5?: string | null;
+    dogcare_field6?: string | null;
+    dogcare_field7?: string | null;
+    dogcare_field8?: string | null;
+    dogcare_field9?: string | null;
+};
+
+export type DatosDelAnimalInput = {
+    dog_id: number;
+};
+
+export type DatosDelSolicitante = {
+    adpt_name: string;
+    adpt_age: number;
+    adpt_address: string;
+    adpt_form_field1?: string | null;
+    adpt_form_field2?: string | null;
+    adpt_form_field3?: string | null;
+    adpt_form_field4?: string | null;
+    adpt_form_field5?: string | null;
+    adpt_form_field6?: string | null;
+    adpt_form_field7?: boolean | null;
+    adopt_form_field8?: string | null;
+};
+
 export type DetailedDog = {
     readonly id: number;
     /**
@@ -21,6 +51,7 @@ export type DetailedDog = {
      * Descripcion
      */
     description?: string;
+    readonly section_display: string;
 };
 
 export type DetailedDogBehavior = {
@@ -49,12 +80,13 @@ export type DogList = {
     /**
      * Nombre
      */
-    name: string;
+    name?: string;
     readonly size_display: string;
     readonly beheaviors: Array<SimpleDogBehavior>;
     readonly dog_life_stage: string;
     readonly primary_image: string;
     readonly genre_display: string;
+    readonly section_display: string;
 };
 
 export type DogTop = {
@@ -68,6 +100,26 @@ export type DogTop = {
 
 export type DogTopResponse = {
     data: Array<DogTop>;
+};
+
+export type EspacioDondeVivira = {
+    living_form_field1?: string | null;
+    living_form_field3?: boolean | null;
+    living_form_field4?: string | null;
+    living_form_field5?: string | null;
+    living_form_field6?: boolean | null;
+    living_form_field7?: string | null;
+    living_form_field8?: string | null;
+    living_form_field9?: string | null;
+    living_form_field10?: string | null;
+    living_form_field11?: string | null;
+};
+
+export type FormularioAdopcion = {
+    datos_del_animal: DatosDelAnimalInput;
+    datos_del_solicitante: DatosDelSolicitante;
+    sobre_el_espacio: EspacioDondeVivira;
+    sobre_el_cuidado: CuidadoYCalidadDeVida;
 };
 
 export type PaginatedDogListList = {
@@ -86,6 +138,7 @@ export type SimpleDogBehavior = {
      */
     beheavior_name: string;
 };
+
 
 export type PerritosListData = {
     body?: never;
@@ -111,6 +164,10 @@ export type PerritosListData = {
          * Un término de búsqueda.
          */
         search?: string;
+        /**
+         * Sección del perro (1 a 5).
+         */
+        section?: 'Sección 1' | 'Sección 2' | 'Sección 3' | 'Sección 4' | 'Sección 5';
         /**
          * Tamaño del perro
          */
@@ -140,6 +197,27 @@ export type PerritosRetrieveResponses = {
 
 export type PerritosRetrieveResponse = PerritosRetrieveResponses[keyof PerritosRetrieveResponses];
 
+export type PerritosAdoptCreateData = {
+    body: FormularioAdopcion;
+    path?: never;
+    query?: never;
+    url: '/api/perritos/adopt/';
+};
+
+export type PerritosAdoptCreateErrors = {
+    /**
+     * Datos inválidos en el formulario.
+     */
+    400: unknown;
+};
+
+export type PerritosAdoptCreateResponses = {
+    /**
+     * Formulario recibido con éxito.
+     */
+    200: unknown;
+};
+
 export type PerritosTopRetrieveData = {
     body?: never;
     path?: never;
@@ -152,3 +230,4 @@ export type PerritosTopRetrieveResponses = {
 };
 
 export type PerritosTopRetrieveResponse = PerritosTopRetrieveResponses[keyof PerritosTopRetrieveResponses];
+

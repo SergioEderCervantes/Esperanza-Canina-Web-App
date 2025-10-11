@@ -30,6 +30,7 @@ class AdoptionFormManager:
         finally:
             self.cleanup()
 
+    # BUG: Cuando se manda un formulario con campos opcionales no llenos truena
     def fill_docx(self):
         try:
             doc = Document(self.TEMPLATE_DOCX_PATH)

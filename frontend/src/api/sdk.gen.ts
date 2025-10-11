@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopRetrieveData, PerritosTopRetrieveResponses} from './types.gen';
+import type { PerritosAdoptCreateData, PerritosAdoptCreateErrors, PerritosAdoptCreateResponses, PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopRetrieveData, PerritosTopRetrieveResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -39,6 +39,21 @@ export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: 
 };
 
 /**
+ * Adoptar un perro
+ * Recibe el formulario de adopción para un perro.
+ */
+export const perritosAdoptCreate = <ThrowOnError extends boolean = false>(options: Options<PerritosAdoptCreateData, ThrowOnError>) => {
+    return (options.client ?? client).post<PerritosAdoptCreateResponses, PerritosAdoptCreateErrors, ThrowOnError>({
+        url: '/api/perritos/adopt/',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
  * Lista solo los primeros 3 perros, los que acaban de ser agregados
  */
 export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopRetrieveData, ThrowOnError>) => {
@@ -47,3 +62,4 @@ export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(option
         ...options
     });
 };
+

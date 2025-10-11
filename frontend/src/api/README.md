@@ -168,8 +168,8 @@ export function InteractiveDogList({ initialData }: { initialData: PaginatedDogL
 ```
 ## Cosas a cambiar
 
-En detailed Dog cambiar la clase a 
-```tsx
+* En detailed Dog cambiar la clase a 
+```ts
 export type DetailedDog = {
     readonly id: number;
     /**
@@ -187,3 +187,18 @@ export type DetailedDog = {
     description?: string;
 };
 ```
+
+* El paginatedDogList no se genera como deberia de ser, cambiar siempre a esto:
+```ts
+export type PaginatedDogListList = {
+    count: number;
+    total_pages: number,
+    current_page: number,
+    next?: string | null;
+    previous?: string | null;
+    data: Array<DogList>;
+};
+```
+
+* Borrar todos los writtable, no hacen falta
+* Borrar todo lo del schema, tampoco hace falta
