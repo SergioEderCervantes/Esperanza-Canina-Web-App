@@ -1,13 +1,12 @@
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
-import { Dog, DogStatus } from "@/types/dog";
-import Image from "next/image";
+
 import { perritosList } from "@/api/sdk.gen"
 import { DogList } from "@/api";
 
 export default async function PerritosPage() {
   // Estos datos vendrán de la API Django después, por ahora mock
-// TODO quitar el la llamada aqui, no es buena practica
+  // TODO quitar el la llamada aqui, no es buena practica
   const res = await perritosList({security : []})
   let dogs_data: DogList[] = [];
   if (res.data?.data){
@@ -37,7 +36,7 @@ export default async function PerritosPage() {
         />
         <select className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-400 ">
           <option>Todos los tamaños</option>
-          <option>Pequeño</option>
+          <option>Chico</option>
           <option>Mediano</option>
           <option>Grande</option>
         </select>
@@ -45,7 +44,7 @@ export default async function PerritosPage() {
           <option>Todas las edades</option>
           <option>Cachorro</option>
           <option>Adulto</option>
-          <option>Senior</option>
+          <option>Adulto Mayor</option>
         </select>
       </div>
 

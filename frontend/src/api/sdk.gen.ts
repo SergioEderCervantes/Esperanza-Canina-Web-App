@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopRetrieveData, PerritosTopRetrieveResponses, SchemaRetrieveData, SchemaRetrieveResponses } from './types.gen';
+import type { PerritosListData, PerritosListResponses, PerritosRetrieveData, PerritosRetrieveResponses, PerritosTopRetrieveData, PerritosTopRetrieveResponses} from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -23,17 +23,6 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  */
 export const perritosList = <ThrowOnError extends boolean = false>(options?: Options<PerritosListData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosListResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/',
         ...options
     });
@@ -44,17 +33,6 @@ export const perritosList = <ThrowOnError extends boolean = false>(options?: Opt
  */
 export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: Options<PerritosRetrieveData, ThrowOnError>) => {
     return (options.client ?? client).get<PerritosRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/{id}/',
         ...options
     });
@@ -65,42 +43,7 @@ export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: 
  */
 export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopRetrieveData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosTopRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
         url: '/api/perritos/top/',
-        ...options
-    });
-};
-
-/**
- * OpenApi3 schema for this API. Format can be selected via content negotiation.
- *
- * - YAML: application/vnd.oai.openapi
- * - JSON: application/vnd.oai.openapi+json
- */
-export const schemaRetrieve = <ThrowOnError extends boolean = false>(options?: Options<SchemaRetrieveData, ThrowOnError>) => {
-    return (options?.client ?? client).get<SchemaRetrieveResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                in: 'cookie',
-                name: 'sessionid',
-                type: 'apiKey'
-            },
-            {
-                scheme: 'basic',
-                type: 'http'
-            }
-        ],
-        url: '/api/schema/',
         ...options
     });
 };

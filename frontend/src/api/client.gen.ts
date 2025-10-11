@@ -15,4 +15,6 @@ export type CreateClientConfig<T extends ClientOptions = ClientOptions2> = (over
 
 export const client = createClient(createConfig<ClientOptions2>({
     baseUrl: 'http://localhost:8000'
+    // Si alguien alguna vez lo quiere correr dentro de docker, que active esto
+    // baseUrl: 'http://api:8000'
 }));

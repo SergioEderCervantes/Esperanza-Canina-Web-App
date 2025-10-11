@@ -7,8 +7,6 @@ type DogListProps = {
 };
 
 export default function DogCard({ dog }: DogListProps) {
-  const slug = dog.name.toLowerCase().trim().replace(/\s+/g, "-");
-
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
       {/* Imagen */}
@@ -59,7 +57,7 @@ export default function DogCard({ dog }: DogListProps) {
         <div className="flex justify-between items-center mt-4">
           {/* <span className="text-xs text-gray-500">En refugio: {dog.refugeTime}</span> */}
 
-          <Link href={`/perritos/${slug}`}>
+          <Link href={`/perritos/${dog.id}`}>
             <ButtonDogCard text={"Adoptar"} />
           </Link>
         </div>
