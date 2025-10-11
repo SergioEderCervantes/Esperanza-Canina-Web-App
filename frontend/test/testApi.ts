@@ -34,14 +34,44 @@ async function testPerritosRetrieve() {
     }
 }
 
-async function testperritosAdoptCreate() {
+async function testperritosAdoptCreateOnlyRequired() {
   try {
-    console.log("Testing perritosAdoptCreate...");
+    console.log("Testing testperritosAdoptCreateOnlyRequired...");
 
     const formAdoptionData: PerritosAdoptCreateData = {
       body: {
         datos_del_animal: {
-          dog_id: 1, // Reemplaza con un ID de perro válido
+          dog_id: 9, // Reemplaza con un ID de perro válido
+        },
+        datos_del_solicitante: {
+          adpt_name: "Juan Pérez",
+          adpt_age: 30,
+          adpt_address: "Calle Falsa 123, Ciudad Ejemplo",
+        },
+        sobre_el_espacio: {
+          // Opcional
+        },
+        sobre_el_cuidado: {
+          // Opcional
+        },
+      },
+      url: "/api/perritos/adopt/",
+    };
+
+    const res = await perritosAdoptCreate(formAdoptionData);
+    console.log("Respuesta de perritosAdoptCreate:", res);
+  } catch (err) {
+    console.error("Error al llamar a perritosAdoptCreate:", err);
+  }
+}
+async function testperritosAdoptCreateComplete() {
+  try {
+    console.log("Testing testperritosAdoptCreateComplete...");
+
+    const formAdoptionData: PerritosAdoptCreateData = {
+      body: {
+        datos_del_animal: {
+          dog_id: 10, // Reemplaza con un ID de perro válido
         },
         datos_del_solicitante: {
           adpt_name: "Juan Pérez",
@@ -98,7 +128,9 @@ async function main() {
   console.log("\n" + "=".repeat(50) + "\n");
   await testPerritosRetrieve();
   console.log("\n" + "=".repeat(50) + "\n");
-  await testperritosAdoptCreate();
+  await testperritosAdoptCreateOnlyRequired();
+  console.log("\n" + "=".repeat(50) + "\n");
+  await testperritosAdoptCreateComplete();
   console.log("\n" + "=".repeat(50) + "\n");
 }
 

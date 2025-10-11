@@ -1,6 +1,6 @@
 import os
 import subprocess
-from dataclasses import dataclass
+from pathlib import Path
 
 from django.conf import settings
 from django.core.mail import EmailMessage
@@ -14,13 +14,22 @@ from app.dogs_api.domain import (
 )
 
 
-@dataclass
 class AdoptionFormManager:
     domain_object: FormularioAdopcion
-    TEMPLATE_DOCX_PATH: str = "app/form_templates/Prueba_formulario_1.docx"
-    FILLED_DOCX_PATH: str = "app/form_templates/filled_form.docx"
-    FILLED_PDF_DIR: str = "app/form_templates/"
-    FILLED_PDF_PATH: str = "app/form_templates/filled_form.pdf"
+
+    FORM_TEMPLATES_DIR = Path("app/form_templates")
+    TEMPLATE_DOCX_PATH = FORM_TEMPLATES_DIR / "Prueba_formulario_1.docx"
+
+    def __init__(self, domain_object: FormularioAdopcion):
+        self.domain_object = domain_object
+
+        # Sanitiza el nombre del perro para que sea seguro para un nombre de archivo
+        safe_dog_name = self.domain_object.datos_del_animal.dog_name.replace(" ", "_").lower()
+
+
+        self.filled_docx_path = self.FORM_TEMPLATES_DIR / f"formulario_adopcion_{safe_dog_name}.docx"
+        self.filled_pdf_path = self.FORM_TEMPLATES_DIR / f"formulario_adopcion_{safe_dog_name}.pdf"
+
 
     def execute(self):
         try:
@@ -30,7 +39,6 @@ class AdoptionFormManager:
         finally:
             self.cleanup()
 
-    # BUG: Cuando se manda un formulario con campos opcionales no llenos truena
     def fill_docx(self):
         try:
             doc = Document(self.TEMPLATE_DOCX_PATH)
@@ -44,6 +52,8 @@ class AdoptionFormManager:
                 full_text = "".join(run.text for run in runs)
 
                 for key, val in context.items():
+                    if val is None:
+                        val = "No especificado"
                     placeholder = f"{{{{{key}}}}}"
                     if isinstance(val, bool):
                         val = "Si" if val else "No"
@@ -58,7 +68,7 @@ class AdoptionFormManager:
                 else:
                     paragraph.add_run(full_text)
 
-            doc.save(self.FILLED_DOCX_PATH)
+            doc.save(self.filled_docx_path)
         except FileNotFoundError as e:
             raise DocxFillError(f"Error: El archivo plantilla no fue encontrado en '{self.TEMPLATE_DOCX_PATH}'.") from e
         except Exception as e:
@@ -67,7 +77,7 @@ class AdoptionFormManager:
     def docx_to_pdf(self):
         try:
             subprocess.run(
-                ["libreoffice", "--headless", "--convert-to", "pdf", self.FILLED_DOCX_PATH, "--outdir", self.FILLED_PDF_DIR],
+                ["libreoffice", "--headless", "--convert-to", "pdf", self.filled_docx_path, "--outdir", self.FORM_TEMPLATES_DIR],
                 check=True,
                 capture_output=True,  # Captura stdout y stderr
             )
@@ -88,7 +98,7 @@ class AdoptionFormManager:
             to=settings.DESTINATARY_EMAIL,
         )
         email.content_subtype = "html"
-        email.attach_file(self.FILLED_PDF_PATH)
+        email.attach_file(self.filled_pdf_path)
         try:
             email.send(fail_silently=False)
             print("Correo HTML enviado exitosamente con EmailMessage.")
@@ -97,7 +107,7 @@ class AdoptionFormManager:
             raise EmailSendError(f"Error al enviar correo: {e}") from e
 
     def cleanup(self):
-        for path in [self.FILLED_DOCX_PATH, self.FILLED_PDF_PATH]:
+        for path in [self.filled_docx_path, self.filled_pdf_path]:
             try:
                 if os.path.exists(path):
                     os.remove(path)
