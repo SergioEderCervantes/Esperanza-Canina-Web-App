@@ -58,12 +58,27 @@ class Dog(models.Model):
         "Kiara",
     ]
     NEUTRAL_NAMES = ["Coco", "Lucky", "Chispa", "Terry"]
+    
+    SECTION_CHOICES = {
+        "1": "Sección 1",
+        "2": "Sección 2",
+        "3": "Sección 3",
+        "4": "Sección 4",
+        "5": "Sección 5",
+    }
     name = models.CharField(max_length=100, verbose_name="Nombre", blank=True)
     age_year = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(30)],
         verbose_name="Año de edad",
         default=0,
     )
+    section = models.CharField(
+        max_length=1,
+        choices=SECTION_CHOICES,
+        verbose_name="Sección",
+        default="0",
+    )
+    
     age_month = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(11)],
         verbose_name="Mes de edad",

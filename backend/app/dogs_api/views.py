@@ -78,6 +78,14 @@ class DogTopView(generics.RetrieveAPIView):
             type=OpenApiTypes.STR,
             location=OpenApiParameter.QUERY,
         ),
+        OpenApiParameter(
+            name="section",
+            description="Sección del perro (1 a 5).",
+            required=False,
+            type=OpenApiTypes.STR,
+            enum=["Sección 1", "Sección 2", "Sección 3", "Sección 4", "Sección 5"],
+            location=OpenApiParameter.QUERY,
+        ),
     ],
     responses=DogListSerializer(many=True),
 )
@@ -129,8 +137,6 @@ class AdoptDogView(APIView):
         async_task(
             "app.dogs_api.tasks.process_adoption_form",
             request.data,
-            retries=1,  # Intentará la tarea 2 veces en total (1 original + 1 reintento)
-            retry=5,  # Espera 5 segundos antes de reintentar
         )
 
         return Response(

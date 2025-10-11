@@ -35,6 +35,7 @@ class DogListSerializer(serializers.ModelSerializer):
     size_display = serializers.CharField(source="get_size_display", read_only=True)
     genre_display = serializers.CharField(source="get_genre_display", read_only=True)
     primary_image = serializers.SerializerMethodField()
+    section_display = serializers.CharField(source="get_section_display", read_only=True) 
 
     class Meta:
         model = Dog
@@ -46,6 +47,7 @@ class DogListSerializer(serializers.ModelSerializer):
             "dog_life_stage",
             "primary_image",
             "genre_display",
+            "section_display",
         ]
 
     def get_primary_image(self, obj):
@@ -70,6 +72,7 @@ class DetailedDogSerializer(serializers.ModelSerializer):
     size_display = serializers.CharField(source="get_size_display", read_only=True)
     genre_display = serializers.CharField(source="get_genre_display", read_only=True)
     dog_life_stage = serializers.CharField(read_only=True)
+    section_display = serializers.CharField(source="get_section_display", read_only=True)
 
     class Meta:
         model = Dog
@@ -82,6 +85,7 @@ class DetailedDogSerializer(serializers.ModelSerializer):
             "images",
             "genre_display",
             "description",
+            "section_display",
         ]
 
 class DetailedDogResponseSerializer(serializers.Serializer):

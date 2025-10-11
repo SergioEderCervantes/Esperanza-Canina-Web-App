@@ -17,6 +17,10 @@ django-unfold = "*"
 python-docx = "*"
 django-q2 = "*"
 redis = "*"
+pandas = "*"
+openpyxl = "*"
+openpyxl-image-loader = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.13"

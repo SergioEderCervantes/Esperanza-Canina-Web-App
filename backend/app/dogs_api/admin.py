@@ -46,11 +46,11 @@ class DogImageInline(admin.TabularInline):
 @admin.register(Dog)
 class DogAdminCLass(ModelAdmin):
     inlines = [DogImageInline]
-    list_display = ("name", "adoption_state_display", "primary_image_thumbnail")
-    search_fields = ("name",)
+    list_display = ("name", "adoption_state_display","section",  "primary_image_thumbnail")
+    search_fields = ("name", "section")
     list_filter = ("adoption_state",)
     # filter_horizontal = ("beheaviors",)
-    fields = ("name", "age_year", "age_month", "genre", "adoption_state",
+    fields = ("name", "age_year", "age_month", "genre","section", "adoption_state",
               "description", "size", "arrive_date", "beheaviors")
 
     def adoption_state_display(self, obj):
