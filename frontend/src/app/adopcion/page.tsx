@@ -1,2 +1,8 @@
-//Formulario de adopcion y pasos a seguir
-//se dejo fuera del apartado de perrito para no sobrecargarlo
+import { DetailedDog } from "@/api";
+
+
+
+export default function FormularioAdopcion({dog}: {dog: DetailedDog}) {
+    return (<div>FormularioAdopcion</div>
+    );
+} 
