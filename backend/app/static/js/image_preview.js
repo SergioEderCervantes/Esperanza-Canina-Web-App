@@ -14,7 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
             previewCell.innerHTML = '';
             previewImg = document.createElement('img');
             previewImg.style.height = '80px';
-            previewImg.style.display = 'none'; 
+            previewImg.style.display = 'none';
+            previewImg.classList.add('img_zoom-thumbnail'); 
             previewCell.appendChild(previewImg);
         }
 

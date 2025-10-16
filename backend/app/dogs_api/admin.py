@@ -12,6 +12,10 @@ from django import forms
 
 
 
+from django.utils.safestring import mark_safe
+
+
+
 # Acomodar los base models de User y Groups
 admin.site.unregister(User)
 admin.site.unregister(Group)
@@ -30,12 +34,18 @@ class GroupAdmin(BaseGroupAdmin, ModelAdmin):
     icon = "group"
     pass
 
+class CustomClearableFileInput(forms.ClearableFileInput):
+    # Weapper para que js pueda anclase
+    def render(self, name, value, attrs=None, renderer=None):
+        output = super().render(name, value, attrs, renderer)
+        return mark_safe(f'<div class="custom-file-input-container">{output}</div>')
+
 class DogImageForm(forms.ModelForm):
     class Meta:
         model = DogImage
         fields = "__all__"
         widgets = {
-            "image": forms.FileInput()
+            'image': CustomClearableFileInput(),
         }
 
 
@@ -52,7 +62,7 @@ class DogImageInline(TabularInline):
     def image_thumbnail(self, obj):
         if obj.image:
             return format_html(
-                '<a href="{0}" target="_blank"><img src="{0}" style="height: 80px;"/></a>',
+                '<img src="{0}" style="height: 80px;" class="img_zoom-thumbnail" />',
                 obj.image.url
             )
         return "-"
@@ -77,8 +87,17 @@ class AdoptionStateFilter(SimpleListFilter):
 @admin.register(Dog)
 class DogAdminCLass(ModelAdmin):
     class Media:
-        css = {"all": ("css/custom_admin.css",)}
-        js = ("js/image_preview.js",)
+        css = {
+            "all": (
+                "css/btn_img.css",
+                "css/img_zoom.css",
+            )
+        }
+        js = (
+            "js/image_preview.js",
+            "js/img_zoom.js",
+            "js/responsive_doginline.js",
+        )
 
     inlines = [DogImageInline]
     list_display = (
@@ -120,7 +139,7 @@ class DogAdminCLass(ModelAdmin):
         url = obj.primary_image()
         if url:
             return format_html(
-                '<a href="{0}" target="_blank"><img src="{0}" style="height: 80px;"/></a>',
+                '<img src="{0}" style="height: 80px;" class="img_zoom-thumbnail" />',
                 url
             )
         return "-"
