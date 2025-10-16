@@ -8,6 +8,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
+
+
 # TODO: Comentar los Modelos, descripcion simple
 class Dog(models.Model):
     # TODO: Cambiar la clave, M de Macho y H de hembra
@@ -60,11 +62,11 @@ class Dog(models.Model):
     NEUTRAL_NAMES = ["Coco", "Lucky", "Chispa", "Terry"]
     
     SECTION_CHOICES = {
-        "1": "Sección 1",
-        "2": "Sección 2",
-        "3": "Sección 3",
-        "4": "Sección 4",
-        "5": "Sección 5",
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
     }
     name = models.CharField(max_length=100, verbose_name="Nombre", blank=True)
     age_year = models.IntegerField(
@@ -78,7 +80,7 @@ class Dog(models.Model):
         verbose_name="Sección",
         default="0",
     )
-    
+
     age_month = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(11)],
         verbose_name="Mes de edad",
@@ -93,7 +95,7 @@ class Dog(models.Model):
     description = models.TextField(blank=True, default="", verbose_name="Descripcion")
     size = models.CharField(max_length=1, choices=SIZE_CHOICES, verbose_name="Tamaño")
     arrive_date = models.DateField(default=date.today, verbose_name="Fecha de llegada")
-    beheaviors = models.ManyToManyField("Beheavior")
+    beheaviors = models.ManyToManyField("Beheavior", verbose_name="Comportamientos")
 
     class Meta:
         db_table = "perros"
@@ -146,18 +148,31 @@ class Dog(models.Model):
         # Valida que no haya años y meses de edad en 0 al mismo tiempo
         if self.age_year == 0 and self.age_month == 0:
             raise ValidationError("El año y el mes de edad no pueden ser ambos cero.")
+    @property
+    def size_display(self):
+        return self.get_size_display()
+
+    @property
+    def genre_display(self):
+        return self.get_genre_display()
 
 
 class DogImage(models.Model):
-    dog = models.ForeignKey(Dog, on_delete=models.CASCADE, related_name="images")
+    dog = models.ForeignKey(
+        Dog, 
+        on_delete=models.CASCADE, 
+        related_name="images",
+        verbose_name="Perro"
+    )
     image = CloudinaryField(
-        "image",
+        "Archivo de imagen",
         folder=f"dog_images/{settings.CLOUDINARY_FOLDER}",
-        tags=[settings.CLOUDINARY_TAG],
+        tags=[settings.CLOUDINARY_TAG]
     )
     is_primary = models.BooleanField(
         default=False,
         help_text="Seleccionar si es la imagen principal",
+        verbose_name="Principal"
     )
 
     class Meta:

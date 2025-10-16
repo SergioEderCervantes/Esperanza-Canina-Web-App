@@ -165,6 +165,10 @@ USE_TZ = True
 ##############################################################################
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 ##############################################################################
 # Cloudinary Configuration
 # https://cloudinary.com/documentation/django_integration
