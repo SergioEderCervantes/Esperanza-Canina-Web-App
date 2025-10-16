@@ -9,9 +9,6 @@ from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationFo
 from unfold.admin import TabularInline
 from app.dogs_api.models import Beheavior, Dog, DogImage
 from django import forms
-
-
-
 from django.utils.safestring import mark_safe
 
 
@@ -19,6 +16,7 @@ from django.utils.safestring import mark_safe
 # Acomodar los base models de User y Groups
 admin.site.unregister(User)
 admin.site.unregister(Group)
+admin
 
 
 @admin.register(User)
@@ -35,7 +33,7 @@ class GroupAdmin(BaseGroupAdmin, ModelAdmin):
     pass
 
 class CustomClearableFileInput(forms.ClearableFileInput):
-    # Weapper para que js pueda anclase
+    # Wrapper para que js pueda anclase
     def render(self, name, value, attrs=None, renderer=None):
         output = super().render(name, value, attrs, renderer)
         return mark_safe(f'<div class="custom-file-input-container">{output}</div>')

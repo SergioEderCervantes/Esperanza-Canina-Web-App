@@ -17,9 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const currentlyLink = container.querySelector('a[href]');
         if (currentlyLink) {
-            customBtn.textContent = 'Cambiar...';
+            customBtn.textContent = 'Cambiar';
         } else {
-            customBtn.textContent = 'Examinar...';
+            customBtn.textContent = 'Examinar';
         }
 
         wrapper.appendChild(customBtn);
