@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // 1. Importar usePathname
+import { usePathname } from "next/navigation"; 
 
 export default function Nav() {
-  const pathname = usePathname(); // 2. Obtener la ruta actual
-  const isLanding = pathname === "/"; // 3. Comprobar si es la landing
+  const pathname = usePathname(); 
+  const isLanding = pathname === "/"; 
 
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,11 +20,9 @@ export default function Nav() {
       setIsMobil(window.innerWidth < 768);
     };
 
-    // Ejecutar mobile una vez al montar para establecer el estado inicial
     mobile();
 
     window.addEventListener("resize", mobile);
-    // Solo agregar el listener de scroll si estamos en la landing page
     if (isLanding) {
       window.addEventListener("scroll", handleScroll);
     }
@@ -35,13 +33,13 @@ export default function Nav() {
         window.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [isLanding]); // El efecto depende de si es la landing page o no
+  }, [isLanding]); 
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // 4. Lógica de clases actualizada
+  
   const shouldBeTransparent = isLanding && !scrolled && !isMobile;
 
   const navbarClasses = `

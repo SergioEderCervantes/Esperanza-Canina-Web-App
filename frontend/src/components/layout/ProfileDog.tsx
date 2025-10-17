@@ -67,7 +67,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
               <div className="flex gap-3">
                 <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
                   <Heart className="w-4 h-4 mr-2" />
-                  <Link href={"/adopcion"}>Solicitar Adopción</Link>
+                  <Link href={`/adopcion/${dog.id}`}>Solicitar Adopción</Link>
                 </Button>
                 <Button
                   variant="outline"
