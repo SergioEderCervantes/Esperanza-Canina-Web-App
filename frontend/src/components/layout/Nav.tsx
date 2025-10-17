@@ -2,41 +2,56 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useGSAP } from "@gsap/react";
+import { usePathname } from "next/navigation"; // 1. Importar usePathname
 
 export default function Nav() {
+  const pathname = usePathname(); // 2. Obtener la ruta actual
+  const isLanding = pathname === "/"; // 3. Comprobar si es la landing
+
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobil] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100);
     };
+    const mobile = () => {
+      setIsMobil(window.innerWidth < 768);
+    };
 
-    window.addEventListener("scroll", handleScroll);
+    // Ejecutar mobile una vez al montar para establecer el estado inicial
+    mobile();
+
+    window.addEventListener("resize", mobile);
+    // Solo agregar el listener de scroll si estamos en la landing page
+    if (isLanding) {
+      window.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", mobile);
+      if (isLanding) {
+        window.removeEventListener("scroll", handleScroll);
+      }
     };
-  }, []);
+  }, [isLanding]); // El efecto depende de si es la landing page o no
 
-  // Clases dinámicas basadas en el estado 'scrolled'
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // 4. Lógica de clases actualizada
+  const shouldBeTransparent = isLanding && !scrolled && !isMobile;
+
   const navbarClasses = `
         fixed top-0 w-full z-20 px-8 py-4 transition-all duration-300 ease-in-out
-        ${scrolled ? "bg-white shadow-lg" : "bg-transparent"}
+        ${shouldBeTransparent ? "bg-transparent" : "bg-white shadow-lg"}
     `;
 
   const textClasses = `
         transition-colors duration-300 ease-in-out
-        ${scrolled ? "text-gray-900" : "text-white"}
-    `;
-
-  const buttonBorderClasses = `
-        transition-colors duration-300 ease-in-out
-        ${
-          scrolled
-            ? "border-gray-900 hover:text-white" // Sólido: Borde oscuro, hover blanco
-            : "border-white " // Transparente: Borde blanco, hover oscuro
-        }
+        ${shouldBeTransparent ? "text-white" : "text-gray-900"}
     `;
 
   return (
@@ -57,7 +72,7 @@ export default function Nav() {
         <div className="hidden md:flex items-center gap-6 text-base font-medium">
           <Link
             href="/"
-            className={`hover:border-b-2 border-transparent eaFse-in-out hover:border-blue-500 transition duration-300 ${textClasses}`}
+            className={`hover:border-b-2 border-transparent ease-in-out hover:border-blue-500 transition duration-300 ${textClasses}`}
           >
             Inicio
           </Link>
@@ -79,16 +94,77 @@ export default function Nav() {
           </Link>
 
           <Link
-            href="#contacto"
-            className={`hover:border-b-2 border-transparent eaFse-in-out 
+            href="/#contacto"
+            className={`hover:border-b-2 border-transparent ease-in-out 
                hover:border-blue-500 transition duration-300 ${textClasses}`}
           >
             Contacto
           </Link>
         </div>
 
-        {/* MENÚ HAMBURGUESA PARA MÓVIL IRÍA AQUÍ */}
+        {/* MENÚ HAMBURGUESA PARA MÓVIL */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={toggleMobileMenu}
+            className={`p-2 rounded-md ${textClasses}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={
+                  isMobileMenuOpen
+                    ? "M6 18L18 6M6 6l12 12"
+                    : "M4 6h16M4 12h16m-7 6h7"
+                }
+              />
+            </svg>
+          </button>
+        </div>
       </div>
+      {isMobileMenuOpen && (
+        <div className={`md:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-lg p-4`}>
+          <div className="flex flex-col items-center gap-4 ">
+            <Link
+              href="/"
+              className="text-gray-900 hover:text-blue-500 transition duration-300 "
+              onClick={toggleMobileMenu}
+            >
+              Inicio
+            </Link>
+            <Link
+              href="/perritos"
+              className="px-5 py-2 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition 
+                duration-300"
+              onClick={toggleMobileMenu}
+            >
+              Adoptar
+            </Link>
+            <Link
+              href="/ayuda"
+              className="px-5 py-2 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition 
+                 duration-300"
+              onClick={toggleMobileMenu}
+            >
+              Apoyanos
+            </Link>
+            <Link
+              href="/#contacto"
+              className="text-gray-900 hover:text-blue-500 transition duration-300"
+              onClick={toggleMobileMenu}
+            >
+              Contacto
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
