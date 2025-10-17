@@ -8,8 +8,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
-
-
 # TODO: Comentar los Modelos, descripcion simple
 class Dog(models.Model):
     # TODO: Cambiar la clave, M de Macho y H de hembra
@@ -60,7 +58,7 @@ class Dog(models.Model):
         "Kiara",
     ]
     NEUTRAL_NAMES = ["Coco", "Lucky", "Chispa", "Terry"]
-    
+
     SECTION_CHOICES = {
         "1": "1",
         "2": "2",
@@ -159,8 +157,8 @@ class Dog(models.Model):
 
 class DogImage(models.Model):
     dog = models.ForeignKey(
-        Dog, 
-        on_delete=models.CASCADE, 
+        Dog,
+        on_delete=models.CASCADE,
         related_name="images",
         verbose_name="Perro"
     )
@@ -183,9 +181,6 @@ class DogImage(models.Model):
     def __str__(self):
         return f"Imagen de {self.dog.name}"
 
-    def url(self):
-        return self.image.url
-
     def save(self, *args, **kwargs):
         # Si se está guardando como primaria, quitar la primaria de las demás
         if self.is_primary:
@@ -195,6 +190,10 @@ class DogImage(models.Model):
             if not DogImage.objects.filter(dog=self.dog, is_primary=True).exclude(pk=self.pk).exists():
                 self.is_primary = True
         super().save(*args, **kwargs)
+
+    def url(self):
+        return self.image.url
+
 
 class Beheavior(models.Model):
     beheavior_name = models.CharField(

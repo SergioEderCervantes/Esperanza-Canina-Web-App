@@ -1,22 +1,19 @@
+from django import forms
 from django.contrib import admin
+from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, User
-from django.contrib.admin import SimpleListFilter
 from django.utils.html import format_html
-from unfold.admin import ModelAdmin
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
-from unfold.admin import TabularInline
-from app.dogs_api.models import Beheavior, Dog, DogImage
-from django import forms
 from django.utils.safestring import mark_safe
+from unfold.admin import ModelAdmin, TabularInline
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
-
+from app.dogs_api.models import Beheavior, Dog, DogImage
 
 # Acomodar los base models de User y Groups
 admin.site.unregister(User)
 admin.site.unregister(Group)
-admin
 
 
 @admin.register(User)
@@ -41,7 +38,7 @@ class CustomClearableFileInput(forms.ClearableFileInput):
 class DogImageForm(forms.ModelForm):
     class Meta:
         model = DogImage
-        fields = "__all__"
+        fields = "__all__"  # noqa: DJ007
         widgets = {
             'image': CustomClearableFileInput(),
         }

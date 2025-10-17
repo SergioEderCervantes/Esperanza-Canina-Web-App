@@ -35,7 +35,7 @@ class DogListSerializer(serializers.ModelSerializer):
     size_display = serializers.CharField(source="get_size_display", read_only=True)
     genre_display = serializers.CharField(source="get_genre_display", read_only=True)
     primary_image = serializers.SerializerMethodField()
-    section_display = serializers.CharField(source="get_section_display", read_only=True) 
+    section_display = serializers.CharField(source="get_section_display", read_only=True)
 
     class Meta:
         model = Dog
