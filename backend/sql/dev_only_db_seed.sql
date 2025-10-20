@@ -527,11 +527,11 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 
 COPY public.comportamientos (id, beheavior_name, beheavior_description) FROM stdin;
-1	Juguet├│n	Le encanta correr y jugar con pelotas o juguetes.
-2	Tranquilo	Tiene un car├ícter calmado y disfruta descansar en lugares c├│modos.
+1	Jugueton	Le encanta correr y jugar con pelotas o juguetes.
+2	Tranquilo	Tiene un caracter calmado y disfruta descansar en lugares modos.
 3	Sociable	Se lleva bien con personas y otros animales, ideal para familias.
-4	Obediente	Atiende a ├│rdenes b├ísicas y responde bien al entrenamiento.
-5	Protector	Siempre atento, cuida a su familia y avisa ante extra├▒os.
+4	Obediente	Atiende a ordenes basicas y responde bien al entrenamiento.
+5	Protector	Siempre atento, cuida a su familia y avisa ante extraños.
 \.
 
 

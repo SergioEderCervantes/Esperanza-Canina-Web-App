@@ -1,6 +1,7 @@
-import os
 from pathlib import Path
+
 from PIL import Image
+
 
 def convertir_a_webp(ruta_directorio, calidad=95, usar_lossless=False):
     # Asegurar que la ruta sea absoluta

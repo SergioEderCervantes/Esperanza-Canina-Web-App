@@ -1,0 +1,39 @@
+.custom-file-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.custom-file-button {
+    background-color: #3c6fb3;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.custom-file-button:hover {
+    background-color: #2a44d3;
+}
+
+.custom-file-name {
+    font-size: 0.875rem;
+    color: #666;
+    white-space: normal;
+    word-break: break-all;
+}
+
+@media (min-width: 500px) {
+    .custom-file-wrapper {
+        flex-direction: row;
+        align-items: center;
+    }
+    .custom-file-button {
+        margin-bottom: 0;
+        margin-right: 1rem;
+    }
+}

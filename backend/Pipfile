@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==5.2.6"
+django = "==5.2.7"
 djangorestframework = "*"
 psycopg2-binary = "*"
 cloudinary = "*"
@@ -26,5 +26,5 @@ pillow = "*"
 python_version = "3.13"
 
 [dev-packages]
-ruff = "*"
 bandit = "*"
+ruff = "*"

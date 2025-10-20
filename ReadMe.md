@@ -113,7 +113,7 @@ patitasWebApp/
 3. Construir y levantar servicios:
 
     ```bash
-    docker compose up --build
+    docker compose -f ./docker/docker-compose.dev up --build
     ```
 
 4. Acceder a la aplicación:

@@ -74,6 +74,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -109,11 +110,14 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "USER": environ.get("DATABASE_USER", "postgres"),
-        "PASSWORD": environ.get("DATABASE_PASSWORD", "change-password"),
-        "NAME": environ.get("DATABASE_NAME", "patitas"),
-        "HOST": environ.get("DATABASE_HOST", "db"),
-        "PORT": environ.get("DATABASE_PORT", "5432"),
+        "USER": environ.get("DATABASE_USER"),
+        "PASSWORD": environ.get("DATABASE_PASSWORD"),
+        "NAME": environ.get("DATABASE_NAME"),
+        "HOST": environ.get("DATABASE_HOST"),
+        "PORT": environ.get("DATABASE_PORT"),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
         "TEST": {
             "NAME": "test",
         },
@@ -164,6 +168,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 ##############################################################################
 STATIC_URL = "static/"
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 ##############################################################################
 # Cloudinary Configuration
