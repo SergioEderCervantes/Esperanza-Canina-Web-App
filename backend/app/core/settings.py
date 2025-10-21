@@ -115,9 +115,6 @@ DATABASES = {
         "NAME": environ.get("DATABASE_NAME"),
         "HOST": environ.get("DATABASE_HOST"),
         "PORT": environ.get("DATABASE_PORT"),
-        "OPTIONS": {
-            "sslmode": "require",
-        },
         "TEST": {
             "NAME": "test",
         },
