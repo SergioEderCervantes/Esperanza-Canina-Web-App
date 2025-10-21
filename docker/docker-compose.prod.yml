@@ -1,31 +1,87 @@
+# Redes creadas por el compose, para una nueva capa de abstraccion y seguridad
+networks:
+  backend:
+  frontend:
+
+# Volumenes para persistencia de datos
+volumes:
+  pg_data:
+
+
 services:
+  db:
+    container_name: db
+    image: postgres
+    env_file:
+      - ../backend/.env.prod
+    networks:
+      - backend
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
   redis:
-    image: redis:7
     container_name: redis
+    image: redis:7
+    networks:
+      - backend
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "redis-cli ping"]
       interval: 5s
       timeout: 2s
       retries: 10
-    restart: always
-  api:
-    container_name: api
-    build: 
-      context: ../backend
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    ports:
-    - "8000:8000"
-    env_file:
-      - ../backend/.env.prod
-    restart: always
-  qcluster:
-    container_name: qcluster
-    build:
-      context: ../backend
+  
+  django_q:
+    container_name: django_q
+    build: ../backend
     command: python manage.py qcluster
+    networks:
+      - backend
+    restart: unless-stopped
     env_file:
       - ../backend/.env.prod
     depends_on:
+      db:
+        condition: service_healthy
       redis:
         condition: service_healthy
-    restart: always  
+
+  api:
+    container_name: api
+    build: ../backend
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    networks:
+      - backend
+      - frontend
+    restart: unless-stopped
+    env_file:
+      - ../backend/.env.prod
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy    
+
+  frontend:
+    container_name: frontend
+    build: ../frontend
+    networks:
+      - frontend
+    env_file:
+      - ../frontend/.env.local
+    depends_on:
+      - api
+
+  nginx:
+    container_name: nginx
+    build: ../nginx
+    networks:
+      - frontend
+    ports:
+      -"80:80"
+    depends_on:
+      - frontend
