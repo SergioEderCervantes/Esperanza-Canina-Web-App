@@ -4,12 +4,14 @@ from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, User
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from unfold.admin import ModelAdmin, TabularInline
 from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 from app.dogs_api.models import Beheavior, Dog, DogImage
+from app.vet_api.models import Medical_record
 
 # Acomodar los base models de User y Groups
 admin.site.unregister(User)
@@ -103,11 +105,22 @@ class DogAdminCLass(ModelAdmin):
         "adoption_state_display",
         "section",
         "primary_image_thumbnail",
+        "medical_history_link",
     )
     search_fields = ("name", "size", "genre", "section")
     list_filter = (AdoptionStateFilter, "size", "genre","section")
     fields = ("name", "age_year", "age_month", "genre","section", "adoption_state",
             "description", "size", "arrive_date", "beheaviors")
+
+    def medical_history_link(self, obj):
+        try:
+            medical_record = obj.medical_record
+            url = reverse('admin:vet_api_medical_record_change', args=[medical_record.pk])
+            return format_html('<a href="{}" class="btn-link">Ver/Editar Historial</a>', url)
+        except Medical_record.DoesNotExist:
+            url = reverse('admin:vet_api_medical_record_add') + f'?dog={obj.pk}'
+            return format_html('<a href="{}" class="btn-link btn-link-add">Crear Historial</a>', url)
+    medical_history_link.short_description = 'Historial Médico'
 
 
     def dog_life_stage_display(self, obj):
