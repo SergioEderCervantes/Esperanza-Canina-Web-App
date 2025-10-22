@@ -1,9 +1,7 @@
-
 import { perritosRetrieve } from "@/api/sdk.gen";
 import { DetailedDog } from "@/api/types.gen";
 import { notFound } from "next/navigation";
 import ProfileDog from "@/components/layout/ProfileDog";
-
 
 export default async function DogProfilePage({
   params,

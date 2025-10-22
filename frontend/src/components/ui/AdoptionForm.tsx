@@ -1,18 +1,16 @@
-
 'use client';
 
 import type { FormularioAdopcion } from '@/api/types.gen';
 import { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
-
-interface AdoptionFormProps {
-  formData: FormularioAdopcion;
-  setFormData: Dispatch<SetStateAction<FormularioAdopcion>>;
-}
-
-
 import Spinner from './Spinner';
 import dynamic from 'next/dynamic';
+
+interface AdoptionFormProps {
+  formData: FormularioAdopcion | null;
+  setFormData: Dispatch<SetStateAction<FormularioAdopcion | null>>;
+}
+
 
 const DatosDelSolicitanteSection = dynamic(() => import('./form-sections/DatosDelSolicitanteSection'), { loading: () => <Spinner /> });
 const SobreElEspacioSection = dynamic(() => import('./form-sections/SobreElEspacioSection'), { loading: () => <Spinner /> });
@@ -36,13 +34,16 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
     }
 
 
-    setFormData(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section as keyof FormularioAdopcion],
-        [field]: parsedValue,
-      },
-    }));
+    setFormData(prev => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        [section]: {
+          ...prev[section as keyof FormularioAdopcion],
+          [field]: parsedValue,
+        },
+      }
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,6 +56,10 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
     alert('Formulario enviado. Revisa la consola para ver los datos.');
     setIsSubmitting(false);
   };
+
+  if (!formData) {
+    return <Spinner />;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">

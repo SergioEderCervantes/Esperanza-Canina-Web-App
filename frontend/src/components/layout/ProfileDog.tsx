@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,10 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Heart, Share2, MapPin, Calendar, Car } from "lucide-react";
 import Link from "next/link";
 import DogGallery from "../perritos/DogGallery";
+import { useAdoptionContext } from '@/context/AdoptionContext';
+import { useRouter } from 'next/navigation';
 
 import { DetailedDog } from "@/api/types.gen";
 
 export default function ProfileDog({ dog }: { dog: DetailedDog }) {
+  const { setDogToAdopt } = useAdoptionContext();
+  const router = useRouter();
+
+  const handleAdoptClick = () => {
+    setDogToAdopt(dog);
+    router.push('/adopcion');
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Breadcrumb */}
@@ -65,9 +75,9 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
               </div>
 
               <div className="flex gap-3">
-                <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
+                <Button className="flex-1 bg-blue-600 hover:bg-blue-700" onClick={handleAdoptClick}>
                   <Heart className="w-4 h-4 mr-2" />
-                  <Link href={`/adopcion/${dog.id}`}>Solicitar Adopción</Link>
+                  Solicitar Adopción
                 </Button>
                 <Button
                   variant="outline"
