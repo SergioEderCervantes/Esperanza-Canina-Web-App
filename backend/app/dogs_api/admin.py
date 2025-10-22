@@ -1,14 +1,12 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
-from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, User
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django_q.models import Failure, Schedule, Success
 from unfold.admin import ModelAdmin, TabularInline
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
 from app.dogs_api.models import Beheavior, Dog, DogImage
 from app.vet_api.models import Medical_record
@@ -17,19 +15,11 @@ from app.vet_api.models import Medical_record
 admin.site.unregister(User)
 admin.site.unregister(Group)
 
+# Quitar Django_Q things
+admin.site.unregister(Success)
+admin.site.unregister(Failure)
+admin.site.unregister(Schedule)
 
-@admin.register(User)
-class UserAdmin(BaseUserAdmin, ModelAdmin):
-    form = UserChangeForm
-    add_form = UserCreationForm
-    change_password_form = AdminPasswordChangeForm
-    icon = "person"
-
-
-@admin.register(Group)
-class GroupAdmin(BaseGroupAdmin, ModelAdmin):
-    icon = "group"
-    pass
 
 class CustomClearableFileInput(forms.ClearableFileInput):
     # Wrapper para que js pueda anclase
