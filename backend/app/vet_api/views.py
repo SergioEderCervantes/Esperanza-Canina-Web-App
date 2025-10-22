@@ -7,6 +7,6 @@ class MedicalRecordListCreateView(generics.ListCreateAPIView):
     queryset = Medical_record.objects.all()
     serializer_class = MedicalRecordSerializer
 
-class MedicalRecordDetailView(generics.RetrieveUpdateDestroyAPIView):
+class MedicalRecordDetailView(generics.RetrieveAPIView):
     queryset = Medical_record.objects.all()
     serializer_class = MedicalRecordSerializer

@@ -116,7 +116,7 @@ class DogAdminCLass(ModelAdmin):
         try:
             medical_record = obj.medical_record
             url = reverse('admin:vet_api_medical_record_change', args=[medical_record.pk])
-            return format_html('<a href="{}" class="btn-link">Ver/Editar Historial</a>', url)
+            return format_html('<a href="{}" class="btn-link">Editar Historial</a>', url)
         except Medical_record.DoesNotExist:
             url = reverse('admin:vet_api_medical_record_add') + f'?dog={obj.pk}'
             return format_html('<a href="{}" class="btn-link btn-link-add">Crear Historial</a>', url)
