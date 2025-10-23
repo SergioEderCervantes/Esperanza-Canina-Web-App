@@ -8,7 +8,6 @@ import Link from "next/link";
 import DogGallery from "../perritos/DogGallery";
 import { useAdoptionContext } from '@/context/AdoptionContext';
 import { useRouter } from 'next/navigation';
-
 import { DetailedDog } from "@/api/types.gen";
 
 export default function ProfileDog({ dog }: { dog: DetailedDog }) {

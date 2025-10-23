@@ -103,7 +103,7 @@ class DogListView(generics.ListAPIView):
     responses=DetailedDogResponseSerializer,
 )
 class DogDetailView(generics.RetrieveAPIView):
-    queryset = Dog.objects.filter(adoption_state=False)
+    queryset = Dog.objects.filter(adoption_state=False).prefetch_related('beheaviors', 'images')
     serializer_class = DetailedDogSerializer
     lookup_field = "pk"
 

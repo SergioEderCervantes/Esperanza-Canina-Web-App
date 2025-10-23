@@ -12,6 +12,7 @@ export default function AdoptionPage() {
   const [formData, setFormData] = useState<FormularioAdopcion | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { dogToAdopt } = useAdoptionContext();
+  console.log('[DEBUG] AdoptionPage received dog from context:', dogToAdopt);
 
   useEffect(() => {
     if (!dogToAdopt) {

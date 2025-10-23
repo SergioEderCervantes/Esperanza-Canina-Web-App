@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'next start',
+  output: 'standalone',
   experimental: {
     optimizeCss: false,
   },

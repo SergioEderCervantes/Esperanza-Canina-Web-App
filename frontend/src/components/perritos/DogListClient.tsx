@@ -1,11 +1,13 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from "react";
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
 import { DogList, PaginatedDogListList } from "@/api";
 
+
 export default function DogListClient() {
+
   const [dogsData, setDogsData] = useState<PaginatedDogListList | null>(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
