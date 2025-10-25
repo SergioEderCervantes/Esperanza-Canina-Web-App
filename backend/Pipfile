@@ -21,6 +21,7 @@ pandas = "*"
 openpyxl = "*"
 openpyxl-image-loader = "*"
 pillow = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.13"

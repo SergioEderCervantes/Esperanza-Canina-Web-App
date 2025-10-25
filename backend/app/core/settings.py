@@ -28,11 +28,12 @@ SECRET_KEY = environ.get("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DEBUG", "") == "1"
 
-ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com"]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "http://example.com"
 ]
 
 ROOT_URLCONF = "app.core.urls"
@@ -164,9 +165,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 ##############################################################################
-STATIC_URL = "static/"
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 ##############################################################################
 # Cloudinary Configuration
