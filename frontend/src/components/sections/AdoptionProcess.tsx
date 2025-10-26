@@ -109,8 +109,9 @@ const AdoptionProcess = () => {
               <Image
                 src="/family-with-dog.jpg"
                 alt="Familia feliz con su perro adoptado"
-                layout="fill"
-                objectFit="cover"
+                width={600}
+                height={400}
+                className="object-cover w-full h-full"
               />
             </div>
           </div>

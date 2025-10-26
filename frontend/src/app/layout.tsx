@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import PageWrapper from '@/components/layout/PageWrapper';
+import { Providers } from "./providers";
 
 //Layout global de la app (navbar, footer, etc)
 const geistSans = Geist({
@@ -32,11 +33,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Nav />
-        <PageWrapper>
-          {children}
-        </PageWrapper>
-        <Footer />
+        <Providers>
+          <Nav />
+          <PageWrapper>
+            {children}
+          </PageWrapper>
+          <Footer />
+        </Providers>
       </body>
 
     </html>
