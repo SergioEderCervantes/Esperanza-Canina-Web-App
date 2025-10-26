@@ -9,6 +9,7 @@ import DogGallery from "../perritos/DogGallery";
 import { useAdoptionContext } from '@/context/AdoptionContext';
 import { useRouter } from 'next/navigation';
 import { DetailedDog } from "@/api/types.gen";
+import ShareButton from "@/components/ui/ShareButton";
 
 export default function ProfileDog({ dog }: { dog: DetailedDog }) {
   const { setDogToAdopt } = useAdoptionContext();
@@ -78,13 +79,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
                   <Heart className="w-4 h-4 mr-2" />
                   Solicitar Adopción
                 </Button>
-                <Button
-                  variant="outline"
-                  className="border-gray-800 bg-transparent text-gray-800 hover:bg-gray-700 hover:text-white"
-                >
-                  <Share2 className="w-4 h-4 mr-2 text-gray-600 hover:text-white" />
-                  Compartir
-                </Button>
+                <ShareButton dog={dog} />
               </div>
             </div>
           </div>

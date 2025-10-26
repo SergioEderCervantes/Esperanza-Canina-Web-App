@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
 import { DogList, PaginatedDogListList } from "@/api";
+import CustomLoader from "@/components/ui/CustomLoader";
 
 
 export default function DogListClient() {
@@ -29,15 +30,15 @@ export default function DogListClient() {
     loadDogs(page);
   }, [page]);
 
-  if (!dogsData) return <p className="text-center text-gray-600">Cargando...</p>;
+  if (!dogsData) return <CustomLoader />;
 
   return (
     <>
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500">
         {loading ? (
-          <div className="col-span-full text-center py-8 text-gray-600">
-            Cargando página {page}...
+          <div className="col-span-full">
+            <CustomLoader />
           </div>
         ) : dogsData.data && dogsData.data.length > 0 ? (
           dogsData.data.map((dog: DogList) => <DogCard key={dog.id} dog={dog} />)
