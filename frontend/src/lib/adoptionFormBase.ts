@@ -1,4 +1,5 @@
 import type { FormularioAdopcion } from '@/api/types.gen';
+import { getFormCache, setFormCache } from './formCache';
 
 export const initialAdoptionFormState: FormularioAdopcion = {
   datos_del_animal: {
@@ -41,3 +42,22 @@ export const initialAdoptionFormState: FormularioAdopcion = {
     dogcare_field9: null,
   },
 };
+
+export const getAdoptionFormBase = async (): Promise<FormularioAdopcion> => {
+  const cachedData = getFormCache();
+  if (cachedData) {
+    console.log("Form data loaded from cache.");
+    return Promise.resolve(JSON.parse(JSON.stringify(cachedData)));
+  }
+
+  console.log("Fetching form data...");
+  // Simulate network delay
+  await new Promise(resolve => setTimeout(resolve, 2000));
+
+  const formData = JSON.parse(JSON.stringify(initialAdoptionFormState));
+  setFormCache(formData);
+  console.log("Form data fetched and cached.");
+
+  return formData;
+};
+

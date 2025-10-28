@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test and cache files
+.pytest_cache/
+.ruff_cache/
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Local development files
+Pipfile
+Pipfile.lock
+pyproject.toml
+pytest.ini
+README.md
+formulario_example.json
+formulario_key_pregunta.json
+
+# Documents and other assets not needed in production
+sql/
+
+# Docker
+Dockerfile

@@ -29,13 +29,12 @@ export const FeaturedDogs = async () => {
     return fallback();
   }
 
-  let dogs_data: DogTop[];
   // Fallback component en caso de que no se obtengan datos del fetch
   if (!res.data?.data) {
     return fallback();
   }
-
-  dogs_data = res.data?.data;
+  
+  const dogs_data: DogTop[] = res.data?.data;
 
   return (
     <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
