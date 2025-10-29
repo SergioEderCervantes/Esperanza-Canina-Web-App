@@ -28,12 +28,21 @@ SECRET_KEY = environ.get("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DEBUG", "") == "1"
 
-ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com"]
+# TODO: cambiar todo esto a los dominios correctos en produccion
 
+ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com", "frontend"]
+
+# Esto si es para frontend, asi permite el uso de POST del formulario
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+# Esto solo es para las django sessions, la parte del front no tiene autenticacion por lo cual no necesita
+# Ponerse aqui como trusted origins
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://example.com"
 ]
 
 ROOT_URLCONF = "app.core.urls"
@@ -59,6 +68,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third Party Apps
     "rest_framework",
+    "corsheaders",
     "cloudinary",
     "django_filters",
     "drf_spectacular",
@@ -76,6 +86,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
