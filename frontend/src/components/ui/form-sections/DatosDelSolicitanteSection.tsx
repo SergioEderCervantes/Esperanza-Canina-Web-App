@@ -28,6 +28,8 @@ export default function DatosDelSolicitanteSection({
             type="text"
             id="datos_del_solicitante.adpt_name"
             name="datos_del_solicitante.adpt_name"
+            value={formData.datos_del_solicitante.adpt_name}
+            onChange={handleChange}
             className="p-2 border-2 rounded"
           />
         </div>
