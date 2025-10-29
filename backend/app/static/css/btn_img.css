@@ -5,7 +5,7 @@
 }
 
 .custom-file-button {
-    background-color: #3c6fb3;
+    background-color: #4ca3af;
     color: #ffffff;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
@@ -17,7 +17,7 @@
 }
 
 .custom-file-button:hover {
-    background-color: #2a44d3;
+    background-color: #4ca3af;
 }
 
 .custom-file-name {
@@ -35,5 +35,31 @@
     .custom-file-button {
         margin-bottom: 0;
         margin-right: 1rem;
+        }
     }
-}
+    
+    .btn-link {
+        background-color: #4ca3af; 
+        color: #ffffff;
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.5rem; 
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: background-color 0.2s;
+        display: inline-block;
+    }
+    
+    .btn-link:hover {
+        background-color: #388e99;
+        color: #ffffff;
+        text-decoration: none;
+    }
+    
+    .btn-link.btn-link-add {
+        background-color: #4ca3af; 
+    }
+    
+    .btn-link.btn-link-add:hover {
+        background-color: #388e99;
+    }

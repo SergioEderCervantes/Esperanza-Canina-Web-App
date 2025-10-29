@@ -3,7 +3,7 @@
 import type { FormularioAdopcion } from '@/api/types.gen';
 import { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
-import Spinner from './Spinner';
+import CustomLoader from './CustomLoader';
 import dynamic from 'next/dynamic';
 
 interface AdoptionFormProps {
@@ -12,9 +12,9 @@ interface AdoptionFormProps {
 }
 
 
-const DatosDelSolicitanteSection = dynamic(() => import('./form-sections/DatosDelSolicitanteSection'), { loading: () => <Spinner /> });
-const SobreElEspacioSection = dynamic(() => import('./form-sections/SobreElEspacioSection'), { loading: () => <Spinner /> });
-const SobreElCuidadoSection = dynamic(() => import('./form-sections/SobreElCuidadoSection'), { loading: () => <Spinner /> });
+const DatosDelSolicitanteSection = dynamic(() => import('./form-sections/DatosDelSolicitanteSection'));
+const SobreElEspacioSection = dynamic(() => import('./form-sections/SobreElEspacioSection'));
+const SobreElCuidadoSection = dynamic(() => import('./form-sections/SobreElCuidadoSection'));
 
 export default function AdoptionForm({ formData, setFormData }: AdoptionFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,7 +58,7 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
   };
 
   if (!formData) {
-    return <Spinner />;
+    return <CustomLoader />;
   }
 
   return (
@@ -68,7 +68,7 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
       <SobreElCuidadoSection formData={formData} handleChange={handleChange} />
 
       <button type="submit" className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex items-center justify-center" disabled={isSubmitting}>
-        {isSubmitting ? <Spinner /> : 'Enviar Solicitud de Adopción'}
+        {isSubmitting ? 'Enviando...' : 'Enviar Solicitud de Adopción'}
       </button>
     </form>
   );

@@ -34,9 +34,8 @@ class Medical_record(models.Model):
         help_text="Anota las enfermedades que padece, si no tiene ninguna, dejar en blanco",
     )
 
-    weight = models.PositiveSmallIntegerField("Peso", help_text="En Kilogramos")
 
-    # ESTO SI PONEMOS SOLO UN REPORTE POR PERRO
+    # Solo un reporte
     report = models.TextField(
         "Reportes",
         help_text="Aqui puedes poner todos los reportes del seguimiento de la salud del perrito",
@@ -59,7 +58,7 @@ class Medical_record(models.Model):
         return f"Expediente Medico de {self.dog.name}"
 
 
-# ESTO SI DECIDIMOS TENER MAS DE UN REPORTE POR PERRITO
+# Mas de un reporte ??
 # class Reports(models.Model):
 #     medical_record = models.ForeignKey(
 #         Medical_record,

@@ -1,0 +1,41 @@
+# ======================
+# 1. Etapa de build
+# ======================
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copia los archivos de dependencias primero
+COPY package*.json ./
+
+# Instalación limpia para build
+RUN npm ci
+
+# Copia el resto del código fuente
+COPY . .
+
+# Compila para producción
+# BUG: Esto no funciona, hay un problema con el linting o los tipos
+RUN npm run build
+
+# ======================
+# 2. Etapa de runtime
+# ======================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Entorno de producción
+ENV NODE_ENV=production
+
+# Copia solo lo necesario
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.js ./
+# Opcional: si usas TypeScript y lo necesitas en runtime
+COPY --from=builder /app/tsconfig.json ./
+
+# Instala solo dependencias de producción
+RUN npm ci --omit=dev
+

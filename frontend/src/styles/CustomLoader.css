@@ -1,0 +1,150 @@
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  gap: 55px;
+}
+
+.wrapper {
+  width: 200px;
+  height: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  left: 15%;
+  transform-origin: 90%;
+  animation: circleJump .5s alternate infinite ease;
+}
+
+ @keyframes circleJump {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.5);
+  }
+  40% {
+    height: 20px;
+    border-radius: 50%;
+    transform: scaleX(1);
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 102px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 20%;
+  filter: blur(1px);
+  animation: shadowAnim .5s alternate infinite ease;
+}
+
+ @keyframes shadowAnim {
+  0% {
+    transform: scaleX(1.5);
+  }
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
+  }
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
+  }
+}
+
+.shadow:nth-child(4) { left: 49%; animation-delay: .2s; }
+.shadow:nth-child(5) { left: auto; right: 11%; animation-delay: .3s; }
+
+.liquid-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  font-family: system-ui, sans-serif;
+}
+
+.loading-text {
+  color: #3EB3C2;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: textGlow 1s ease-in-out infinite;
+}
+
+.dot {
+  margin-left: 3px;
+  animation: blink 1.5s infinite;
+}
+.dot:nth-of-type(1) { animation-delay: 0s; }
+.dot:nth-of-type(2) { animation-delay: 0.3s; }
+.dot:nth-of-type(3) { animation-delay: 0.6s; }
+
+ @keyframes textGlow {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: 0 0 8px rgba(62, 179, 194, 0.3);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 16px rgba(62, 179, 194, 0.7);
+  }
+}
+
+ @keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
+.loader-track {
+  position: relative;
+  width: 100px;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.liquid-fill {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background: #3EB3C2;
+  animation: fillMove 1.5s linear infinite;
+  border-radius: 3px;
+}
+
+ @keyframes fillMove {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}

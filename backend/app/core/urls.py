@@ -1,21 +1,17 @@
 """
-URL configuration for app project.
+Rutas principales del módulo core.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+- admin/: panel de administración.
+- api/perritos/: rutas de la API de perros (app.dogs_api.urls).
+- api/schema/ y api/docs/: esquema OpenAPI y Swagger UI (drf_spectacular).
+- health/: comprobación básica de salud.
+- raíz y path comodín: redirigen a la documentación (swagger-ui).
+
+Las redirecciones son permanentes (301) por defecto.
 """
 
 from django.contrib import admin
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
@@ -23,12 +19,14 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/perritos/", include("app.dogs_api.urls")),
+    path("api/registros-medicos/", include("app.vet_api.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
+    path("health/", lambda request: HttpResponse("Healthy", 200)),
     path("", lambda request: redirect("swagger-ui", permanent=True)),
     path(
         "<path:unused_path>",

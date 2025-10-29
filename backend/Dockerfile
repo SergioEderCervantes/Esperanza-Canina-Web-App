@@ -1,4 +1,34 @@
-FROM python:3.13-slim-bookworm
+FROM python:3.13-slim-bookworm AS backend_build
+
+# Enviroment
+ENV PYTHONUNBUFFERED=1
+
+
+WORKDIR /app
+
+# Herramientas parra compilar wheel, no se si hace falta la vdd
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential gcc && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# pip preparado
+RUN pip install --upgrade pip setuptools wheel
+
+
+# copiar sólo requirements y construir wheels (wheelhouse)
+COPY ./requirements.txt /app/requirements.txt
+RUN mkdir /wheels
+RUN pip wheel --wheel-dir=/wheels -r /app/requirements.txt
+
+# copiar el proyecto y luego instalar desde wheelhouse para poder ejecutar collectstatic
+COPY . /app
+RUN pip install --no-index --find-links=/wheels -r /app/requirements.txt
+
+# Ejecutar el collecstatic
+RUN python manage.py collectstatic --noinput
+
+
+FROM python:3.13-slim-bookworm AS backend_runtime
 
 # ------------------------
 # ENVIRONMENT
@@ -6,6 +36,7 @@ FROM python:3.13-slim-bookworm
 ENV PYTHONUNBUFFERED=1
 ENV UV_PROJECT_ENVIRONMENT=/.venv
 
+WORKDIR /app
 # ------------------------
 # SYSTEM DEPENDENCIES
 # ------------------------
@@ -19,27 +50,19 @@ RUN apt-get update && \
 # ------------------------
 # PYTHON DEPENDENCIES
 # ------------------------
-# 👇 Recomendación: asegura setuptools y wheel (necesarios para django-q2)
-RUN pip install --upgrade pip setuptools wheel
+COPY --from=backend_build /wheels /wheels
+COPY ./requirements.txt /app/requirements.txt
 
-WORKDIR /app
-
-COPY ./requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-index --find-links=/wheels -r /app/requirements.txt
 
 # ------------------------
 # COPY PROJECT
 # ------------------------
-COPY . .
+COPY --from=backend_build /app /app
+
 
 # ------------------------
 # SECURITY: non-root user
 # ------------------------
 RUN adduser --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
-
-# ------------------------
-# EXPOSE PORT
-# ------------------------
-EXPOSE 8000
