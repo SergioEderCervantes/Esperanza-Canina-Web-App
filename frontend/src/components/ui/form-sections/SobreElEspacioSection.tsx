@@ -1,5 +1,5 @@
 import type { FormularioAdopcion } from '@/api/types.gen';
-
+import CustomCheckbox from '../CustomCheckbox';
 interface SectionProps {
   formData: FormularioAdopcion;
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -21,17 +21,17 @@ export default function SobreElEspacioSection({ formData, handleChange }: Sectio
           />
         </div>
 
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="sobre_el_espacio.living_form_field3"
-            name="sobre_el_espacio.living_form_field3"
-            checked={formData.sobre_el_espacio.living_form_field3 || false}
-            onChange={handleChange}
-            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-          />
-          <label htmlFor="sobre_el_espacio.living_form_field3" className="ml-2 block text-sm text-gray-900">¿Tienes otras mascotas en casa?</label>
-        </div>
+
+
+
+
+        <CustomCheckbox
+          id="sobre_el_espacio.living_form_field3"
+          name="sobre_el_espacio.living_form_field3"
+          checked={formData.sobre_el_espacio.living_form_field3 || false}
+          onChange={handleChange}
+          label="¿Tienes otras mascotas en casa?"
+        />
 
         {formData.sobre_el_espacio.living_form_field3 && (
           <>
@@ -57,17 +57,13 @@ export default function SobreElEspacioSection({ formData, handleChange }: Sectio
                 className="p-2 border-2 rounded"
               />
             </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="sobre_el_espacio.living_form_field6"
-                name="sobre_el_espacio.living_form_field6"
-                checked={formData.sobre_el_espacio.living_form_field6 || false}
-                onChange={handleChange}
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label htmlFor="sobre_el_espacio.living_form_field6" className="ml-2 block text-sm text-gray-900">¿Están esterilizados?</label>
-            </div>
+            <CustomCheckbox
+              id="sobre_el_espacio.living_form_field6"
+              name="sobre_el_espacio.living_form_field6"
+              checked={formData.sobre_el_espacio.living_form_field6 || false}
+              onChange={handleChange}
+              label="¿Están esterilizados?"
+            />
             {formData.sobre_el_espacio.living_form_field6 !== true && (
               <div className="flex flex-col">
                 <label htmlFor="sobre_el_espacio.living_form_field7" className="mb-2 font-medium">Si no, ¿por qué?</label>
@@ -81,32 +77,33 @@ export default function SobreElEspacioSection({ formData, handleChange }: Sectio
                 />
               </div>
             )}
+            <div className="flex flex-col">
+              <label htmlFor="sobre_el_espacio.living_form_field8" className="mb-2 font-medium">¿En qué parte duermen?</label>
+              <input
+                type="text"
+                id="sobre_el_espacio.living_form_field8"
+                name="sobre_el_espacio.living_form_field8"
+                value={formData.sobre_el_espacio.living_form_field8 || ''}
+                onChange={handleChange}
+                className="p-2 border-2 rounded"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label htmlFor="sobre_el_espacio.living_form_field9" className="mb-2 font-medium">¿Quién es el responsable de ellos?</label>
+              <input
+                type="text"
+                id="sobre_el_espacio.living_form_field9"
+                name="sobre_el_espacio.living_form_field9"
+                value={formData.sobre_el_espacio.living_form_field9 || ''}
+                onChange={handleChange}
+                className="p-2 border-2 rounded"
+              />
+            </div>
           </>
         )}
 
-        <div className="flex flex-col">
-          <label htmlFor="sobre_el_espacio.living_form_field8" className="mb-2 font-medium">¿En qué parte duermen?</label>
-          <input
-            type="text"
-            id="sobre_el_espacio.living_form_field8"
-            name="sobre_el_espacio.living_form_field8"
-            value={formData.sobre_el_espacio.living_form_field8 || ''}
-            onChange={handleChange}
-            className="p-2 border-2 rounded"
-          />
-        </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="sobre_el_espacio.living_form_field9" className="mb-2 font-medium">¿Quién es el responsable de ellos?</label>
-          <input
-            type="text"
-            id="sobre_el_espacio.living_form_field9"
-            name="sobre_el_espacio.living_form_field9"
-            value={formData.sobre_el_espacio.living_form_field9 || ''}
-            onChange={handleChange}
-            className="p-2 border-2 rounded"
-          />
-        </div>
 
         <div className="flex flex-col">
           <label htmlFor="sobre_el_espacio.living_form_field10" className="mb-2 font-medium">¿Vives en casa propia o rentada?</label>

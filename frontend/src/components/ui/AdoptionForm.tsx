@@ -1,5 +1,4 @@
 'use client';
-
 import type { FormularioAdopcion } from '@/api/types.gen';
 import { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
@@ -20,7 +19,11 @@ const SobreElCuidadoSection = dynamic(() => import('./form-sections/SobreElCuida
 export default function AdoptionForm({ formData, setFormData }: AdoptionFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false); 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value, type } = e.target;
     const [section, field] = name.split('.');
     

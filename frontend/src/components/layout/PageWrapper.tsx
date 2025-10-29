@@ -8,7 +8,7 @@ export default function PageWrapper({ children }: { children: React.ReactNode })
   const isLanding = pathname === '/';
 
   // Aplica el padding solo si NO es la landing page
-  const className = isLanding ? '' : 'pt-28';
+  const className = isLanding ? '' : 'pt-24';
 
   return <main className={className}>{children}</main>;
 }
