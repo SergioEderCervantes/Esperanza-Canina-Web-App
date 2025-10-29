@@ -15,8 +15,8 @@ export const initialAdoptionFormState: FormularioAdopcion = {
     adpt_form_field4: null,
     adpt_form_field5: null,
     adpt_form_field6: null,
-    adpt_form_field7: null,
-    adopt_form_field8: null,
+    adpt_form_field7: false,
+    adpt_form_field8: null,
   },
   sobre_el_espacio: {
     living_form_field1: null,

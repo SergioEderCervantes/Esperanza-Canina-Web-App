@@ -33,7 +33,7 @@ export type DatosDelSolicitante = {
     adpt_form_field5?: string | null;
     adpt_form_field6?: string | null;
     adpt_form_field7?: boolean | null;
-    adopt_form_field8?: string | null;
+    adpt_form_field8?: string | null;
 };
 
 export type DetailedDog = {
