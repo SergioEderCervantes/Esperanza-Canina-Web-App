@@ -125,8 +125,10 @@ class DogDetailView(generics.RetrieveAPIView):
 )
 class AdoptDogView(APIView):
     def post(self, request, *args, **kwargs):
+        print(request.data)
         serializer = FormularioAdopcionSerializer(data=request.data)
         if not serializer.is_valid():
+            print(serializer.errors)
             return Response(
                 {"message": "Los datos recibidos no son válidos."},
                 status=status.HTTP_400_BAD_REQUEST,
