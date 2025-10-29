@@ -152,7 +152,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 ##############################################################################
 
-LANGUAGE_CODE = "es-mx"
+LANGUAGE_CODE = "es"
+
+LANGUAGES = [
+    ("es", "Español"),
+]
 
 TIME_ZONE = "America/Mexico_City"
 
