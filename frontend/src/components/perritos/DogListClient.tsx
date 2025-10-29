@@ -1,5 +1,4 @@
-'use client';
-
+"use client"
 import { useState, useEffect } from "react";
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
