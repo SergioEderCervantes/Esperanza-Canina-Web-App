@@ -1,16 +1,21 @@
+"use client";
+import { useState } from "react";
 import DogListClient from "@/components/perritos/DogListClient";
 
-
 export default function PerritosPage() {
+  const [search, setSearch] = useState("");
+  const [size, setSize] = useState("Todos");
+  const [age, setAge] = useState("Todas");
+
   return (
     <main className="mx-auto p-6 bg-gray-100">
-      {/* Encabezado */}
       <div className="text-center m-12">
-        <h1 className="text-3xl font-bold text-black ">
+        <h1 className="text-3xl font-bold text-black">
           Encuentra tu Compañero Perfecto
         </h1>
         <p className="text-gray-900 mt-2">
-          Cada uno de nuestros perritos está esperando encontrar una familia amorosa. Descubre a tu nuevo mejor amigo y cambia dos vidas para siempre.
+          Cada uno de nuestros perritos está esperando encontrar una familia amorosa.
+          Descubre a tu nuevo mejor amigo y cambia dos vidas para siempre.
         </p>
       </div>
 
@@ -20,23 +25,36 @@ export default function PerritosPage() {
           type="text"
           placeholder="Buscar por nombre..."
           className="border-2 rounded-md px-4 py-2 w-60 border-gray-400 placeholder-gray-400 text-gray-700"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
-        <select className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-400 ">
-          <option>Todos los tamaños</option>
-          <option>Chico</option>
-          <option>Mediano</option>
-          <option>Grande</option>
+
+        <select
+          className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-700"
+          value={size}
+          onChange={(e) => setSize(e.target.value)}
+        >
+          <option value="Todos">Todos los tamaños</option>
+          <option value="Chico">Chico</option>
+          <option value="Mediano">Mediano</option>
+          <option value="Grande">Grande</option>
         </select>
-        <select className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-400">
-          <option>Todas las edades</option>
-          <option>Cachorro</option>
-          <option>Adulto</option>
-          <option>Adulto Mayor</option>
+
+        <select
+          className="border-2 rounded-md px-4 py-2 border-gray-400 text-gray-700"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+        >
+          <option value="Todas">Todas las edades</option>
+          <option value="Cachorro">Cachorro</option>
+          <option value="Joven">Joven</option>
+          <option value="Adulto">Adulto</option>
+          <option value="Adulto Mayor">Adulto Mayor</option>
         </select>
       </div>
 
-      {/* Componente de lista con paginación */}
-      <DogListClient />
+      {/* Lista con filtros */}
+      <DogListClient search={search} size={size} age={age} />
     </main>
   );
 }
