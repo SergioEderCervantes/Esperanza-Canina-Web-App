@@ -1,5 +1,5 @@
 import type { FormularioAdopcion } from "@/api/types.gen";
-
+import CustomCheckbox from '../CustomCheckbox';
 interface SectionProps {
   formData: FormularioAdopcion;
   handleChange: (
@@ -33,22 +33,13 @@ export default function SobreElCuidadoSection({
           />
         </div>
 
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="sobre_el_cuidado.dogcare_field2"
-            name="sobre_el_cuidado.dogcare_field2"
-            checked={formData.sobre_el_cuidado.dogcare_field2 || false}
-            onChange={handleChange}
-            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-          />
-          <label
-            htmlFor="sobre_el_cuidado.dogcare_field2"
-            className="ml-2 block text-sm text-gray-900"
-          >
-            ¿Hay niños en casa?
-          </label>
-        </div>
+        <CustomCheckbox
+          id="sobre_el_cuidado.dogcare_field2"
+          name="sobre_el_cuidado.dogcare_field2"
+          checked={formData.sobre_el_cuidado.dogcare_field2 || false}
+          onChange={handleChange}
+          label="¿Hay niños en casa?"
+        />
 
         {formData.sobre_el_cuidado.dogcare_field2 && (
           <>
@@ -68,22 +59,13 @@ export default function SobreElCuidadoSection({
                 className="p-2 border-2 rounded"
               />
             </div>
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="sobre_el_cuidado.dogcare_field4"
-                name="sobre_el_cuidado.dogcare_field4"
-                checked={formData.sobre_el_cuidado.dogcare_field4 || false}
-                onChange={handleChange}
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-              />
-              <label
-                htmlFor="sobre_el_cuidado.dogcare_field4"
-                className="ml-2 block text-sm text-gray-900"
-              >
-                ¿Están acostumbrados a convivir con perros?
-              </label>
-            </div>
+            <CustomCheckbox
+              id="sobre_el_cuidado.dogcare_field4"
+              name="sobre_el_cuidado.dogcare_field4"
+              checked={formData.sobre_el_cuidado.dogcare_field4 || false}
+              onChange={handleChange}
+              label="¿Están acostumbrados a convivir con perros?"
+            />
           </>
         )}
 
