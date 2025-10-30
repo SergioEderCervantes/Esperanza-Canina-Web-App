@@ -16,7 +16,7 @@ const coreValuesData: InfoCardData[] = [
   },
   {
     title: 'Nuestra Visión',
-    description: 'Un mundo donde cada perro tenga un hogar lleno de amor y cuidados, eliminando el abandono y maltrato animal.',
+    description: 'Un mundo donde cada perro tenga un hogar lleno de amor y cuidados, eliminando el abandono animal.',
   },
   {
     title: 'Nuestros Valores',
@@ -32,23 +32,28 @@ const shelterStatsData: StatItemData[] = [
 ];
 
 const InfoCard = ({ title, description }: InfoCardData) => (
-  <div className="bg-neutral-50 p-8 rounded-xl text-center h-full">
-    <h3 className="text-xl font-bold text-neutral-800 mb-4">{title}</h3>
+  <div className="bg-neutral-300 p-8 rounded-xl text-justify h-full">
+    <h3 className="text-xl font-bold text-center text-neutral-800 mb-4">{title}</h3>
     <p className="text-neutral-600">{description}</p>
   </div>
 );
 
 const StatItem = ({ value, label }: StatItemData) => (
   <div className="text-center">
-    <div className="text-5xl font-bold text-primary mb-2">{value}</div>
-    <p className="text-neutral-600">{label}</p>
+    <div className="text-5xl font-bold text-neutral-50 mb-2">{value}</div>
+    <p className="text-white">{label}</p>
   </div>
 );
 
 const AboutUs = () => {
   return (
-    <section id="aboutUs" className="md:p-16 py-16 px-8 bg-white">
-      <div className="container mx-auto max-w-6xl">
+    <section 
+      id="aboutUs" 
+      className="relative md:p-16 py-16 px-8 bg-cover bg-center bg-[url(/images/hermanos.jpg)]
+      lg:bg-[url(/images/hermanosXL.png)]"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] to-transparent to-50%"></div>
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-neutral-800 mb-4">Sobre el Albergue Patitas</h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
@@ -62,7 +67,7 @@ const AboutUs = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="backdrop-blur-xl p-4 rounded-2xl grid grid-cols-2 md:grid-cols-4 gap-8">
           {shelterStatsData.map((stat) => (
             <StatItem key={stat.label} value={stat.value} label={stat.label} />
           ))}
