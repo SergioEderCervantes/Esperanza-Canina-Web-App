@@ -47,7 +47,7 @@ const StatItem = ({ value, label }: StatItemData) => (
 
 const AboutUs = () => {
   return (
-    <section id="about-shelter" className="md:p-16 py-16 px-8 bg-white">
+    <section id="aboutUs" className="md:p-16 py-16 px-8 bg-white">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-neutral-800 mb-4">Sobre el Albergue Patitas</h2>

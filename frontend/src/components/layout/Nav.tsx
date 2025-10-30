@@ -92,11 +92,11 @@ export default function Nav() {
           </Link>
 
           <Link
-            href="/#contacto"
+            href="/#aboutUs"
             className={`hover:border-b-2 border-transparent ease-in-out 
                hover:border-blue-500 transition duration-300 ${textClasses}`}
           >
-            Contacto
+            Nosotros
           </Link>
         </div>
 
@@ -154,11 +154,11 @@ export default function Nav() {
               Apoyanos
             </Link>
             <Link
-              href="/#contacto"
+              href="/#aboutUs"
               className="text-gray-900 hover:text-blue-500 transition duration-300"
               onClick={toggleMobileMenu}
             >
-              Contacto
+              Nosotros
             </Link>
           </div>
         </div>

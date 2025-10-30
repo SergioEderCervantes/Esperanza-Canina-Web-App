@@ -24,7 +24,7 @@ export const FirstView = () => {
       </p>
       <Link
         href="/ayuda"
-        className="bg-sky-700 hover:bg-sky-900 text-white font-semibold py-3 px-6 rounded-md transition duration-300"
+        className="px-5 py-3 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition duration-300"
       >
         Conoce Más
       </Link>
