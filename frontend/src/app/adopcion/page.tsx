@@ -59,7 +59,7 @@ export default function AdoptionPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Formulario de Adopción para {dogToAdopt.name}</h1>
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-10 text-gray-900 tracking-tight">Formulario de Adopción para <span className="text-[#51a2ff]">{dogToAdopt.name}</span></h1>
       <div className="paper-effect">
         <AdoptionForm formData={formData} setFormData={setFormData} />
       </div>
