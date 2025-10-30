@@ -57,7 +57,7 @@ export default function Nav() {
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGOTIPO Y NOMBRE */}
         <div className="flex items-center gap-2 text-xl font-bold">
-          <img src="/logo.png" alt="Logo" className="h-16 w-16" />
+          <img src="/images/logo.png" alt="Logo" className="h-16 w-16" />
           <Link
             href="/"
             className={`font-amigable text-2xl font-extrabold ${textClasses}`}

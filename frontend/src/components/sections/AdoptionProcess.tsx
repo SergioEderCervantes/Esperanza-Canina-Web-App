@@ -107,7 +107,7 @@ const AdoptionProcess = () => {
             </div>
             <div className="relative w-full h-80 rounded-lg overflow-hidden">
               <Image
-                src="/family-with-dog.jpg"
+                src="/images/family-with-dog.jpg"
                 alt="Familia feliz con su perro adoptado"
                 width={600}
                 height={400}

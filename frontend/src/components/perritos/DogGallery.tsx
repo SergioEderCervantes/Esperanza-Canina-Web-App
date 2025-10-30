@@ -8,7 +8,7 @@ export default function DogGallery({ images }: { images: Array<DogImages> }) {
   const validImages = images.filter(img => img.url !== 'https://placehold');
 
   const [selected, setSelected] = useState(
-    validImages.length > 0 ? validImages[0].url : "/perro1.jpg"
+    validImages.length > 0 ? validImages[0].url : "/images/perro1.jpg"
   );
 
   return (

@@ -5,7 +5,7 @@ export const FirstView = () => {
     return (
   <section className="relative bg-cover bg-center h-screen">
     <img
-      src="/landing.jpg"
+      src="/images/landing.jpg"
       alt="Imagen de Refugio de Perros"
       className="absolute w-full h-full object-cover -z-10"
     />
