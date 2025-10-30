@@ -7,6 +7,12 @@ import SocialShareModal from "./SocialShareModal";
 function ShareButton({ dog }: { dog: DetailedDog }) {
   const [showModal, setShowModal] = useState(false);
 
+  const isMobile = () =>
+    typeof window !== "undefined" &&
+    /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+      navigator.userAgent
+    );
+
   const handleShare = async () => {
     const shareData = {
       title: `Adopta a ${dog.name}`,
@@ -14,13 +20,14 @@ function ShareButton({ dog }: { dog: DetailedDog }) {
       url: window.location.href,
     };
 
-    if (navigator.share) {
+    if (isMobile() && navigator.share) {
       try {
         await navigator.share(shareData);
       } catch (err) {
         console.warn("El usuario canceló o falló el share:", err);
       }
     } else {
+
       setShowModal(true);
     }
   };
@@ -35,7 +42,10 @@ function ShareButton({ dog }: { dog: DetailedDog }) {
         <Share2 className="w-4 h-4 mr-2 text-gray-600 hover:text-white" />
         Compartir
       </Button>
-      {showModal && <SocialShareModal dog={dog} onClose={() => setShowModal(false)} />}
+
+      {showModal && (
+        <SocialShareModal dog={dog} onClose={() => setShowModal(false)} />
+      )}
     </>
   );
 }

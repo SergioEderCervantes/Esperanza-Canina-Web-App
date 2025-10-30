@@ -1,0 +1,85 @@
+/* ---- Estado de adopcion ---- */
+td.field-adoption_state {
+    text-align: center;
+}
+th.column-adoption_state {
+    text-align: center;
+}
+th.column-adoption_state .flex {
+    justify-content: center;
+}
+th.column-adoption_state .text {
+    text-align: center;
+    width: 100%;
+}
+
+/* ---- Seccion ---- */
+td.field-section {
+    text-align: center;
+}
+th.column-section {
+    text-align: center;
+}
+th.column-section .flex {
+    justify-content: center;
+}
+th.column-section .text {
+    text-align: center;
+    width: 100%;
+}
+
+/* ---- Imagen primaria ---- */
+td.field-primary_image_thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+th.column-primary_image_thumbnail {
+    text-align: center;
+}
+th.column-primary_image_thumbnail .flex {
+    justify-content: center;
+}
+th.column-primary_image_thumbnail .text {
+    text-align: center;
+    width: 100%;
+}
+td.field-primary_image_thumbnail img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* ---- Botón de editar ---- */
+.edit-svg-button {
+    display: inline-block;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: box-shadow 0.2s;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.edit-svg-button:hover {
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.selector .selector-available p, 
+.selector .selector-chosen p ,
+.selector .selector-available .selector-chooser {
+  display: none;
+}
+
+/* Ajusta los títulos */
+.selector-available,
+.selector-chosen {
+  width: 45%;
+}
+
+.selector .selector-add, 
+.selector .selector-remove {
+  /* background-color: #3EB3C2; */
+  /* color: white; */
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: bold;
+  margin: 5px 0;
+}
