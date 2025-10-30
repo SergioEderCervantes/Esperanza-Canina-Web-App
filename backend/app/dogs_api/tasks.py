@@ -16,6 +16,7 @@ def process_adoption_form(data_json):
         serializer = FormularioAdopcionSerializer(data=data_json)
         serializer.is_valid(raise_exception=True)
         domain_object: FormularioAdopcion = serializer.save()
+        print(f"En la task: {domain_object.datos_del_animal.dog_section}")
         # Ejecuta el servicio
         AdoptionFormManager(domain_object).execute()
     except Exception:

@@ -9,6 +9,7 @@ class DatosDelAnimal:
     dog_age: int
     dog_size: str
     dog_genre: str
+    dog_section: str
 
 @dataclass
 class DatosDelSolicitante:
