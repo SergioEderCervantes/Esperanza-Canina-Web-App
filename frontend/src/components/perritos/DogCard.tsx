@@ -18,6 +18,8 @@ export default function DogCard({ dog }: DogListProps) {
           src={dog.primary_image || "/placeholder-dog.png"}
           alt={dog.name || 'perrito'}
           fill
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover"
         />
       </div>

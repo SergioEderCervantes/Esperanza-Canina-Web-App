@@ -14,11 +14,12 @@ type DogTopCardProps = {
 const DogTopCard = ({ dog }: DogTopCardProps) => {
   return (
     <Link href={`/perritos/${dog.id}`}>
-      <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg">
+      <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg h-96">
         <Image
           src={dog.primary_image}
           alt={dog.name || "Perrito destacado"}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

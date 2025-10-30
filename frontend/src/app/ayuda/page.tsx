@@ -173,7 +173,7 @@ export default function AyudaPage() {
               empezar.
             </h4>
             <div className="grid md:grid-cols-2 gap-4"></div>
-            <a className="w-full mt-4 flex items-center justify-center gap-2 bg-neutral-800 text-white px-6 py-3 rounded-lg hover:bg-neutral-700 transition-colors" href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario.">
+            <a className="w-full mt-4 flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors" href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario.">
               <FaWhatsapp className="w-5 h-5" />
               <span>Registrarse como Voluntario</span>
             </a>
