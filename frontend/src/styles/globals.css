@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 /* Estilos globales de la pagina */
@@ -17,6 +18,9 @@ html {
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  scroll-behavior: smooth;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
@@ -24,6 +28,7 @@ html {
     --font: 'Alan Sans', sans-serif;
   }
 }
+
 
 
 body {
