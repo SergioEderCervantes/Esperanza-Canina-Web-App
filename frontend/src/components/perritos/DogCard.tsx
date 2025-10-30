@@ -1,4 +1,5 @@
 import { ButtonDogCard } from "@/components/ui/buttonDogCard";
+import Image from "next/image";
 import Link from "next/link";
 import type { DogList } from "@/api";
 
@@ -12,11 +13,12 @@ export default function DogCard({ dog }: DogListProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
       {/* Imagen */}
-      <div className="h-80 bg-gray-200 flex items-center justify-center text-gray-500">
-        <img
+      <div className="relative h-80 bg-gray-200 flex items-center justify-center text-gray-500">
+        <Image
           src={dog.primary_image || "/placeholder-dog.png"}
-          alt={dog.name}
-          className="w-full h-full object-cover"
+          alt={dog.name || 'perrito'}
+          fill
+          className="object-cover"
         />
       </div>
 

@@ -56,7 +56,7 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
     if (formData) {
       // API call
       console.log(formData.datos_del_solicitante)
-      const result = await adoptionFormManager(formData);
+      await adoptionFormManager(formData);
       // TODO: el result da falso si hubo un error, el cual sera un 400, hacer un error bonito 
     }
     setIsSubmitting(false);

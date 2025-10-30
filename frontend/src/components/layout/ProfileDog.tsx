@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, Share2, MapPin, Calendar, Car } from "lucide-react";
+import { Heart, MapPin, Calendar } from "lucide-react";
 import Link from "next/link";
 import DogGallery from "../perritos/DogGallery";
 import { useAdoptionContext } from '@/context/AdoptionContext';

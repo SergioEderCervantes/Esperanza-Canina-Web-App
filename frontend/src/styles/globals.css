@@ -6,6 +6,9 @@
   --foreground: #171717;
   --primary: #1f2937;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 @theme inline {
   --color-background: var(--background);

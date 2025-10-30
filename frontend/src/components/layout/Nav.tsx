@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; 
 
@@ -57,7 +58,7 @@ export default function Nav() {
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGOTIPO Y NOMBRE */}
         <div className="flex items-center gap-2 text-xl font-bold">
-          <img src="/logo.png" alt="Logo" className="h-16 w-16" />
+          <Image src="/logo.png" alt="Logo" width={64} height={64} />
           <Link
             href="/"
             className={`font-amigable text-2xl font-extrabold ${textClasses}`}

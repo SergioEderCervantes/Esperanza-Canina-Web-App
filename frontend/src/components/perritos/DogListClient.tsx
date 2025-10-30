@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
 import  CustomLoader  from "@/components/ui/CustomLoader";
@@ -17,11 +17,11 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const loadDogs = async () => {
+  const loadDogs = useCallback(async () => {
     setLoading(true);
     try {
       // objeto de query con los filtros activos
-      const query: Record<string, any> = { page };
+      const query: Record<string, string | number> = { page };
 
       if (search.trim() !== "") query.search = search;
       if (size !== "Todos") query.size = size;
@@ -36,7 +36,7 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, search, size, age]);
 
   // refresh de los perritos
   useEffect(() => {
@@ -45,14 +45,14 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
 
   useEffect(() => {
     loadDogs();
-  }, [page, search, size, age]);
+  }, [loadDogs]);
 
   if (!dogsData) return <CustomLoader />;
 
   return (
     <>
       {/* Grid de tarjetas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500 bg-[#f3f4f6]">
         {loading ? (
           <div className="col-span-full">
             <CustomLoader />

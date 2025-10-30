@@ -8,8 +8,8 @@ export default function PerritosPage() {
   const [age, setAge] = useState("Todas");
 
   return (
-    <main className="mx-auto p-6 bg-gray-100">
-      <div className="text-center m-12">
+    <main className="mx-auto p-0 bg-gray-100">
+      <div className="text-center py-12  w-full">
         <h1 className="text-3xl font-bold text-black">
           Encuentra tu Compañero Perfecto
         </h1>
@@ -54,7 +54,9 @@ export default function PerritosPage() {
       </div>
 
       {/* Lista con filtros */}
-      <DogListClient search={search} size={size} age={age} />
+      <div className="p-6">
+        <DogListClient search={search} size={size} age={age} />
+      </div>
     </main>
   );
 }

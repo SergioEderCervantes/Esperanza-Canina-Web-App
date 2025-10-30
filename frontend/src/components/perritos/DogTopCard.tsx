@@ -1,4 +1,5 @@
 import type { DogTop } from "@/api/types.gen";
+import Image from "next/image";
 import Link from "next/link";
 
 // 1. Definimos el tipo para los props del componente, usando el tipo DogTop que nos pasaste.
@@ -14,10 +15,11 @@ const DogTopCard = ({ dog }: DogTopCardProps) => {
   return (
     <Link href={`/perritos/${dog.id}`}>
       <div className="group relative cursor-pointer overflow-hidden rounded-xl shadow-lg">
-        <img
+        <Image
           src={dog.primary_image}
           alt={dog.name || "Perrito destacado"}
-          className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+          fill
+          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <div className="absolute inset-0 flex items-end p-4">
