@@ -16,49 +16,71 @@ const DialogContent = ({
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>) => {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out" />
-
-      <DialogPrimitive.Content
-        {...props}
-        className={cn(
-          "fixed left-1/2 top-1/2 z-50 w-[92vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white shadow-xl border border-neutral-200 focus:outline-none p-8",
-          className
-        )}
-      >
-        <AnimatePresence>
+      <DialogPrimitive.Overlay className="fixed inset-0 z-40 bg-black/45 backdrop-blur-sm" />
+      <AnimatePresence>
+        <DialogPrimitive.Content
+          {...props}
+          asChild
+          forceMount
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        >
           <motion.div
             key="dialog"
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.96 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            exit={{ opacity: 0, y: 12, scale: 0.99 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            aria-modal="true"
           >
-            {children}
+            <div
+              className={cn(
+                "relative bg-white border border-neutral-100 shadow-2xl w-[92vw] max-w-2xl p-0 overflow-hidden rounded-2xl",
+                "max-h-[92vh] overflow-y-auto",
+                className
+              )}
+              style={
+                {
+                  paddingTop: "env(safe-area-inset-top)",
+                  paddingBottom: "env(safe-area-inset-bottom)",
+                  colorScheme: "light",
+                  backgroundColor: "#ffffff",
+                } as React.CSSProperties
+              }
+            >
+              <div className="h-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600" />
+
+              <DialogCloseButton />
+              {children}
+            </div>
           </motion.div>
-        </AnimatePresence>
-      </DialogPrimitive.Content>
+        </DialogPrimitive.Content>
+      </AnimatePresence>
     </DialogPrimitive.Portal>
   );
 };
 
 const DialogHeader = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-4">{children}</div>
+  <div className="px-8 pt-6 pb-2">{children}</div>
 );
 
 const DialogTitle = ({ children }: { children: React.ReactNode }) => (
-  <DialogPrimitive.Title className="text-2xl font-semibold text-neutral-800 mb-3">
+  <DialogPrimitive.Title className="text-lg sm:text-xl font-semibold text-neutral-900">
     {children}
   </DialogPrimitive.Title>
 );
 
 const DialogDescription = ({ children }: { children: React.ReactNode }) => (
-  <DialogPrimitive.Description className="text-neutral-600 leading-relaxed">
+  <DialogPrimitive.Description className="mt-1 text-sm text-neutral-600">
     {children}
   </DialogPrimitive.Description>
 );
 
 const DialogCloseButton = () => (
-  <DialogPrimitive.Close className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 transition-colors">
+  <DialogPrimitive.Close
+    className="absolute top-4 right-4 text-neutral-500 hover:text-neutral-800 transition-transform duration-150 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald-300 rounded-full p-1 z-20"
+    aria-label="Cerrar diálogo"
+  >
+    <span className="sr-only">Cerrar</span>
     <X className="w-5 h-5" />
   </DialogPrimitive.Close>
 );

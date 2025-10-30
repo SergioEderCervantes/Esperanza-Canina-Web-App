@@ -84,7 +84,7 @@ async function testperritosAdoptCreateComplete() {
           adpt_form_field5: "Campo opcional 5",
           adpt_form_field6: "Campo opcional 6",
           adpt_form_field7: true,
-          adopt_form_field8: "Campo opcional 8",
+          adpt_form_field8: "Campo opcional 8",
         },
         sobre_el_espacio: {
           living_form_field1: "Casa con patio grande",

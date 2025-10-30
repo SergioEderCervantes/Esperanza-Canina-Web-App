@@ -217,8 +217,8 @@ export default function DatosDelSolicitanteSection({
               Si no, ¿Por qué?
             </label>
             <textarea
-              id="datos_del_solicitante.adopt_form_field8"
-              name="datos_del_solicitante.adopt_form_field8"
+              id="datos_del_solicitante.adpt_form_field8"
+              name="datos_del_solicitante.adpt_form_field8"
               value={formData.datos_del_solicitante.adpt_form_field8 || ""}
               onChange={handleChange}
               className="p-2 border rounded"
