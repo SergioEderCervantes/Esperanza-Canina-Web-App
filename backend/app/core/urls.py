@@ -15,6 +15,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.urls import path, include
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,6 +28,7 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
+    path('', include('django_prometheus.urls')),
     path("health/", lambda request: HttpResponse("Healthy", 200)),
     path("", lambda request: redirect("swagger-ui", permanent=True)),
     path(
