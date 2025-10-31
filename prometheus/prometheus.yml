@@ -5,5 +5,5 @@ scrape_configs:
   - job_name: 'django'
     metrics_path: /metrics
     static_configs:
-      - targets: ['django:8000']
+      - targets: ['api:8000']
 

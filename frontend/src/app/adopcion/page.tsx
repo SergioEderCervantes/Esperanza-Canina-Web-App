@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getAdoptionFormBase } from '@/lib/adoptionFormBase';
 import type { FormularioAdopcion } from '@/api/types.gen';
 import AdoptionForm from '@/components/ui/AdoptionForm';
-import Spinner from '@/components/ui/Spinner';
+import CustomLoader from '@/components/ui/CustomLoader';
 import { useAdoptionContext } from '@/context/AdoptionContext';
 import Link from 'next/link';
 
@@ -52,15 +52,17 @@ export default function AdoptionPage() {
   if (!formData) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <Spinner />
+        <CustomLoader />
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">Formulario de Adopción para {dogToAdopt.name}</h1>
-      <AdoptionForm formData={formData} setFormData={setFormData} />
+      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-10 text-gray-900 tracking-tight">Formulario de Adopción para <span className="text-[#51a2ff]">{dogToAdopt.name}</span></h1>
+      <div className="paper-effect">
+        <AdoptionForm formData={formData} setFormData={setFormData} />
+      </div>
     </div>
   );
 }

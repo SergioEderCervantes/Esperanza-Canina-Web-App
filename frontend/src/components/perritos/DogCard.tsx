@@ -2,11 +2,13 @@ import { ButtonDogCard } from "@/components/ui/buttonDogCard";
 import Link from "next/link";
 import type { DogList } from "@/api";
 
+
 type DogListProps = {
   dog: DogList;
 };
 
 export default function DogCard({ dog }: DogListProps) {
+  const {id} = dog;
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
       {/* Imagen */}
@@ -56,8 +58,8 @@ export default function DogCard({ dog }: DogListProps) {
         {/* Footer */}
         <div className="flex justify-between items-center mt-4">
           {/* <span className="text-xs text-gray-500">En refugio: {dog.refugeTime}</span> */}
-
-          <Link href={`/perritos/${dog.id}`}>
+          
+          <Link href={`/perritos/${id}`}>
             <ButtonDogCard text={"Adoptar"} />
           </Link>
         </div>

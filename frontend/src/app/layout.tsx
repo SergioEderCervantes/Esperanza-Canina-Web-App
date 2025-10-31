@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
+import "@/styles/CustomCheckbox.css";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import PageWrapper from '@/components/layout/PageWrapper';

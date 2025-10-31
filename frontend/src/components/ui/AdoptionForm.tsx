@@ -1,10 +1,10 @@
 'use client';
-
 import type { FormularioAdopcion } from '@/api/types.gen';
 import { Dispatch, SetStateAction } from 'react';
 import { useState } from 'react';
-import Spinner from './Spinner';
+import CustomLoader from './CustomLoader';
 import dynamic from 'next/dynamic';
+import adoptionFormManager from '@/lib/adoptionFormManager';
 
 interface AdoptionFormProps {
   formData: FormularioAdopcion | null;
@@ -12,14 +12,18 @@ interface AdoptionFormProps {
 }
 
 
-const DatosDelSolicitanteSection = dynamic(() => import('./form-sections/DatosDelSolicitanteSection'), { loading: () => <Spinner /> });
-const SobreElEspacioSection = dynamic(() => import('./form-sections/SobreElEspacioSection'), { loading: () => <Spinner /> });
-const SobreElCuidadoSection = dynamic(() => import('./form-sections/SobreElCuidadoSection'), { loading: () => <Spinner /> });
+const DatosDelSolicitanteSection = dynamic(() => import('./form-sections/DatosDelSolicitanteSection'));
+const SobreElEspacioSection = dynamic(() => import('./form-sections/SobreElEspacioSection'));
+const SobreElCuidadoSection = dynamic(() => import('./form-sections/SobreElCuidadoSection'));
 
 export default function AdoptionForm({ formData, setFormData }: AdoptionFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value, type } = e.target;
     const [section, field] = name.split('.');
     
@@ -49,16 +53,17 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Aquí puedes agregar la lógica para enviar los datos a tu API
-    console.log(formData);
-    // Simulating an API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    alert('Formulario enviado. Revisa la consola para ver los datos.');
+    if (formData) {
+      // API call
+      console.log(formData.datos_del_solicitante)
+      const result = await adoptionFormManager(formData);
+      // TODO: el result da falso si hubo un error, el cual sera un 400, hacer un error bonito 
+    }
     setIsSubmitting(false);
   };
 
   if (!formData) {
-    return <Spinner />;
+    return <CustomLoader />;
   }
 
   return (
@@ -68,7 +73,7 @@ export default function AdoptionForm({ formData, setFormData }: AdoptionFormProp
       <SobreElCuidadoSection formData={formData} handleChange={handleChange} />
 
       <button type="submit" className="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex items-center justify-center" disabled={isSubmitting}>
-        {isSubmitting ? <Spinner /> : 'Enviar Solicitud de Adopción'}
+        {isSubmitting ? 'Enviando...' : 'Enviar Solicitud de Adopción'}
       </button>
     </form>
   );

@@ -20,6 +20,7 @@ export default function DogGallery({ images }: { images: Array<DogImages> }) {
           alt="Imagen principal del producto"
           width={600}
           height={600}
+          priority
           className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
         />
       </div>
