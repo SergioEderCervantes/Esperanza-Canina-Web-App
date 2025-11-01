@@ -153,7 +153,9 @@ class FormularioAdopcionSerializer(serializers.Serializer):
                 dog_age=dog.age_year,
                 dog_size=dog.get_size_display(),
                 dog_genre=dog.get_genre_display(),
+                dog_section=dog.section
             )
+            print(f"En el serializer: {datos_del_animal_instance.dog_section}")
         except Dog.DoesNotExist:
             raise serializers.ValidationError(  # noqa: B904
                 {"datos_del_animal": {"dog_id": f"El perro con id={dog_id} no existe."}}

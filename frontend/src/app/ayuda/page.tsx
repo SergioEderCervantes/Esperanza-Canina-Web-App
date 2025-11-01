@@ -132,7 +132,7 @@ export default function AyudaPage() {
 
         <div className="order-1 lg:order-2 h-96 relative rounded-2xl overflow-hidden shadow-lg">
           <Image
-            src="/dog-receiving-food.jpg"
+            src="/images/dog-receiving-food.jpg"
             alt="Perrito recibiendo cuidados"
             fill
             className="object-cover"
@@ -144,7 +144,7 @@ export default function AyudaPage() {
       <section className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="h-96 relative rounded-2xl overflow-hidden shadow-lg">
           <Image
-            src="/volunteer-with-dog.jpg"
+            src="/images/volunteer-with-dog.jpg"
             alt="Voluntario jugando con un perrito"
             fill
             className="object-cover"

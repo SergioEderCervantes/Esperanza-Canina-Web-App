@@ -58,7 +58,7 @@ export default function Nav() {
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGOTIPO Y NOMBRE */}
         <div className="flex items-center gap-2 text-xl font-bold">
-          <Image src="/logo.png" alt="Logo" width={40} height={40} className="logo"/>
+          <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="logo"/>
           <Link
             href="/"
             className={`font-amigable text-2xl font-extrabold ${textClasses}`}
@@ -93,11 +93,11 @@ export default function Nav() {
           </Link>
 
           <Link
-            href="/#contacto"
+            href="/#aboutUs"
             className={`hover:border-b-2 border-transparent ease-in-out 
                hover:border-blue-500 transition duration-300 ${textClasses}`}
           >
-            Contacto
+            Nosotros
           </Link>
         </div>
 
@@ -155,11 +155,11 @@ export default function Nav() {
               Apoyanos
             </Link>
             <Link
-              href="/#contacto"
+              href="/#aboutUs"
               className="text-gray-900 hover:text-blue-500 transition duration-300"
               onClick={toggleMobileMenu}
             >
-              Contacto
+              Nosotros
             </Link>
           </div>
         </div>

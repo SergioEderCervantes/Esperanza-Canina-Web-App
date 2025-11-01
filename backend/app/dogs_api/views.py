@@ -128,7 +128,6 @@ class AdoptDogView(APIView):
         print(request.data)
         serializer = FormularioAdopcionSerializer(data=request.data)
         if not serializer.is_valid():
-            print(serializer.errors)
             return Response(
                 {"message": "Los datos recibidos no son válidos."},
                 status=status.HTTP_400_BAD_REQUEST,
