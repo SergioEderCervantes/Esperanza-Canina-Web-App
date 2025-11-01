@@ -11,6 +11,16 @@ import { useRouter } from 'next/navigation';
 import { DetailedDog } from "@/api/types.gen";
 import ShareButton from "@/components/ui/ShareButton";
 
+// Function to determine if a color is light or dark
+const isColorLight = (color: string) => {
+  const hex = color.replace('#', '');
+  const c_r = parseInt(hex.substring(0, 2), 16);
+  const c_g = parseInt(hex.substring(2, 4), 16);
+  const c_b = parseInt(hex.substring(4, 6), 16);
+  const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+  return brightness > 155;
+};
+
 export default function ProfileDog({ dog }: { dog: DetailedDog }) {
   const { setDogToAdopt } = useAdoptionContext();
   const router = useRouter();
@@ -64,14 +74,17 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
               </div>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {dog.beheaviors.map((behavior) => (
-                  <Badge
-                    key={behavior.id}
-                    className="bg-blue-100 text-blue-800 border-blue-200"
-                  >
-                    {behavior.beheavior_name}
-                  </Badge>
-                ))}
+                {dog.beheaviors.map((behavior) => {
+                  const textColor = isColorLight(behavior.color || '#FFFFFF') ? '#000000' : '#FFFFFF';
+                  return (
+                    <Badge
+                      key={behavior.id}
+                      style={{ backgroundColor: behavior.color, color: textColor }}
+                    >
+                      {behavior.beheavior_name}
+                    </Badge>
+                  );
+                })}
               </div>
 
               <div className="flex gap-3">
@@ -107,7 +120,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
                       <li
                         key={behavior.id}
                         className="flex items-center text-gray-700">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        <div className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: behavior.color }}></div>
                         {behavior.beheavior_name}
                       </li>
                     ))}
@@ -124,7 +137,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
                 {dog.beheaviors.map((attr) => (
                   <li key={attr.id}
                   className="flex items-center text-gray-700">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        <div className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: attr.color }}></div>
                     <span className="font-semibold">{attr.beheavior_name}:</span>{" "}
                     {attr.beheavior_description}
                   </li>

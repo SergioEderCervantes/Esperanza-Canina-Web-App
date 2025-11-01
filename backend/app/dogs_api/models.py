@@ -202,6 +202,9 @@ class Beheavior(models.Model):
     beheavior_description = models.TextField(
         blank=True, default="", verbose_name="Descripción del Comportamiento"
     )
+    color = models.CharField(
+        max_length=7, default="#FFFFFF", verbose_name="Color"
+    )
 
     class Meta:
         db_table = "comportamientos"

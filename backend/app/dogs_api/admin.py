@@ -103,7 +103,7 @@ class DogAdminCLass(ModelAdmin):
     list_filter = (AdoptionStateFilter, "size", "genre","section")
     fields = ("name", "age_year", "age_month", "genre","section", "adoption_state",
             "description", "size", "arrive_date", "beheaviors")
-    filter_vertical = ('beheaviors',)
+    filter_horizontal = ('beheaviors',)
 
     def edit_button(self, obj):
         url = reverse('admin:dogs_api_dog_change', args=[obj.pk])
@@ -167,16 +167,33 @@ class DogAdminCLass(ModelAdmin):
         return queryset, use_distinct
 
 
+class BeheaviorForm(forms.ModelForm):
+    class Meta:
+        model = Beheavior
+        fields = "__all__"
+        widgets = {
+            'color': forms.TextInput(attrs={'type': 'color'}),
+        }
+
 @admin.register(Beheavior)
 class BeheaviorAdmin(ModelAdmin):
+    form = BeheaviorForm
     class Media:
         css = {
             "all": (
                 "css/custom_admin.css",
             )
         }
-    list_display = ("edit_button", "beheavior_name", "beheavior_description")
+    list_display = ("edit_button", "beheavior_name", "beheavior_description", "color_display")
     search_fields = ("beheavior_name",)
+    fields = ('beheavior_name', 'beheavior_description', 'color')
+
+    def color_display(self, obj):
+        return format_html(
+            '<div style="width: 30px; height: 30px; background-color: {0};"></div>',
+            obj.color
+        )
+    color_display.short_description = 'Color'
 
     def edit_button(self, obj):
         url = reverse('admin:dogs_api_beheavior_change', args=[obj.pk])

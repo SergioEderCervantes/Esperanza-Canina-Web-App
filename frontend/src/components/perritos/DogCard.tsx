@@ -3,6 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import type { DogList } from "@/api";
 
+// Function to determine if a color is light or dark
+const isColorLight = (color: string) => {
+  const hex = color.replace('#', '');
+  const c_r = parseInt(hex.substring(0, 2), 16);
+  const c_g = parseInt(hex.substring(2, 4), 16);
+  const c_b = parseInt(hex.substring(4, 6), 16);
+  const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+  return brightness > 155;
+};
+
 
 type DogListProps = {
   dog: DogList;
@@ -26,18 +36,7 @@ export default function DogCard({ dog }: DogListProps) {
 
       {/* Contenido */}
       <div className="p-4">
-        {/* Estado */}
-        {/* <span
-          className={`text-xs px-2 py-1 rounded-full ${
-            dog.status === "Disponible"
-              ? "bg-green-100 text-green-700"
-              : dog.status === "En proceso"
-                ? "bg-yellow-100 text-yellow-700"
-                : "bg-gray-200 text-gray-600"
-          }`}
-        >
-          {dog.status}
-        </span> */}
+       
 
         <h2 className="text-lg font-bold mt-2 text-gray-500">{dog.name}</h2>
         <p className="text-sm text-gray-600">
@@ -46,18 +45,19 @@ export default function DogCard({ dog }: DogListProps) {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 my-2">
-          {dog.beheaviors.map((tag) => (
-            <span
-              key={tag.id}
-              className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md"
-            >
-              {tag.beheavior_name}
-            </span>
-          ))}
+          {dog.beheaviors.map((tag) => {
+            const textColor = isColorLight(tag.color || '#FFFFFF') ? '#000000' : '#FFFFFF';
+            return (
+              <span
+                key={tag.id}
+                className="text-xs px-2 py-1 rounded-md"
+                style={{ backgroundColor: tag.color, color: textColor }}
+              >
+                {tag.beheavior_name}
+              </span>
+            );
+          })}
         </div>
-
-        {/* Descripción */}
-        {/* <p className="text-gray-600 text-sm line-clamp-2">{dog.description}</p> */}
 
         {/* Footer */}
         <div className="flex justify-between items-center mt-4">

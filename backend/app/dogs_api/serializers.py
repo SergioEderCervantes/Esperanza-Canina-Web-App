@@ -27,7 +27,7 @@ class DogTopResponseSerializer(serializers.Serializer):
 class SimpleDogBehaviorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beheavior
-        fields = ["id", "beheavior_name"]
+        fields = ["id", "beheavior_name", "color"]
 
 
 class DogListSerializer(serializers.ModelSerializer):
@@ -57,7 +57,7 @@ class DogListSerializer(serializers.ModelSerializer):
 class DetailedDogBehaviorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beheavior
-        fields = ["id", "beheavior_name", "beheavior_description"]
+        fields = ["id", "beheavior_name", "beheavior_description", "color"]
 
 
 class DogImagesSerializer(serializers.ModelSerializer):

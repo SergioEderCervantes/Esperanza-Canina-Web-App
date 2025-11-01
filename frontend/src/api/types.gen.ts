@@ -64,6 +64,11 @@ export type DetailedDogBehavior = {
      * Descripción del Comportamiento
      */
     beheavior_description?: string;
+    /**
+     * Color del comportamiento
+     * @manual
+     */
+    color?: string;
 };
 
 export type DetailedDogResponse = {
@@ -137,6 +142,11 @@ export type SimpleDogBehavior = {
      * Nombre del Comportamiento
      */
     beheavior_name: string;
+    /**
+     * Color del comportamiento
+     * @manual
+     */
+    color?: string;
 };
 
 
