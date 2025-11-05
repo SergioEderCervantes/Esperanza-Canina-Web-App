@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
 import { FaPaw, FaPhone, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
@@ -19,14 +19,14 @@ export default function Footer() {
             encontrar un hogar lleno de amor.
           </p>
           <div className="flex space-x-4 mt-4">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61550841750063&locale=es_LA" className="hover:text-white transition-colors">
               <FaFacebook size={20} />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="https://www.instagram.com/esperanzacaninaags?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-white transition-colors">
               <FaInstagram size={20} />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
-              <FaTwitter size={20} />
+            <a href="https://www.paypal.com/donate/?hosted_button_id=S7RPK5PNDQCCG&fbclid=IwY2xjawN3vH1leHRuA2FlbQIxMABicmlkETFlSkdEOHlZUjNDRWg3U2ZDc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjcZNG9Nc3Rjow0ok86U0cD8THug_6bgqbdaW7t5fIRLSdEV7LN72cbohRZJ_aem_AEUh9ZSpwPhzbHGtS5rVAA&brid=OId8pzx4sen6XSPwuI2XZQ" className="hover:text-white transition-colors">
+              <FaTiktok size={20} />
             </a>
           </div>
         </div>
