@@ -27,7 +27,7 @@ const donationMethods = [
   {
     icon: FaWhatsapp,
     text: "Contacto por WhatsApp",
-    href: "https://wa.me/5211234567890?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue.",
+    href: "https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue.",
   },
   { icon: faBowlFood, text: "Donación en Especie", href: "#" },
 ];

@@ -19,9 +19,9 @@ const RequirementItem = ({ children } : { children: React.ReactNode }) => (
 
 export default function AdoptRequirements(){
     return(
-        <div className="mt-20 bg-white rounded-xl p-8 shadow-sm">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
+        <div className=" bg-white rounded-xl p-8 shadow-sm py-35 ">
+          <div className="grid md:grid-cols-2 gap-5 items-center ml-8">
+            <div className="flex flex-col">
               <h3 className="text-2xl font-semibold text-neutral-800 mb-6">
                 Requisitos para Adoptar
               </h3>

@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaPaypal, FaTwitter } from "react-icons/fa";
 import { FaPaw, FaPhone, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
@@ -15,19 +15,20 @@ export default function Footer() {
           </div>
           <p className="text-sm leading-relaxed">
             Refugio dedicado al rescate, cuidado y adopción responsable de perros
-            abandonados. Trabajamos para darles una segunda oportunidad de
-            encontrar un hogar lleno de amor.
+            abandonados, Trabajamos para darles una segunda oportunidad de
+            encontrar un hogar lleno de amor
           </p>
           <div className="flex space-x-4 mt-4">
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61550841750063&locale=es_LA" className="hover:text-white transition-colors">
               <FaFacebook size={20} />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
+            <a href="https://www.instagram.com/esperanzacaninaags?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-white transition-colors">
               <FaInstagram size={20} />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
-              <FaTwitter size={20} />
+            <a href="https://www.paypal.com/donate/?hosted_button_id=S7RPK5PNDQCCG" className="hover:text-white transition-colors">
+              <FaPaypal size={20} />
             </a>
+          
           </div>
         </div>
 
@@ -48,11 +49,11 @@ export default function Footer() {
            
             <li className="flex items-center space-x-2">
               <FaPhone />
-              <span>+52 555 123 4567</span>
+              <span>+52 449 467 7305</span>
             </li>
             <li className="flex items-center space-x-2">
               <FaEnvelope />
-              <span>info@patitas.org</span>
+              <span>esperanzacaninags1@gmail,com</span>
             </li>
           </ul>
         </div>
@@ -60,8 +61,8 @@ export default function Footer() {
 
       {/* Línea inferior */}
       <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-        © 2025 Patitas. Todos los derechos reservados. Hecho con{" "}
-        <span className="text-red-500">❤️</span> para nuestros amigos de cuatro patas.
+        © 2025 Patitas, Todos los derechos reservados, Hecho con{" "}
+        <span className="text-red-500">❤️</span> para nuestros amigos de cuatro patas
       </div>
       <div className="absolute -bottom-1 -right-26 opacity-10 pointer-events-none">
         <svg

@@ -22,7 +22,7 @@ export const FirstView = () => {
     >
       <h1 className="text-4xl md:text-6xl font-bold mb-4">Esperanza Canina</h1>
       <p className="text-lg md:text-2xl mb-8 max-w-2xl">
-        Un refugio dedicado a rescatar, cuidar y encontrar hogares amorosos para perros necesitados.
+        Un refugio dedicado a rescatar, cuidar y encontrar hogares amorosos para perros necesitados
       </p>
       <Link
         href="/ayuda"

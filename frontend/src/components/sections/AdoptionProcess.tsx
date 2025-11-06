@@ -12,25 +12,25 @@ const adoptionSteps = [
   {
     number: 1,
     title: 'Explora',
-    description: 'Navega por nuestro catálogo y encuentra al perrito que conecte contigo.',
+    description: 'Navega por nuestro catálogo y encuentra al perrito que conecte contigo',
     icon: faMagnifyingGlass,
   },
   {
     number: 2,
     title: 'Solicita',
-    description: 'Completa nuestro formulario de adopción con tus datos y fotos del espacio.',
+    description: 'Completa nuestro formulario de adopción con tus datos y fotos del espacio',
     icon: faFileLines,
   },
   {
     number: 3,
     title: 'Evaluación',
-    description: 'Nuestro equipo revisa tu solicitud y programa una visita si es necesario.',
+    description: 'Nuestro equipo revisa tu solicitud y programa una visita si es necesario',
     icon: faHandshake,
   },
   {
     number: 4,
     title: '¡A casa!',
-    description: 'Una vez aprobada, coordinas la entrega y tu nuevo amigo va a casa.',
+    description: 'Una vez aprobada, coordinas la entrega y tu nuevo amigo va a casa',
     icon: faHouse,
   },
 ];
@@ -62,7 +62,7 @@ const AdoptionProcess = () => {
           </h2>
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             Seguimos un proceso sencillo y seguro para garantizar que cada
-            perrito encuentre el hogar perfecto.
+            perrito encuentre el hogar perfecto
           </p>
         </div>
 

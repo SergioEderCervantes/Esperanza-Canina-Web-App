@@ -44,7 +44,7 @@ export const FeaturedDogs = async () => {
         </h2>
         <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
           Conoce a algunos de nuestros adorables amigos que están buscando un
-          hogar lleno de amor. ¡Tu próximo mejor amigo podría estar aquí!
+          hogar lleno de amor, ¡Tu próximo mejor amigo podría estar aquí!
         </p>
       </div>
 
