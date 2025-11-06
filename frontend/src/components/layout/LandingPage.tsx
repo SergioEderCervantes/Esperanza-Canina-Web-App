@@ -1,6 +1,6 @@
 import AboutUs from "../sections/AboutUs";
 import AdoptionProcess from "../sections/AdoptionProcess";
-import AdoptRequirements from "../sections/adoptRequirements";
+import AdoptRequirements from "@/components/sections/AdoptRequirements";
 import { FeaturedDogs } from "../sections/FeaturedDogs";
 import { FirstView } from "../sections/FirstView";
 
