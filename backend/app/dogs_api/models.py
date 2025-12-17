@@ -106,9 +106,9 @@ class Dog(models.Model):
     def save(self, *args, **kwargs):
         if not self.name or not self.name.strip():
             # Elige lista por genero
-            if self.genre == "H":
+            if self.genre == "M":
                 base_list = self.MALE_DOG_NAMES + self.NEUTRAL_NAMES
-            elif self.genre == "M":
+            elif self.genre == "H":
                 base_list = self.FEMALE_DOG_NAMES + self.NEUTRAL_NAMES
             else:
                 base_list = (
