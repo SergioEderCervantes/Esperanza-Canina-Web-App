@@ -1,35 +1,17 @@
-import {
-  faCheck,
-  faBuildingColumns,
-  faBowlFood,
-} from "@fortawesome/free-solid-svg-icons";
+"use client";
+
+import Image from "next/image";
+import { faCheck, faBuildingColumns, faBowlFood } from "@fortawesome/free-solid-svg-icons";
 import { FaWhatsapp } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { ReactNode, ElementType } from "react";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { DonationDialog } from "@/components/ui/DonationDialog";
 
-// Datos de la página
 const donationOptions = [
-  {
-    text: "Donaciones Monetarias: Cada aporte, grande o pequeño, hace una gran diferencia.",
-  },
-  {
-    text: "Donaciones en Especie: Siempre necesitamos alimentos, medicinas, mantas y juguetes.",
-  },
-  {
-    text: "Donaciones de Tiempo: Ayuda con el cuidado de los perros, limpieza o eventos.",
-  },
-];
-
-const donationMethods = [
-  { icon: faBuildingColumns, text: "Transferencia Bancaria", href: "#" },
-  {
-    icon: FaWhatsapp,
-    text: "Contacto por WhatsApp",
-    href: "https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue.",
-  },
-  { icon: faBowlFood, text: "Donación en Especie", href: "#" },
+  { text: "Donaciones Monetarias: Cada aporte, grande o pequeño, hace una gran diferencia." },
+  { text: "Donaciones en Especie: Siempre necesitamos alimentos, medicinas, mantas y juguetes." },
+  { text: "Donaciones de Tiempo: Ayuda con el cuidado de los perros, limpieza o eventos." },
 ];
 
 const volunteerTasks = [
@@ -54,41 +36,41 @@ const FeatureListItem = ({
   </div>
 );
 
-// Botón con ícono (acepta tanto FontAwesome como React Icons)
 const ActionButton = ({
   icon,
   text,
   href,
+  badgeBg = "bg-neutral-100",
+  badgeColor = "text-neutral-700",
 }: {
   icon: IconDefinition | ElementType;
   text: string;
   href: string;
+  badgeBg?: string;
+  badgeColor?: string;
 }) => {
   const isReactIcon = typeof icon === "function";
-
   return (
     <a
       href={href}
       target="_blank"
-      className="w-full flex items-center justify-start p-4 border border-neutral-200 rounded-lg hover:bg-neutral-100  transition-all duration-300 group"
+      rel="noreferrer"
+      className="w-full flex items-center justify-between p-4 border border-neutral-200 rounded-lg hover:bg-neutral-100 transition-all duration-300 group"
     >
-      {isReactIcon ? (
-        <FaWhatsapp className="text-neutral-600 mr-4 w-5 h-5 " />
-      ) : (
-        <FontAwesomeIcon
-          icon={icon as IconDefinition}
-          className="text-neutral-600 mr-4 w-5 h-5 "
-        />
-      )}
-      <span className="font-medium text-neutral-700 ">{text}</span>
+      <div className={`flex items-center justify-center w-9 h-9 rounded-md ${badgeBg} ${badgeColor}`}>
+        {isReactIcon ? <FaWhatsapp className="w-5 h-5" /> : <FontAwesomeIcon icon={icon as IconDefinition} className="w-5 h-5" />}
+      </div>
+
+      <span className="font-medium text-neutral-700 flex-grow text-center">{text}</span>
+
+      <div className="w-9 h-9" />
     </a>
   );
 };
 
-// Componente Principal
 export default function AyudaPage() {
   return (
-    <div className="container mx-auto px-40 py-16 bg-neutral-100">
+    <div className="container mx-auto px-8 md:px-20 py-16 bg-neutral-100">
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
           Ayuda al Albergue
@@ -99,7 +81,6 @@ export default function AyudaPage() {
         </p>
       </div>
 
-      {/* Sección de Donaciones */}
       <section className="grid lg:grid-cols-2 gap-12 items-center mb-20">
         <div className="order-2 lg:order-1">
           <h2 className="text-3xl font-semibold text-neutral-800 mb-6">
@@ -122,10 +103,18 @@ export default function AyudaPage() {
             <h3 className="text-xl font-semibold text-neutral-800 mb-4">
               Formas de Donar
             </h3>
+
             <div className="space-y-3">
-              {donationMethods.map((method, index) => (
-                <ActionButton key={index} {...method} />
-              ))}
+              <DonationDialog type="transferencia" />
+              <DonationDialog type="especie" />
+
+              <ActionButton
+                icon={FaWhatsapp}
+                text="Contacto por WhatsApp"
+                href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue."
+                badgeBg="bg-neutral-100"
+                badgeColor="text-emerald-600"
+              />
             </div>
           </div>
         </div>
@@ -140,7 +129,6 @@ export default function AyudaPage() {
         </div>
       </section>
 
-      {/* Sección de Voluntariado */}
       <section className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="h-96 relative rounded-2xl overflow-hidden shadow-lg">
           <Image
@@ -167,16 +155,20 @@ export default function AyudaPage() {
               </FeatureListItem>
             ))}
           </div>
+
           <div className="bg-white p-6 rounded-xl border border-neutral-200">
             <h4 className="text-neutral-800 mb-4">
               ¡Tu ayuda es invaluable! Contáctanos para saber cómo puedes
               empezar.
             </h4>
-            <div className="grid md:grid-cols-2 gap-4"></div>
-            <a className="w-full mt-4 flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors" href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario.">
-              <FaWhatsapp className="w-5 h-5" />
-              <span>Registrarse como Voluntario</span>
-            </a>
+
+            <ActionButton
+              icon={FaWhatsapp}
+              text="Registrarse como Voluntario"
+              href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario."
+              badgeBg="bg-neutral-100"
+              badgeColor="text-emerald-600"
+            />
           </div>
         </div>
       </section>

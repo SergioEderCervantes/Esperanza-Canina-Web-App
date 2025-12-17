@@ -21,6 +21,17 @@ from app.dogs_api.serializers import (
     DogTopSerializer,
     FormularioAdopcionSerializer,
 )
+from prometheus_client import Counter
+
+VISIT_COUNTER = Counter(
+    "django_custom_visits_total",
+    "Número total de visitas al endpoint de prueba personalizado."
+)
+
+class TestMetricView(APIView):
+    def get(self, request):
+        VISIT_COUNTER.inc()
+        return Response({"message": "Visita registrada en Prometheus"})
 
 
 @extend_schema(

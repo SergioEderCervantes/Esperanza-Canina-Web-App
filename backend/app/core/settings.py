@@ -33,6 +33,7 @@ DEBUG = environ.get("DEBUG", "") == "1"
 ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com", "frontend"]
 
 # Esto si es para frontend, asi permite el uso de POST del formulario
+# CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -73,6 +74,7 @@ INSTALLED_APPS = [
     "django_filters",
     "drf_spectacular",
     'django_q',
+    'django_prometheus',
     # Local Apps
     "app.dogs_api",
     "app.vet_api",
@@ -84,14 +86,16 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 
@@ -207,6 +211,10 @@ REST_FRAMEWORK = {
 }
 SESSION_COOKIE_AGE = 1209600
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+##############################################################################
+# Unfold
+##############################################################################
+
 ##############################################################################
 # Email configuration
 ##############################################################################
