@@ -198,11 +198,11 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
               <div className="space-y-3">
                 <div className="flex items-center text-sm">
                   <MapPin className="w-4 h-4 text-gray-500 mr-2" />
-                  <span className="text-gray-700">(555) 123-4567</span>
+                  <span className="text-gray-700">(449) 467-7305</span>
                 </div>
                 <div className="flex items-center text-sm">
                   <Calendar className="w-4 h-4 text-gray-500 mr-2" />
-                  <span className="text-gray-700">info@refugio.com</span>
+                  <span className="text-gray-700">esperanzacaninags1@gmail,com</span>
                 </div>
               </div>
             </Card>
