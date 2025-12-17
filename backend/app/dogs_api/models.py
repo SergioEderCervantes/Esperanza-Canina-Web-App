@@ -66,12 +66,38 @@ class Dog(models.Model):
         "4": "4",
         "5": "5",
     }
+    
+    LIFE_STAGE_CHOICES = {
+        "CACHORRO": "Cachorro",
+        "JOVEN": "Joven",
+        "ADULTO": "Adulto",
+        "ADULTO_MAYOR": "Adulto Mayor",
+    }
+    
     name = models.CharField(max_length=100, verbose_name="Nombre", blank=True)
+    
+    # Campos deprecados (mantener por compatibilidad)
     age_year = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(30)],
         verbose_name="Año de edad",
         default=0,
+        blank=True,
+        null=True,
     )
+    age_month = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(11)],
+        verbose_name="Mes de edad",
+        default=0,
+        blank=True,
+        null=True,
+    )
+
+    life_stage = models.CharField(
+        max_length=15,
+        choices=LIFE_STAGE_CHOICES,
+        verbose_name="Etapa de vida",
+    )
+
     section = models.CharField(
         max_length=1,
         choices=SECTION_CHOICES,
@@ -79,11 +105,6 @@ class Dog(models.Model):
         default="0",
     )
 
-    age_month = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(11)],
-        verbose_name="Mes de edad",
-        default=0,
-    )
     genre = models.CharField(max_length=1, choices=GENRE_CHOICES, verbose_name="Genero")
     adoption_state = models.BooleanField(
         default=False,
@@ -118,14 +139,19 @@ class Dog(models.Model):
         super().save(*args, **kwargs)
 
     def dog_life_stage(self):
-        if self.age_year == 0 and self.age_month < 6:
+        # Priorizar el campo directo life_stage
+        if self.life_stage:
+            return self.get_life_stage_display()
+
+        if self.age_year == 0 and self.age_month and self.age_month < 6:
             return "Cachorro"
-        elif self.age_year < 2:
+        elif self.age_year and self.age_year < 2:
             return "Joven"
-        elif self.age_year < 7:
+        elif self.age_year and self.age_year < 7:
             return "Adulto"
-        else:
+        elif self.age_year and self.age_year >= 7:
             return "Adulto Mayor"
+        return "Adulto"  # Default
 
     dog_life_stage.short_description = "Etapa de vida"
 
@@ -142,10 +168,6 @@ class Dog(models.Model):
 
         return None
 
-    def clean(self):
-        # Valida que no haya años y meses de edad en 0 al mismo tiempo
-        if self.age_year == 0 and self.age_month == 0:
-            raise ValidationError("El año y el mes de edad no pueden ser ambos cero.")
     @property
     def size_display(self):
         return self.get_size_display()

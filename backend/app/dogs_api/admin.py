@@ -100,9 +100,9 @@ class DogAdminCLass(ModelAdmin):
         "medical_history_link",
     )
     search_fields = ("name", "size", "genre", "section")
-    list_filter = (AdoptionStateFilter, "size", "genre","section")
-    fields = ("name", "age_year", "age_month", "genre","section", "adoption_state",
-            "description", "size", "arrive_date", "beheaviors")
+    list_filter = (AdoptionStateFilter, "size", "genre","section", "life_stage")
+    fields = ("name", "life_stage", "genre", "size", "section", "adoption_state",
+            "description", "arrive_date", "beheaviors")
     filter_horizontal = ('beheaviors',)
 
     def edit_button(self, obj):

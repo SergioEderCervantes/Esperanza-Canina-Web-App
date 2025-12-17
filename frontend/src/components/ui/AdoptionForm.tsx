@@ -2,7 +2,6 @@
 import type { FormularioAdopcion } from "@/api/types.gen";
 import { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
-import CustomLoader from "./CustomLoader";
 import dynamic from "next/dynamic";
 import adoptionFormManager from "@/lib/adoptionFormManager";
 
@@ -71,7 +70,7 @@ export default function AdoptionForm({
   };
 
   if (!formData) {
-    return <CustomLoader />;
+    return null;
   }
 
   return (

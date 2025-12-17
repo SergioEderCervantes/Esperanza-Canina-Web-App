@@ -23,8 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${myFont.variable}`} >
-      
+    <html lang="es" className={`${myFont.variable}`} >
+      <head>
+        <meta charSet="UTF-8" />
+      </head>
       <body className={`${myFont.variable} antialiased`}>
         <Providers>
           <Nav />

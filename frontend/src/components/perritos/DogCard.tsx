@@ -40,7 +40,7 @@ export default function DogCard({ dog }: DogListProps) {
 
         <h2 className="text-lg font-bold mt-2 text-gray-500">{dog.name}</h2>
         <p className="text-sm text-gray-600">
-          {dog.dog_life_stage} • {dog.genre_display} • {dog.size_display}
+          {(dog as any).life_stage_display || (dog as any).dog_life_stage} • {dog.genre_display} • {dog.size_display}
         </p>
 
         {/* Tags */}

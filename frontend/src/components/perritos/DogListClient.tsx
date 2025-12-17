@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import DogCard from "@/components/perritos/DogCard";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
-import  CustomLoader  from "@/components/ui/CustomLoader";
+// import  CustomLoader  from "@/components/ui/CustomLoader";
 import { perritosList } from "@/api/sdk.gen";
 import type { PaginatedDogListList, DogList } from "@/api/types.gen";
 
@@ -47,15 +47,17 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
     loadDogs();
   }, [loadDogs]);
 
-  if (!dogsData) return <CustomLoader />;
+  // if (!dogsData) return <CustomLoader />;
+  if (!dogsData) return null;
 
   return (
     <>
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500 bg-[#f3f4f6]">
         {loading ? (
-          <div className="col-span-full">
-            <CustomLoader />
+          <div className="col-span-full text-center text-gray-700 py-8">
+            {/* <CustomLoader /> */}
+            Cargando...
           </div>
         ) : dogsData.data && dogsData.data.length > 0 ? (
           dogsData.data.map((dog: DogList) => <DogCard key={dog.id} dog={dog} />)

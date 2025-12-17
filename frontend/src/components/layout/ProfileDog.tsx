@@ -62,7 +62,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
               <h1 className="text-4xl font-bold text-gray-900 mb-2">
                 {dog.name}
               </h1>
-              <p className="text-xl text-gray-600 mb-4">{dog.dog_life_stage}</p>
+              <p className="text-xl text-gray-600 mb-4">{dog.life_stage_display}</p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
@@ -159,9 +159,9 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
                   <span className="font-medium text-gray-900">{dog.name}</span>
                 </div>
                 <div className="flex justify-between mr-40">
-                  <span className="text-gray-600">Edad:</span>
+                  <span className="text-gray-600">Etapa de vida:</span>
                   <span className="font-medium text-gray-900">
-                    {dog.dog_life_stage}
+                    {(dog as any).life_stage_display || dog.life_stage_display}
                   </span>
                 </div>
                 <div className="flex justify-between mr-40">
