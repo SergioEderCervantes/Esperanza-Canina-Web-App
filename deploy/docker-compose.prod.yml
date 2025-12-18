@@ -64,6 +64,11 @@ services:
     networks:
       - frontend
     restart: unless-stopped
+    env_file:
+      - ../frontend/.env.local
+    depends_on:
+      - api
+
 
   nginx:
     build: ../nginx

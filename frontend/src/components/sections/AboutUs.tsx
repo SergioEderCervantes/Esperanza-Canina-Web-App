@@ -1,3 +1,5 @@
+import "@/styles/AboutUsCards.css";
+
 // Definimos los tipos para nuestros datos
 
 interface StatItemData {
@@ -31,41 +33,49 @@ const AboutUs = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-[#fafafa] to-transparent to-10% pb-20"></div>
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-100 mb-4">
+          <h2 className="text-4xl font-bold text-gray-100 mb-4 text-shadow-custom">
             Sobre el Albergue Patitas
           </h2>
-          <p className="text-xl text-white max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto text-shadow-custom">
             Conoce nuestra historia, misión y el impacto que hemos logrado en la
             comunidad durante más de una década
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 my-20">
-          <div className="bg-blue-400 p-8 rounded-xl text-center h-full  shadow-lg hover:shadow-2xl hover:ring-4 hover:ring-blue-300 transition-shadow duration-300">
-            <h3 className="text-xl font-bold text-center text-white mb-4">
-              Nuestra Misión
-            </h3>
-            <p className="text-white">
-              Rescatar, rehabilitar y encontrar hogares amorosos para perros
-              abandonados, promoviendo la tenencia responsable de mascotas en
-              nuestra comunidad
-            </p>
+          <div className="about-card shadow-lg">
+            <div className="about-card-content">
+              <h3 className="text-xl font-bold text-white mb-4 text-shadow-custom">
+                Nuestra Misión
+              </h3>
+              <p className="text-white text-center text-shadow-custom">
+                Rescatar, rehabilitar y encontrar hogares amorosos para perros
+                abandonados, promoviendo la tenencia responsable de mascotas en
+                nuestra comunidad
+              </p>
+            </div>
           </div>
-          <div className="bg-pink-300 p-8 rounded-xl text-center h-full  shadow-lg hover:shadow-2xl hover:ring-4 hover:ring-pink-300 transition-shadow duration-300">
-            <h3 className="text-xl font-bold text-center text-white mb-4">
-              Nuestra Visión
-            </h3>
-            <p className="text-white">
-              Un mundo donde cada perro tenga un hogar lleno de amor y cuidados, eliminando el abandono animal
-            </p>
+          <div className="about-card shadow-lg">
+            <div className="about-card-content">
+              <h3 className="text-xl font-bold text-white mb-4 text-shadow-custom">
+                Nuestra Visión
+              </h3>
+              <p className="text-white text-center text-shadow-custom">
+                Un mundo donde cada perro tenga un hogar lleno de amor y cuidados,
+                eliminando el abandono animal
+              </p>
+            </div>
           </div>
-          <div className="bg-blue-400 p-8 rounded-xl text-center h-full  shadow-lg hover:shadow-2xl hover:ring-4 hover:ring-blue-300 transition-shadow duration-300 ">
-            <h3 className="text-xl font-bold text-center text-white mb-4">
-              Nuestros Valores
-            </h3>
-            <p className="text-white">
-              Compasión, transparencia, dedicación y trabajo en equipo guían cada una de nuestras acciones diarias.
-            </p>
+          <div className="about-card shadow-lg">
+            <div className="about-card-content">
+              <h3 className="text-xl font-bold text-white mb-4 text-shadow-custom">
+                Nuestros Valores
+              </h3>
+              <p className="text-white text-center text-shadow-custom">
+                Compasión, transparencia, dedicación y trabajo en equipo guían
+                cada una de nuestras acciones diarias.
+              </p>
+            </div>
           </div>
         </div>
 

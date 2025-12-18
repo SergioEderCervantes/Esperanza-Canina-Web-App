@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { faCheck, faBuildingColumns, faBowlFood } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FaWhatsapp } from "react-icons/fa";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode, ElementType } from "react";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { DonationDialog } from "@/components/ui/DonationDialog";
+import PawPrint from "@/components/ui/PawPrint";
 
 const donationOptions = [
   { text: "Donaciones Monetarias: Cada aporte, grande o pequeño, hace una gran diferencia." },
@@ -70,108 +71,129 @@ const ActionButton = ({
 
 export default function AyudaPage() {
   return (
-    <div className="container mx-auto px-8 md:px-20 py-16 bg-neutral-100">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
-          Ayuda al Albergue
-        </h1>
-        <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-          Tu apoyo hace la diferencia. Descubre las diferentes formas en que
-          puedes ayudar a nuestros perritos a tener una vida mejor.
-        </p>
+    <div className="relative overflow-hidden container mx-auto px-8 md:px-20 py-16 bg-neutral-100">
+      {/* Fondo de patitas */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <PawPrint className="absolute top-[5%] left-[10%] w-24 h-24 text-gray-300/50 opacity-20 rotate-12" />
+        <PawPrint className="absolute top-[20%] right-[5%] w-32 h-32 text-gray-300/50 opacity-20 -rotate-20" />
+        <PawPrint className="absolute top-[50%] left-[2%] w-40 h-40 text-gray-300/50 opacity-10 rotate-45" />
+        <PawPrint className="absolute bottom-[10%] right-[15%] w-28 h-28 text-gray-300/50 opacity-25" />
+        <PawPrint className="absolute bottom-[2%] left-[25%] w-36 h-36 text-gray-300/50 opacity-15 rotate-[60deg]" />
+        <PawPrint className="absolute top-[35%] left-[45%] w-20 h-20 text-gray-300/50 opacity-20 rotate-[-30deg]" />
+        <PawPrint className="absolute bottom-[25%] left-[5%] w-28 h-28 text-gray-300/50 opacity-15 rotate-10" />
+        <PawPrint className="absolute top-[5%] right-[30%] w-24 h-24 text-gray-300/50 opacity-20 rotate-5" />
+        <PawPrint className="absolute top-[60%] right-[25%] w-24 h-24 text-gray-300/50 opacity-20 rotate-12" />
+        <PawPrint className="absolute top-[80%] left-[15%] w-32 h-32 text-gray-300/50 opacity-20 -rotate-20" />
+        <PawPrint className="absolute bottom-[40%] left-[35%] w-28 h-28 text-gray-300/50 opacity-25" />
+        <PawPrint className="absolute bottom-[50%] right-[5%] w-36 h-36 text-gray-300/50 opacity-15 rotate-[60deg]" />
+        <PawPrint className="absolute top-[75%] left-[50%] w-20 h-20 text-gray-300/50 opacity-20 rotate-[-30deg]" />
+        <PawPrint className="absolute bottom-[5%] right-[40%] w-28 h-28 text-gray-300/50 opacity-15 rotate-10" />
+        <PawPrint className="absolute top-[90%] left-[5%] w-24 h-24 text-gray-300/50 opacity-20 rotate-5" />
       </div>
 
-      <section className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-        <div className="order-2 lg:order-1">
-          <h2 className="text-3xl font-semibold text-neutral-800 mb-6">
-            Donaciones
-          </h2>
-          <p className="text-lg text-neutral-600 mb-8">
-            Cada donación nos ayuda a proporcionar alimento, cuidado médico y un
-            refugio seguro para nuestros rescatados.
+      <div className="relative z-10">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+            Ayuda al Albergue
+          </h1>
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
+            Tu apoyo hace la diferencia. Descubre las diferentes formas en que
+            puedes ayudar a nuestros perritos a tener una vida mejor.
           </p>
+        </div>
 
-          <div className="space-y-4 mb-8">
-            {donationOptions.map((option, index) => (
-              <FeatureListItem key={index} icon={faCheck}>
-                {option.text}
-              </FeatureListItem>
-            ))}
+        <section className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          <div className="order-2 lg:order-1">
+            <h2 className="text-3xl font-semibold text-neutral-800 mb-6">
+              Donaciones
+            </h2>
+            <p className="text-lg text-neutral-600 mb-8">
+              Cada donación nos ayuda a proporcionar alimento, cuidado médico y
+              un refugio seguro para nuestros rescatados.
+            </p>
+
+            <div className="space-y-4 mb-8">
+              {donationOptions.map((option, index) => (
+                <FeatureListItem key={index} icon={faCheck}>
+                  {option.text}
+                </FeatureListItem>
+              ))}
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm">
+              <h3 className="text-xl font-semibold text-neutral-800 mb-4">
+                Formas de Donar
+              </h3>
+
+              <div className="space-y-3">
+                <DonationDialog type="transferencia" />
+                <DonationDialog type="especie" />
+
+                <ActionButton
+                  icon={FaWhatsapp}
+                  text="Contacto por WhatsApp"
+                  href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue."
+                  badgeBg="bg-neutral-100"
+                  badgeColor="text-emerald-600"
+                />
+              </div>
+            </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm">
-            <h3 className="text-xl font-semibold text-neutral-800 mb-4">
-              Formas de Donar
-            </h3>
+          <div className="order-1 lg:order-2 h-96 relative rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/dog-receiving-food.jpg"
+              alt="Perrito recibiendo cuidados"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </section>
 
-            <div className="space-y-3">
-              <DonationDialog type="transferencia" />
-              <DonationDialog type="especie" />
+        <section className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="h-96 relative rounded-2xl overflow-hidden shadow-lg">
+            <Image
+              src="/images/volunteer-with-dog.jpg"
+              alt="Voluntario jugando con un perrito"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          <div>
+            <h2 className="text-3xl font-semibold text-neutral-800 mb-6">
+              Voluntariado
+            </h2>
+            <p className="text-lg text-neutral-600 mb-8">
+              Únete a nuestro equipo de voluntarios y marca una diferencia
+              directa en la vida de estos perros. Como voluntario, puedes:
+            </p>
+
+            <div className="space-y-4 mb-8">
+              {volunteerTasks.map((task, index) => (
+                <FeatureListItem key={index} icon={faCheck}>
+                  {task.text}
+                </FeatureListItem>
+              ))}
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-neutral-200">
+              <h4 className="text-neutral-800 mb-4">
+                ¡Tu ayuda es invaluable! Contáctanos para saber cómo puedes
+                empezar.
+              </h4>
 
               <ActionButton
                 icon={FaWhatsapp}
-                text="Contacto por WhatsApp"
-                href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20ayudar%20al%20albergue."
+                text="Registrarse como Voluntario"
+                href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario."
                 badgeBg="bg-neutral-100"
                 badgeColor="text-emerald-600"
               />
             </div>
           </div>
-        </div>
-
-        <div className="order-1 lg:order-2 h-96 relative rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="/images/dog-receiving-food.jpg"
-            alt="Perrito recibiendo cuidados"
-            fill
-            className="object-cover"
-          />
-        </div>
-      </section>
-
-      <section className="grid lg:grid-cols-2 gap-12 items-center">
-        <div className="h-96 relative rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="/images/volunteer-with-dog.jpg"
-            alt="Voluntario jugando con un perrito"
-            fill
-            className="object-cover"
-          />
-        </div>
-
-        <div>
-          <h2 className="text-3xl font-semibold text-neutral-800 mb-6">
-            Voluntariado
-          </h2>
-          <p className="text-lg text-neutral-600 mb-8">
-            Únete a nuestro equipo de voluntarios y marca una diferencia directa
-            en la vida de estos perros. Como voluntario, puedes:
-          </p>
-
-          <div className="space-y-4 mb-8">
-            {volunteerTasks.map((task, index) => (
-              <FeatureListItem key={index} icon={faCheck}>
-                {task.text}
-              </FeatureListItem>
-            ))}
-          </div>
-
-          <div className="bg-white p-6 rounded-xl border border-neutral-200">
-            <h4 className="text-neutral-800 mb-4">
-              ¡Tu ayuda es invaluable! Contáctanos para saber cómo puedes
-              empezar.
-            </h4>
-
-            <ActionButton
-              icon={FaWhatsapp}
-              text="Registrarse como Voluntario"
-              href="https://wa.me/524494677305?text=Hola!%20Quisiera%20información%20para%20registrarme%20como%20voluntario."
-              badgeBg="bg-neutral-100"
-              badgeColor="text-emerald-600"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }
