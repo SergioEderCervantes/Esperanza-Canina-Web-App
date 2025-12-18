@@ -305,3 +305,9 @@ UNFOLD = {
     },
 },
 }
+
+##############################################################################
+# CUSTOM SETTINGS FOR SCRIPTS
+##############################################################################
+DOG_DATA_EXCEL_PATH = BASE_DIR / "data" / "dogs.xlsx"
+DOG_IMAGES_DIR_PATH = BASE_DIR / "data" / "dog_images"

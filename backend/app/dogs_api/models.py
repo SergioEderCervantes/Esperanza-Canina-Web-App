@@ -10,7 +10,6 @@ from django.db import models
 
 # TODO: Comentar los Modelos, descripcion simple
 class Dog(models.Model):
-    # TODO: Cambiar la clave, M de Macho y H de hembra
     GENRE_CHOICES = {
         "M": "Macho",
         "H": "Hembra",
@@ -66,16 +65,16 @@ class Dog(models.Model):
         "4": "4",
         "5": "5",
     }
-    
+
     LIFE_STAGE_CHOICES = {
         "CACHORRO": "Cachorro",
         "JOVEN": "Joven",
         "ADULTO": "Adulto",
         "ADULTO_MAYOR": "Adulto Mayor",
     }
-    
+
     name = models.CharField(max_length=100, verbose_name="Nombre", blank=True)
-    
+
     # Campos deprecados (mantener por compatibilidad)
     age_year = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(30)],
@@ -114,7 +113,7 @@ class Dog(models.Model):
     description = models.TextField(blank=True, default="", verbose_name="Descripcion")
     size = models.CharField(max_length=1, choices=SIZE_CHOICES, verbose_name="Tamaño")
     arrive_date = models.DateField(default=date.today, verbose_name="Fecha de llegada")
-    beheaviors = models.ManyToManyField("Beheavior", verbose_name="Comportamientos")
+    beheaviors = models.ManyToManyField("Beheavior", verbose_name="Comportamientos", blank=True)
 
     class Meta:
         db_table = "perros"

@@ -24,3 +24,5 @@ __pycache__/
 **/imagenes_perros/
 **/perros_procesados.json
 **/reporte*.txt
+
+data/
