@@ -77,7 +77,7 @@ services:
       - ../frontend/.env.local
     depends_on:
       - api
-      
+
 
   nginx:
     container_name: nginx

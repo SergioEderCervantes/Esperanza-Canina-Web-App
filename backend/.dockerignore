@@ -30,3 +30,7 @@ sql/
 
 # Docker
 Dockerfile
+
+# Custom
+sql/
+data/
