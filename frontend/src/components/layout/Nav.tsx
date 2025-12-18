@@ -3,11 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
 
 export default function Nav() {
-  const pathname = usePathname(); 
-  const isLanding = pathname === "/"; 
+  const pathname = usePathname();
+  const isLanding = pathname === "/";
 
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,13 +34,12 @@ export default function Nav() {
         window.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [isLanding]); 
+  }, [isLanding]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  
   const shouldBeTransparent = isLanding && !scrolled && !isMobile;
 
   const navbarClasses = `
@@ -58,7 +57,13 @@ export default function Nav() {
       <div className="container mx-auto flex items-center justify-between">
         {/* LOGOTIPO Y NOMBRE */}
         <div className="flex items-center gap-2 text-xl font-bold">
-          <Image src="/images/logo.png" alt="Logo" width={40} height={40} className="logo"/>
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="logo"
+          />
           <Link
             href="/"
             className={`font-amigable text-2xl font-extrabold ${textClasses}`}
@@ -79,7 +84,7 @@ export default function Nav() {
           {/* BOTÓN PRINCIPAL: Adoptar (Destacado) */}
           <Link
             href="/perritos"
-            className="px-5 py-2 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition duration-300"
+            className="px-5 py-2 rounded-full bg-blue-400 text-white shadow-md hover:bg-blue-600 transition duration-300"
           >
             Adoptar
           </Link>
@@ -87,7 +92,7 @@ export default function Nav() {
           {/* BOTÓN SECUNDARIO: Apoyanos (Destacado con borde) */}
           <Link
             href="/ayuda"
-            className={`px-5 py-2 rounded-full font-bold bg-blue-400 hover:bg-blue-600 text-white transition duration-300 shadow-md`}
+            className={`px-5 py-2 rounded-full  bg-blue-400 hover:bg-blue-600 text-white transition duration-300 shadow-md`}
           >
             Apoyanos
           </Link>
@@ -129,7 +134,9 @@ export default function Nav() {
         </div>
       </div>
       {isMobileMenuOpen && (
-        <div className={`md:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-lg p-4`}>
+        <div
+          className={`md:hidden absolute top-full left-0 w-full bg-white shadow-lg rounded-b-lg p-4`}
+        >
           <div className="flex flex-col items-center gap-4 ">
             <Link
               href="/"
@@ -140,7 +147,7 @@ export default function Nav() {
             </Link>
             <Link
               href="/perritos"
-              className="px-5 py-2 rounded-full bg-blue-400 text-white shadow-md hover:bg-blue-600 transition 
+              className="px-5 py-2 rounded-full bg-blue-400 text-white hover:bg-blue-600 transition 
                 duration-300"
               onClick={toggleMobileMenu}
             >
