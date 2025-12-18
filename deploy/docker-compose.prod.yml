@@ -1,90 +1,78 @@
-# Redes creadas por el compose, para una nueva capa de abstraccion y seguridad
 networks:
   backend:
   frontend:
 
-# Volumenes para persistencia de datos
 volumes:
   pg_data:
 
-
 services:
   db:
+    image: postgres:16-alpine
     container_name: db
-    image: postgres
+    shm_size: 256mb
     env_file:
       - ../backend/.env.prod
     networks:
       - backend
-    restart: unless-stopped
     volumes:
       - pg_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 2s
-      timeout: 2s
-      retries: 10
+    restart: unless-stopped
 
   redis:
+    image: redis:7-alpine
     container_name: redis
-    image: redis:7
     networks:
       - backend
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "redis-cli ping"]
-      interval: 5s
-      timeout: 2s
-      retries: 10
-  
+
   django_q:
-    container_name: django_q
     build: ../backend
+    container_name: django_q
     command: python manage.py qcluster
-    networks:
-      - backend
-    restart: unless-stopped
     env_file:
       - ../backend/.env.prod
+    networks:
+      - backend
     depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - db
+      - redis
+    restart: unless-stopped
 
   api:
-    container_name: api
     build: ../backend
-    command: bash -c "python manage.py migrate && gunicorn app.core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    container_name: api
+    command: >
+      bash -c "python manage.py migrate &&
+      gunicorn app.core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    env_file:
+      - ../backend/.env.prod
     networks:
       - backend
       - frontend
-    restart: unless-stopped
-    env_file:
-      - ../backend/.env.prod
     depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy    
+      - db
+      - redis
+    restart: unless-stopped
 
   frontend:
-    container_name: frontend
     build: ../frontend
+    container_name: frontend
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
     networks:
       - frontend
-    env_file:
-      - ../frontend/.env.local
-    depends_on:
-      - api
-      
+    restart: unless-stopped
 
   nginx:
-    container_name: nginx
     build: ../nginx
-    networks:
-      - frontend
+    container_name: nginx
     ports:
       - "80:80"
+    networks:
+      - frontend
     depends_on:
       - frontend
+      - api
+    restart: unless-stopped
