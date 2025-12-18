@@ -140,7 +140,7 @@ export default function Nav() {
             </Link>
             <Link
               href="/perritos"
-              className="px-5 py-2 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition 
+              className="px-5 py-2 rounded-full bg-blue-400 text-white shadow-md hover:bg-blue-600 transition 
                 duration-300"
               onClick={toggleMobileMenu}
             >
@@ -148,7 +148,7 @@ export default function Nav() {
             </Link>
             <Link
               href="/ayuda"
-              className="px-5 py-2 rounded-full bg-blue-400 text-white font-bold shadow-md hover:bg-blue-600 transition 
+              className="px-5 py-2 rounded-full bg-blue-400 text-white shadow-md hover:bg-blue-600 transition 
                  duration-300"
               onClick={toggleMobileMenu}
             >
