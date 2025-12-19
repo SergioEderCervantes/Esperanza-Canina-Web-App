@@ -3,7 +3,6 @@ from datetime import date
 
 from cloudinary.models import CloudinaryField
 from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 

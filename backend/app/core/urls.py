@@ -15,13 +15,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from django.urls import path, include
+
 from app.dogs_api.views import TestMetricView
 
-
-
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin_panel"),
     path("api/perritos/", include("app.dogs_api.urls")),
     path("api/registros-medicos/", include("app.vet_api.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
@@ -33,9 +31,9 @@ urlpatterns = [
     path('', include('django_prometheus.urls')),
     path("visitas-test/", TestMetricView.as_view(), name="test-metric"),
     path("health/", lambda request: HttpResponse("Healthy", 200)),
-    path("", lambda request: redirect("swagger-ui", permanent=True)),
+    path("", lambda request: redirect("admin_panel", permanent=True)),
     path(
         "<path:unused_path>",
-        lambda request, unused_path: redirect("swagger-ui", permanent=True),
+        lambda request, unused_path: redirect("admin_panel", permanent=True),
     ),
 ]

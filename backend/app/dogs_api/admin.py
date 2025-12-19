@@ -115,7 +115,7 @@ class DogAdminCLass(ModelAdmin):
             </g>
         </svg>'''
         return format_html('<a href="{}" class="edit-svg-button">{}</a>', url, mark_safe(svg_icon))
-    edit_button.short_description = 'Editar' 
+    edit_button.short_description = 'Editar'
     def medical_history_link(self, obj):
         try:
             medical_record = obj.medical_record

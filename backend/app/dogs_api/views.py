@@ -6,6 +6,7 @@ from drf_spectacular.utils import (
     OpenApiTypes,
     extend_schema,
 )
+from prometheus_client import Counter
 from rest_framework import filters, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -21,7 +22,6 @@ from app.dogs_api.serializers import (
     DogTopSerializer,
     FormularioAdopcionSerializer,
 )
-from prometheus_client import Counter
 
 VISIT_COUNTER = Counter(
     "django_custom_visits_total",

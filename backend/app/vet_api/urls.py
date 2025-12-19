@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import MedicalRecordListCreateView, MedicalRecordDetailView
+
+from .views import MedicalRecordDetailView, MedicalRecordListCreateView
 
 urlpatterns = [
     path('', MedicalRecordListCreateView.as_view(), name='medical-record-list-create'),

@@ -104,7 +104,7 @@ def limpiar_texto(texto):
 def procesar_excel_perros(archivo_excel, fila_inicio=4):
     """
     Procesa el archivo Excel y extrae los datos de los perros.
-    
+
     Columnas:
     A: NÚMERO (índice)
     B: JAULA (extraer sección)
@@ -116,7 +116,7 @@ def procesar_excel_perros(archivo_excel, fila_inicio=4):
     H: SOCIABLE (no usar)
     I-J: OBSERVACIONES (pueden estar en I o J)
     K: TAMAÑO
-    
+
     Returns:
         list: Lista de diccionarios con los datos de cada perro
     """
