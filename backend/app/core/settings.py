@@ -30,7 +30,7 @@ DEBUG = environ.get("DEBUG", "") == "1"
 
 # TODO: cambiar todo esto a los dominios correctos en produccion
 
-ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com", "frontend"]
+ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com", "frontend", "admin.localhost", "nginx"]
 
 # Esto si es para frontend, asi permite el uso de POST del formulario
 # CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
