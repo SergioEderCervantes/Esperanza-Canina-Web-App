@@ -23,7 +23,7 @@ export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends 
  */
 export const perritosList = <ThrowOnError extends boolean = false>(options?: Options<PerritosListData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosListResponses, unknown, ThrowOnError>({
-        url: '/api/perritos/',
+        url: '/perritos/',
         ...options
     });
 };
@@ -33,7 +33,7 @@ export const perritosList = <ThrowOnError extends boolean = false>(options?: Opt
  */
 export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: Options<PerritosRetrieveData, ThrowOnError>) => {
     return (options.client ?? client).get<PerritosRetrieveResponses, unknown, ThrowOnError>({
-        url: '/api/perritos/{id}/',
+        url: '/perritos/{id}/',
         ...options
     });
 };
@@ -44,7 +44,7 @@ export const perritosRetrieve = <ThrowOnError extends boolean = false>(options: 
  */
 export const perritosAdoptCreate = <ThrowOnError extends boolean = false>(options: Options<PerritosAdoptCreateData, ThrowOnError>) => {
     return (options.client ?? client).post<PerritosAdoptCreateResponses, PerritosAdoptCreateErrors, ThrowOnError>({
-        url: '/api/perritos/adopt/',
+        url: '/perritos/adopt/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const perritosAdoptCreate = <ThrowOnError extends boolean = false>(option
  */
 export const perritosTopRetrieve = <ThrowOnError extends boolean = false>(options?: Options<PerritosTopRetrieveData, ThrowOnError>) => {
     return (options?.client ?? client).get<PerritosTopRetrieveResponses, unknown, ThrowOnError>({
-        url: '/api/perritos/top/',
+        url: '/perritos/top/',
         ...options
     });
 };
