@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${myFont.variable}`} >
+    <html lang="es" className={`${myFont.variable}`} data-scroll-behavior="smooth">
       <head>
         <meta charSet="UTF-8" />
       </head>

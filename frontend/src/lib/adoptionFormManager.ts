@@ -9,7 +9,6 @@ export default async function adoptionFormManager(
       url: "/api/perritos/adopt/",
     };
     const res = await perritosAdoptCreate(adoptionRequest);
-    console.log("Respuesta de perritosAdoptCreate:", res);
     return true;
   } catch (err) {
     console.error("Error al llamar a perritosAdoptCreate:", err);
