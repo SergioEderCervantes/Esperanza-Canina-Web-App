@@ -27,12 +27,13 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+RUN addgroup -S nextjs && adduser -S nextjs -G nextjs && mkdir -p /app/.next/cache && chown -R nextjs /app
 USER nextjs
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+
 
 EXPOSE 3000
 CMD ["node", "server.js"]
