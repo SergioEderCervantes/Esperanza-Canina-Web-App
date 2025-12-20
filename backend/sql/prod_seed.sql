@@ -1,11 +1,11 @@
---
+﻿--
 -- PostgreSQL database dump
 --
 
-\restrict ALICgDcbNpP8RZP19sPLtOL4OfoFBd67IjlxRztBH6f1kk7oPh94kSUSH0yhSg2
+\restrict ghzXiGvM4kZB6eKaR8gZExMiX9ZlowjiGHuvuciDoDmbm9ieUQZ0s6IKEOm1KeI
 
--- Dumped from database version 17.6 (Debian 17.6-1.pgdg13+1)
--- Dumped by pg_dump version 17.6 (Debian 17.6-1.pgdg13+1)
+-- Dumped from database version 18.0 (Debian 18.0-1.pgdg13+3)
+-- Dumped by pg_dump version 18.0 (Debian 18.0-1.pgdg13+3)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1003,6 +1003,96 @@ COPY public.fotos_perros (id, image, is_primary, dog_id) FROM stdin;
 215	dog_images/dev/deubynyjw3mobuuqpgz3	t	115
 163	image/upload/dog_images/dev/xhfv0tjqqawc4wym8mvi	f	84
 164	image/upload/dog_images/dev/psyyhvaw0ghzyshphcsb	t	84
+216	dog_images/dev/xmymgwpm2ujpgybxpn2c	t	116
+217	dog_images/dev/vl3rgql3atxzqxqxz6mk	t	117
+218	dog_images/dev/i6xx6eujz4jydgymd50k	t	118
+219	dog_images/dev/exatrggjlcupdzpuqk5y	t	119
+220	dog_images/dev/pdu0wew3mrfnmu3buolo	t	120
+221	dog_images/dev/rk6tq6riifghe0furfh6	t	121
+222	dog_images/dev/odypiuombgo1axirgypt	t	122
+223	dog_images/dev/rmhpqddkswfahij8mlgx	t	123
+224	dog_images/dev/wbljrmegsvpxbylkf3ut	t	124
+225	dog_images/dev/ohxmhv8odc7cyij7sazf	t	125
+226	dog_images/dev/u7xomrt8miioianebny4	t	126
+227	dog_images/dev/lvxenjlnjrakhgoquzvu	t	127
+228	dog_images/dev/efa4w7zziaznmxlesx2l	t	128
+229	dog_images/dev/srlbdrc9n21nbhprwfwf	t	129
+230	dog_images/dev/sqroguwdhgbnaonuu8oe	t	130
+231	dog_images/dev/i5qi3ei3hotmis2oecsb	t	131
+232	dog_images/dev/i1ry5dqrfhwqdtmdsvun	t	132
+233	dog_images/dev/er9cutlmdyn1pn1exofm	t	133
+234	dog_images/dev/lmhom9t8nyvltdsxjdes	t	134
+235	dog_images/dev/pqyxqws1rajg8zzpcb7g	t	135
+236	dog_images/dev/h1fyzahf1jypdwsxcrvc	t	136
+237	dog_images/dev/bkoyc4pdibcmhzkr5oe0	t	137
+238	dog_images/dev/xb21wgf0thaj7elxx1fg	t	138
+239	dog_images/dev/pacicgoe0qlm0t7lgsyv	t	139
+240	dog_images/dev/waca9nbd1d2piug2iy2g	t	140
+241	dog_images/dev/sxxtgjjbm8svsgxib2pr	t	141
+242	dog_images/dev/lzh9spqmfbzk8j5dpghs	t	142
+243	dog_images/dev/f2c6gdt8imnhs5w4aflq	t	143
+244	dog_images/dev/tybbv1bgqqko7mthco6w	t	144
+245	dog_images/dev/chyn7nlteerdgcp5mlio	t	145
+246	dog_images/dev/jlo79nlxcwswhrtex6t6	t	146
+247	dog_images/dev/urisbcyqurww516hugxk	t	147
+248	dog_images/dev/ehbbsj6ribkvrxd5lwbi	t	148
+249	dog_images/dev/erpakiwticzi7kxen9zm	t	149
+250	dog_images/dev/oosiigqr04n3c67jzndq	t	150
+251	dog_images/dev/tmzgq0ulpdlirxhwxjsd	t	151
+252	dog_images/dev/wu1nuwfqe6pikcfuhwgl	t	152
+253	dog_images/dev/irbtftlfi3l3tpmjukdn	t	153
+254	dog_images/dev/wand94amzbeay4qsyput	t	154
+255	dog_images/dev/psiqdhmbxrfeev1osbn6	t	155
+256	dog_images/dev/lhufkkjfogoagwzi9yyv	t	156
+257	dog_images/dev/iay7zz0gbfm1mb8d4x3r	t	157
+258	dog_images/dev/ztgq0eo5qzb4wgzig0mv	t	158
+259	dog_images/dev/an48j45zatbfndtcegkf	t	159
+260	dog_images/dev/jsi7ww7hzejpbcsgydcv	t	160
+261	dog_images/dev/ckx1oxvzc02exrjbe21c	t	161
+262	dog_images/dev/deuv65jjgyqrmzq5rskl	t	162
+263	dog_images/dev/qjvfajyrqits1xefngj9	t	163
+264	dog_images/dev/eureqcwwfcsbingxcqfg	t	164
+265	dog_images/dev/n5ilrkrr5jaqfcrvxhzz	t	165
+266	dog_images/dev/rcmxbmff42jshnbgjlwn	t	166
+267	dog_images/dev/mjavgefk61bmc1widwub	t	167
+268	dog_images/dev/ax9vwawoch6ondksptvv	t	168
+269	dog_images/dev/rprgxs8oabneavo0egsv	t	169
+270	dog_images/dev/dcdqnokhcxhfdd5umfwn	t	170
+271	dog_images/dev/n4xbdvellbxij1b9xlvp	t	171
+272	dog_images/dev/hqun15339n6ws3vpuwqd	t	172
+273	dog_images/dev/glknpdhbsqq0mspgmnek	t	173
+274	dog_images/dev/dx9nxyi9wck4r1gacotq	t	174
+275	dog_images/dev/mbim4t3lcqnrro3mbc8a	t	175
+276	dog_images/dev/yhxhmmjzigd2gwhlwyaz	t	176
+277	dog_images/dev/uk2sxz8xzncuwkpqxtam	t	177
+278	dog_images/dev/iz4jtupllxnfcrwwwr8g	t	178
+279	dog_images/dev/rjsaeyshu7uwcuxddifc	t	179
+280	dog_images/dev/hg9rz7v7gt9yp6dvjaxx	t	180
+281	dog_images/dev/c6a8l4dm5yb6kknonrfw	t	181
+282	dog_images/dev/bpqv8npysldudbksw1r6	t	182
+283	dog_images/dev/gedm3dzwxxyxu7qubzgy	t	183
+284	dog_images/dev/u3azj3waru1iwq5wwv52	t	184
+285	dog_images/dev/z5hcvntiawdbmjpyxuhn	t	185
+286	dog_images/dev/iluiiyx6rdlbyr3pjlt5	t	186
+287	dog_images/dev/i1lcxwdkrwmirievcqiv	t	187
+288	dog_images/dev/yekocfbawp0bpjnwrteu	t	188
+289	dog_images/dev/t1qhzue2aws2ytwfxxpa	t	189
+290	dog_images/dev/atwbiuya9hwvroy4ehtt	t	190
+291	dog_images/dev/ubfvifavqrqk0ysuqm72	t	191
+292	dog_images/dev/gy174zsauiqpkmzvgkev	t	192
+293	dog_images/dev/zpc9gbsi9gmdhnte2zdv	t	193
+294	dog_images/dev/ia74tdfh8o2tbr8gsdrx	t	194
+295	dog_images/dev/smsqbvpif2ogjdmr714r	t	195
+296	dog_images/dev/imppshg422nm5qabh1wx	t	196
+297	dog_images/dev/nxvvvvoreqy1c1djaupb	t	197
+298	dog_images/dev/ubchqo0xad6ffcszo8j4	t	198
+299	dog_images/dev/wuilts5hufefgnoox7fy	t	199
+300	dog_images/dev/rewrmlpc3peihzjpga2y	t	200
+301	dog_images/dev/j1rrgn76ann8kx0n3xj2	t	201
+302	dog_images/dev/vql90sysnfa6cxfzvssz	t	202
+303	dog_images/dev/f7joyukjrxwunzbs1488	t	203
+304	dog_images/dev/wae79orj8xemno4kxam5	t	204
+305	dog_images/dev/ttustfn9chufoiv5apri	t	205
 \.
 
 
@@ -1038,7 +1128,7 @@ COPY public.perros (id, name, age_year, age_month, genre, adoption_state, size, 
 45	Chispa	4	0	H	f	M	2025-12-16		4	ADULTO
 46	Luna	1	0	H	f	M	2025-12-16		4	JOVEN
 47	Sasha	4	0	H	f	M	2025-12-16		4	ADULTO
-48	Canela	4	0	H	f	M	2025-12-16	Perro disponible para adopciΓö£Γöén en la secciΓö£Γöén 4.	4	ADULTO
+48	Canela	4	0	H	f	M	2025-12-16	Perro disponible para adopci╬ô├Â┬ú╬ô├Â├®n en la secci╬ô├Â┬ú╬ô├Â├®n 4.	4	ADULTO
 49	Dulce	4	0	H	f	L	2025-12-16		4	ADULTO
 50	Terry	4	0	H	f	M	2025-12-16		4	ADULTO
 67	Maya	1	0	H	f	M	2025-12-16		4	JOVEN
@@ -1079,7 +1169,7 @@ COPY public.perros (id, name, age_year, age_month, genre, adoption_state, size, 
 106	Kira	0	0	H	f	S	2025-12-18	nan	4	ADULTO
 107	Kiara	0	0	H	f	M	2025-12-18	nan	4	ADULTO_MAYOR
 108	Kiara	0	0	H	f	L	2025-12-18	nan	4	ADULTO
-109	Canela	0	0	H	f	L	2025-12-18	Recuperaci├│n Sarna	4	ADULTO
+109	Canela	0	0	H	f	L	2025-12-18	RecuperaciÔö£Ôöén Sarna	4	ADULTO
 110	Rocco	0	0	M	f	M	2025-12-18	nan	4	ADULTO
 111	Chispa	0	0	H	f	S	2025-12-18	nan	4	ADULTO
 112	Kiara	0	0	H	f	L	2025-12-18	nan	4	ADULTO
@@ -1089,6 +1179,96 @@ COPY public.perros (id, name, age_year, age_month, genre, adoption_state, size, 
 84	Kiara	0	0	H	f	L	2025-12-18	nan	4	ADULTO_MAYOR
 99	Zeus	0	0	M	f	L	2025-12-18	nan	4	ADULTO
 97	Coco	0	0	H	f	M	2025-12-18	nan	4	ADULTO_MAYOR
+116	Toby	0	0	M	f	M	2025-12-20	Ninguna	1	JOVEN
+117	Dulce	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+118	Canela	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+119	Mila	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+120	Terry	0	0	H	f	S	2025-12-20	Ninguna	1	JOVEN
+121	Sasha	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+122	Canela	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+123	Bella	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+124	Rocco	0	0	M	f	M	2025-12-20		1	JOVEN
+125	Jack	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+126	Luna	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+127	Coco	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+128	Lola	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+129	Bella	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+130	Toby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+131	Coco	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+132	Chispa	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+133	Bobby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+134	Toby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+135	Rex	0	0	M	f	L	2025-12-20	Ciego	1	ADULTO
+136	Daisy	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+137	Dulce	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+138	Terry	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+139	Bruno	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+140	Bella	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+141	Dulce	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+142	Zeus	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+143	Chispa	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+144	Jack	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+145	Greta	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+146	Nina	0	0	H	f	S	2025-12-20	Secuela de moquillo	1	ADULTO
+147	Bobby	0	0	M	f	S	2025-12-20	Ninguna	1	ADULTO
+148	Rocky	0	0	M	f	S	2025-12-20	Ninguna	1	ADULTO
+149	Thor	0	0	M	f	S	2025-12-20	Ninguna	1	ADULTO
+150	Rocky	0	0	M	f	L	2025-12-20	Secuela de moquillo	1	ADULTO
+151	Coco	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+152	Rocky	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+153	Chispa	0	0	M	f	L	2025-12-20	Pensi├│n	1	ADULTO
+154	Bruno	0	0	M	f	L	2025-12-20	Pensi├│n	1	ADULTO
+155	Nala	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+156	Kira	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+157	Nina	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+158	Chispa	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+159	Greta	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+160	Duke	0	0	M	f	S	2025-12-20	Ninguna	1	JOVEN
+161	Milo	0	0	M	f	S	2025-12-20	Ninguna	1	JOVEN
+162	Bobby	0	0	M	f	S	2025-12-20	Ninguna	1	JOVEN
+163	Lucky	0	0	M	f	M	2025-12-20	Ninguna	1	JOVEN
+164	Duke	0	0	M	f	M	2025-12-20	Ninguna	1	JOVEN
+165	Milo	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+166	Nina	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+167	Milo	0	0	M	f	L	2025-12-20	Ninguna	1	JOVEN
+168	Nala	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+169	Bruno	0	0	M	f	L	2025-12-20	Ninguna	1	JOVEN
+170	Maya	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+171	Bobby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+172	Rocky	0	0	M	f	M	2025-12-20	Ninguna	1	ADULTO_MAYOR
+173	Dulce	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+174	Toby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+175	Tommy	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+176	Max	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+177	Bruno	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+178	Kiara	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+179	Bruno	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+180	Maya	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+181	Bella	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+182	Luna	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+183	Jack	0	0	M	f	M	2025-12-20	Ninguna	1	ADULTO
+184	Zeus	0	0	M	f	M	2025-12-20	Ninguna	1	ADULTO
+185	Toby	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+186	Chester	0	0	M	f	S	2025-12-20	Ninguna	1	ADULTO
+187	Maya	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+188	Nina	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+189	Luna	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+190	Terry	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+191	Chispa	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+192	Kiara	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+193	Thor	0	0	M	f	L	2025-12-20	Ninguna	1	ADULTO
+194	Daisy	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO
+195	Kiara	0	0	H	f	M	2025-12-20	Ninguna	1	ADULTO
+196	Nala	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+197	Lucky	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+198	Rocky	0	0	M	f	M	2025-12-20	Ninguna	1	JOVEN
+199	Lola	0	0	H	f	M	2025-12-20	Ninguna	1	JOVEN
+200	Nala	0	0	H	f	M	2025-12-20	Pensi├│n	1	ADULTO_MAYOR
+201	Kiara	0	0	H	f	L	2025-12-20	Ninguna	1	ADULTO_MAYOR
+202	Kira	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+203	Terry	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
+204	Rocco	0	0	M	f	L	2025-12-20	Ninguna	1	JOVEN
+205	Sasha	0	0	H	f	L	2025-12-20	Ninguna	1	JOVEN
 \.
 
 
@@ -1200,7 +1380,7 @@ SELECT pg_catalog.setval('public.dogs_api_beheavior_id_seq', 1, true);
 -- Name: fotos_perros_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.fotos_perros_id_seq', 215, true);
+SELECT pg_catalog.setval('public.fotos_perros_id_seq', 305, true);
 
 
 --
@@ -1214,7 +1394,7 @@ SELECT pg_catalog.setval('public.perros_beheaviors_id_seq', 5, true);
 -- Name: perros_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.perros_id_seq', 115, true);
+SELECT pg_catalog.setval('public.perros_id_seq', 205, true);
 
 
 --
@@ -1674,5 +1854,5 @@ ALTER TABLE ONLY public.vet_api_medical_record
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ALICgDcbNpP8RZP19sPLtOL4OfoFBd67IjlxRztBH6f1kk7oPh94kSUSH0yhSg2
+\unrestrict ghzXiGvM4kZB6eKaR8gZExMiX9ZlowjiGHuvuciDoDmbm9ieUQZ0s6IKEOm1KeI
 
