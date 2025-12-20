@@ -65,12 +65,11 @@ export default async function DogProfilePage({
   const { id } = await params;
   const dogId = Number(id);
 
-  console.log("[DogProfilePage] Parsed dogId:", dogId);
 
   if (isNaN(dogId)) notFound();
 
   const res = await perritosRetrieve({ path: { id: dogId } });
-  console.log("[DogProfilePage] API response:", res);
+
 
   if (res.error || !res.data?.data) notFound();
 

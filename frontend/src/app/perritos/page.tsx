@@ -43,7 +43,7 @@ export default function PerritosPage() {
         </div>
 
         {/* Filtros */}
-        <div className="flex flex-wrap gap-4 mb-8 bg-white/80 backdrop-blur-sm p-5 rounded-md shadow-lg">
+        <div id="filters" className="flex flex-wrap gap-4 mb-8 bg-white/80 backdrop-blur-sm p-5 rounded-md shadow-lg">
           <input
             type="text"
             placeholder="Buscar por nombre..."
