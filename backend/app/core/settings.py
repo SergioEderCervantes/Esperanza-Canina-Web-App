@@ -17,6 +17,17 @@ import cloudinary
 from django.core.management.utils import get_random_secret_key
 
 ##############################################################################
+# Funcion helper para leer claves del .env
+##############################################################################
+
+def env_list(key, default=None):
+    value = environ.get(key)
+    if not value:
+        return default or []
+    return [v.strip() for v in value.split(",")]
+
+
+##############################################################################
 # GENERAL
 ##############################################################################
 
@@ -25,30 +36,37 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = environ.get("SECRET_KEY", get_random_secret_key())
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DEBUG", "") == "1"
 
-# TODO: cambiar todo esto a los dominios correctos en produccion
-
-ALLOWED_HOSTS = ["localhost", "api", "127.0.0.1", "example.com", "frontend", "admin.localhost", "nginx"]
+ALLOWED_HOSTS = env_list(
+    "DJANGO_ALLOWED_HOSTS",
+    default=["localhost", "127.0.0.1"]
+)
 
 # Esto si es para frontend, asi permite el uso de POST del formulario
-# CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+CORS_ALLOWED_ORIGINS = env_list(
+    "DJANGO_CORS_ALLOWED_ORIGINS"
+)
 
-# Esto solo es para las django sessions, la parte del front no tiene autenticacion por lo cual no necesita
-# Ponerse aqui como trusted origins
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-]
+CORS_ALLOW_CREDENTIALS = False
+
+CSRF_TRUSTED_ORIGINS = env_list(
+    "DJANGO_CSRF_TRUSTED_ORIGINS"
+)
 
 ROOT_URLCONF = "app.core.urls"
 
 WSGI_APPLICATION = "app.core.wsgi.application"
+##############################################################################
+# SSL y NGINX
+##############################################################################
+SESSION_COOKIE_SECURE = environ.get("DJANGO_SESSION_COOKIE_SECURE") == "1"
+CSRF_COOKIE_SECURE = environ.get("DJANGO_CSRF_COOKIE_SECURE") == "1"
+
+SECURE_SSL_REDIRECT = environ.get("DJANGO_SECURE_SSL_REDIRECT") == "1"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 ##############################################################################
 # Application definition

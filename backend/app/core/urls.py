@@ -20,11 +20,11 @@ from app.dogs_api.views import TestMetricView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/perritos/", include("app.dogs_api.urls")),
-    path("api/registros-medicos/", include("app.vet_api.urls")),
-    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("perritos/", include("app.dogs_api.urls")),
+    path("registros-medicos/", include("app.vet_api.urls")),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
-        "api/docs/",
+        "docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
