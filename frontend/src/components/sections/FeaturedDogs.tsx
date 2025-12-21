@@ -20,17 +20,31 @@ function fallback(){
 
 export const FeaturedDogs = async () => {
   let res;
-  try{
+  try {
+    console.log("Iniciando perritosTopRetrieve desde el servidor...");
     res = await perritosTopRetrieve();
-
-  } catch (e){
-    // Fallback component en caso de que la query falle
-    console.log("Error en Query top: ", e);
+  } catch (e) {
+    console.error("Excepción CRÍTICA al llamar a perritosTopRetrieve:", e);
+    if (e instanceof Error) {
+      console.error("Mensaje de error:", e.message);
+      console.error("Stack trace:", e.stack);
+    }
     return fallback();
   }
 
-  // Fallback component en caso de que no se obtengan datos del fetch
+  if (res.error) {
+    console.error(
+      "perritosTopRetrieve retornó un error estructurado:",
+      JSON.stringify(res.error, null, 2)
+    );
+    return fallback();
+  }
+
   if (!res.data?.data) {
+    console.error(
+      "perritosTopRetrieve no retornó datos (res.data.data es falso). Respuesta completa:",
+      JSON.stringify(res, null, 2)
+    );
     return fallback();
   }
   
