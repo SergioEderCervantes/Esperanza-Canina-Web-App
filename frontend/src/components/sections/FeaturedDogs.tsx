@@ -12,6 +12,9 @@ function fallback(error:string | undefined, stack:string | undefined){
           <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             No se encontraron perritos
           </p>
+          <p>{error}</p>
+          <br />
+          <p>{stack}</p>
         </div>
       </section>
     );
