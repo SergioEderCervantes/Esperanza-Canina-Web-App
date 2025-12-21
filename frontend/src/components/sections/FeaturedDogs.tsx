@@ -2,7 +2,7 @@ import { DogTop, perritosTopRetrieve } from "@/api";
 import Link from "next/link";
 import DogTopCard from "../perritos/DogTopCard";
 
-function fallback(){
+function fallback(error:string | undefined, stack:string | undefined){
   return (
       <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
         <div className="text-center mb-12">
@@ -28,8 +28,10 @@ export const FeaturedDogs = async () => {
     if (e instanceof Error) {
       console.error("Mensaje de error:", e.message);
       console.error("Stack trace:", e.stack);
+      return fallback(e.message, e.stack);
     }
-    return fallback();
+    return fallback("NO INSTANCE OF", "AYUDA")
+
   }
 
   if (res.error) {
@@ -37,7 +39,7 @@ export const FeaturedDogs = async () => {
       "perritosTopRetrieve retornó un error estructurado:",
       JSON.stringify(res.error, null, 2)
     );
-    return fallback();
+    return fallback("perritosTopRetrieve retornó un error estructurado:", JSON.stringify(res.error, null, 2));
   }
 
   if (!res.data?.data) {
@@ -45,7 +47,7 @@ export const FeaturedDogs = async () => {
       "perritosTopRetrieve no retornó datos (res.data.data es falso). Respuesta completa:",
       JSON.stringify(res, null, 2)
     );
-    return fallback();
+    return fallback("perritosTopRetrieve no retornó datos (res.data.data es falso). Respuesta completa:", JSON.stringify(res, null, 2));
   }
   
   const dogs_data: DogTop[] = res.data?.data;
