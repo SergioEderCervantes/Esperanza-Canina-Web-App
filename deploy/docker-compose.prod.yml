@@ -70,7 +70,7 @@ services:
     expose:
       - "3000"
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
     networks:
       - frontend
     restart: unless-stopped

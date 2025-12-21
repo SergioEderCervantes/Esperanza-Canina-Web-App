@@ -31,9 +31,4 @@ urlpatterns = [
     path('', include('django_prometheus.urls')),
     path("visitas-test/", TestMetricView.as_view(), name="test-metric"),
     path("health/", lambda request: HttpResponse("Healthy", 200)),
-    path("", lambda request: redirect("/admin/", permanent=True)),
-    path(
-        "<path:unused_path>",
-        lambda request, unused_path: redirect("/admin/", permanent=True),
-    ),
 ]
