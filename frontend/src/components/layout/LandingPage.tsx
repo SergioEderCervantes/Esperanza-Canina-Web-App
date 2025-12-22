@@ -4,10 +4,11 @@ import AdoptRequirements from "@/components/sections/AdoptRequirements";
 import { FeaturedDogs } from "../sections/FeaturedDogs";
 import { FirstView } from "../sections/FirstView";
 
-const LandingPage = () => {
+const LandingPage = ({featuredDogs}: { featuredDogs: any }) => {
+    
     return <>
         <FirstView />
-        <FeaturedDogs />
+        <FeaturedDogs featuredDogs ={featuredDogs}/>
         <AdoptionProcess />
         <AboutUs />
         <AdoptRequirements />

@@ -25,7 +25,7 @@ function fallback(error: string | undefined, stack: string | undefined) {
   );
 }
 
-export const FeaturedDogs = async () => {
+export const FeaturedDogs = async ({featuredDogs}: { featuredDogs: any }) => {
   let res;
   try {
     console.log("Iniciando perritosTopRetrieve desde el servidor...");
@@ -62,7 +62,7 @@ export const FeaturedDogs = async () => {
     );
   }
 
-  const dogs_data: DogTop[] = res.data?.data;
+  const dogs_data: DogTop[] = featuredDogs;
 
   return (
     <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
