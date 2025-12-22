@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaPaypal, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaPaw, FaPhone, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 
@@ -25,9 +25,6 @@ export default function Footer() {
             <a href="https://www.instagram.com/esperanzacaninaags?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-white transition-colors">
               <FaInstagram size={20} />
             </a>
-            <a href="https://www.paypal.com/donate/?hosted_button_id=S7RPK5PNDQCCG" className="hover:text-white transition-colors">
-              <FaPaypal size={20} />
-            </a>
           
           </div>
         </div>
@@ -53,7 +50,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center space-x-2">
               <FaEnvelope />
-              <span>esperanzacaninags1@gmail,com</span>
+              <span>marthaelvagutierrezramirez@gmail.com</span>
             </li>
           </ul>
         </div>

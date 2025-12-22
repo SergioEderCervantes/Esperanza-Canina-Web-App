@@ -200,7 +200,7 @@ export default function ProfileDog({ dog }: { dog: DetailedDog }) {
                   <div className="flex items-center text-sm">
                     <Calendar className="w-4 h-4 text-gray-500 mr-2" />
                     <span className="text-gray-700">
-                      esperanzacaninags1@gmail,com
+                      marthaelvagutierrezramirez@gmail.com
                     </span>
                   </div>
                 </div>
