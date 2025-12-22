@@ -1,7 +1,7 @@
 import { perritosTopRetrieve } from "@/api";
 import LandingPage from "@/components/layout/LandingPage";
 
-
+export const dynamic = "force-dynamic";
 // Esta sera la landing page
 //CTA a donaciones y voluntariado, perritos en adopcion
 
