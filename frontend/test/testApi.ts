@@ -55,7 +55,7 @@ async function testperritosAdoptCreateOnlyRequired() {
           // Opcional
         },
       },
-      url: "/api/perritos/adopt/",
+      url: "/perritos/adopt/",
     };
 
     const res = await perritosAdoptCreate(formAdoptionData);
@@ -110,7 +110,7 @@ async function testperritosAdoptCreateComplete() {
           dogcare_field9: "En caso de vacaciones, se quedará con un familiar",
         },
       },
-      url: "/api/perritos/adopt/",
+      url: "/perritos/adopt/",
     };
 
     const res = await perritosAdoptCreate(formAdoptionData);
