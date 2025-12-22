@@ -183,7 +183,7 @@ export type PerritosListData = {
          */
         size?: 'Chico' | 'Grande' | 'Mediano';
     };
-    url: '/api/perritos/';
+    url: '/perritos/';
 };
 
 export type PerritosListResponses = {
@@ -198,7 +198,7 @@ export type PerritosRetrieveData = {
         id: number;
     };
     query?: never;
-    url: '/api/perritos/{id}/';
+    url: '/perritos/{id}/';
 };
 
 export type PerritosRetrieveResponses = {
@@ -211,7 +211,7 @@ export type PerritosAdoptCreateData = {
     body: FormularioAdopcion;
     path?: never;
     query?: never;
-    url: '/api/perritos/adopt/';
+    url: '/perritos/adopt/';
 };
 
 export type PerritosAdoptCreateErrors = {
@@ -232,7 +232,7 @@ export type PerritosTopRetrieveData = {
     body?: never;
     path?: never;
     query?: never;
-    url: '/api/perritos/top/';
+    url: '/perritos/top/';
 };
 
 export type PerritosTopRetrieveResponses = {

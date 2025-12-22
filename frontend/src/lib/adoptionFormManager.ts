@@ -6,7 +6,7 @@ export default async function adoptionFormManager(
   try {
     const adoptionRequest: PerritosAdoptCreateData = {
       body: formData,
-      url: "/api/perritos/adopt/",
+      url: "/perritos/adopt/",
     };
     const res = await perritosAdoptCreate(adoptionRequest);
     return true;

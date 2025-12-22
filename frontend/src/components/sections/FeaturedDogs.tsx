@@ -2,8 +2,7 @@ import { DogTop, perritosTopRetrieve } from "@/api";
 import Link from "next/link";
 import DogTopCard from "../perritos/DogTopCard";
 
-function fallback(error: string | undefined, stack: string | undefined) {
-  const showErrorBrand = false;
+function fallback() {
   return (
     <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
       <div className="text-center mb-12">
@@ -13,56 +12,22 @@ function fallback(error: string | undefined, stack: string | undefined) {
         <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
           No se encontraron perritos
         </p>
-        {showErrorBrand ?? (
-          <div>
-            <p>{error}</p>
-            <br />
-            <p>{stack}</p>
-          </div>
-        )}
       </div>
     </section>
   );
 }
 
-export const FeaturedDogs = async ({featuredDogs}: { featuredDogs: any }) => {
-  let res;
-  try {
-    console.log("Iniciando perritosTopRetrieve desde el servidor...");
-    res = await perritosTopRetrieve();
-  } catch (e) {
-    console.error("Excepción CRÍTICA al llamar a perritosTopRetrieve:", e);
-    if (e instanceof Error) {
-      console.error("Mensaje de error:", e.message);
-      console.error("Stack trace:", e.stack);
-      return fallback(e.message, e.stack);
-    }
-    return fallback("NO INSTANCE OF", "AYUDA");
-  }
+export const FeaturedDogs = async ({featuredDogs}: { featuredDogs: DogTop[] }) => {
 
-  if (res.error) {
-    console.error(
-      "perritosTopRetrieve retornó un error estructurado:",
-      JSON.stringify(res.error, null, 2)
-    );
-    return fallback(
-      "perritosTopRetrieve retornó un error estructurado:",
-      JSON.stringify(res.error, null, 2)
-    );
-  }
-
-  if (!res.data?.data) {
+  if (!featuredDogs) {
     console.error(
       "perritosTopRetrieve no retornó datos (res.data.data es falso). Respuesta completa:",
-      JSON.stringify(res, null, 2)
+      JSON.stringify(featuredDogs, null, 2)
     );
-    return fallback(
-      "perritosTopRetrieve no retornó datos (res.data.data es falso). Respuesta completa:",
-      JSON.stringify(res, null, 2)
-    );
+    return fallback();
   }
 
-  const dogs_data: DogTop[] = featuredDogs;
+ 
 
   return (
     <section className="mx-auto bg-gray-100 md:p-16 py-16 px-8">
@@ -77,7 +42,7 @@ export const FeaturedDogs = async ({featuredDogs}: { featuredDogs: any }) => {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 mx-12">
-        {dogs_data.map((dog) => (
+        {featuredDogs.map((dog) => (
           <DogTopCard key={dog.id} dog={dog} />
         ))}
       </div>
