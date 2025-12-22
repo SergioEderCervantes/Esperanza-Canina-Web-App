@@ -50,8 +50,7 @@ services:
     build: ../backend
     container_name: api
     command: >
-      bash -c "python manage.py migrate &&
-      gunicorn app.core.wsgi:application --bind 0.0.0.0:8000 --workers 3 --log-level debug --access-logfile - --error-logfile -"
+      bash -c "python manage.py migrate && gunicorn app.core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     env_file:
       - ../backend/.env.prod
     networks:
