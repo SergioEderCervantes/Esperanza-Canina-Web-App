@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import DogCard from "@/components/perritos/DogCard";
+import DogCardSkeleton from "@/components/ui/DogCardSkeleton";
 import { ButtonPagination } from "@/components/ui/buttonPagination";
 // import  CustomLoader  from "@/components/ui/CustomLoader";
 import { perritosList } from "@/api/sdk.gen";
@@ -48,19 +49,38 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
   }, [loadDogs]);
 
   // if (!dogsData) return <CustomLoader />;
-  if (!dogsData) return null;
+  if (!dogsData) {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[...Array(8)].map((_, i) => (
+          <DogCardSkeleton key={i} style={{ animationDelay: `${i * 0.05}s` }} />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-500 bg-[#f3f4f6]">
         {loading ? (
-          <div className="col-span-full text-center text-gray-700 py-8">
-            {/* <CustomLoader /> */}
-            Cargando...
-          </div>
+          <>
+            {[...Array(8)].map((_, i) => (
+              <DogCardSkeleton key={i} />
+            ))}
+          </>
         ) : dogsData.data && dogsData.data.length > 0 ? (
-          dogsData.data.map((dog: DogList) => <DogCard key={dog.id} dog={dog} />)
+          dogsData.data.map((dog: DogList, index: number) => (
+            <div 
+              key={dog.id}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
+              <DogCard 
+                dog={dog} 
+                priority={index < 4}
+              />
+            </div>
+          ))
         ) : (
           <div className="col-span-full text-center text-gray-700 py-8">
             No hay perritos que coincidan con los filtros
@@ -74,7 +94,15 @@ export default function DogListClient({ search, size, age }: DogListClientProps)
           <ButtonPagination
             currentPage={dogsData.current_page}
             totalPages={dogsData.total_pages}
-            onChangePage={(newPage) => setPage(newPage)}
+            onChangePage={(newPage) => {
+              setPage(newPage);
+              const el = document.getElementById('filters');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
           />
         </div>
       )}

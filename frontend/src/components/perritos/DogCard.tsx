@@ -1,7 +1,9 @@
+"use client";
 import { ButtonDogCard } from "@/components/ui/buttonDogCard";
 import Image from "next/image";
 import Link from "next/link";
 import type { DogList } from "@/api";
+import { useState } from "react";
 
 // Function to determine if a color is light or dark
 const isColorLight = (color: string) => {
@@ -16,22 +18,32 @@ const isColorLight = (color: string) => {
 
 type DogListProps = {
   dog: DogList;
+  priority?: boolean;
 };
 
-export default function DogCard({ dog }: DogListProps) {
+export default function DogCard({ dog, priority = false }: DogListProps) {
   const {id} = dog;
+  const [imageLoaded, setImageLoaded] = useState(false);
+  
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden w-max-80 animate-[fadeIn_0.4s_ease-in]">
       {/* Imagen */}
-      <div className="relative h-80 bg-gray-200 flex items-center justify-center text-gray-500">
+      <div className="relative h-80 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 flex items-center justify-center text-gray-500 overflow-hidden">
         <Image
           src={dog.primary_image || "/placeholder-dog.png"}
           alt={dog.name || 'perrito'}
           fill
-          priority
+          priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          className={`object-cover transition-all duration-500 ${
+            imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          }`}
+          loading={priority ? undefined : "lazy"}
+          onLoad={() => setImageLoaded(true)}
         />
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-200 animate-pulse" />
+        )}
       </div>
 
       {/* Contenido */}

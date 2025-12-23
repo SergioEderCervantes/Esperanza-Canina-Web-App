@@ -74,8 +74,8 @@ export const DonationDialog = ({ type }: DonationDialogProps) => {
 
               <div className="grid sm:grid-cols-2 gap-3">
                 <div className="text-sm text-neutral-700">
-                  <strong>📍 Dirección</strong>
-                  <div className="mt-1 font-medium">Calle Esperanza #45, Col. Centro</div>
+                  <strong>📍 No compartimos la ubicación exacta por diversos problemas de abandono de cachorros en la entrada de nuestras instalaciones.</strong>
+                  
                 </div>
 
                 <div className="text-sm text-neutral-700">
