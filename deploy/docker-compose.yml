@@ -1,0 +1,61 @@
+# Compose para Dokploy (Compose path: ./deploy/docker-compose.yml)
+#
+# Las variables de la pestaña Environment se escriben en deploy/.env
+# (ver deploy/.env.example). Dominios y red se configuran en la UI de Dokploy.
+
+x-backend: &backend
+  build: ../backend
+  env_file:
+    - .env
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_started
+  restart: unless-stopped
+
+volumes:
+  pg_data:
+  redis_data:
+
+services:
+  db:
+    image: postgres:16-alpine
+    shm_size: 256mb
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  django_q:
+    <<: *backend
+    command: python manage.py qcluster
+
+  api:
+    <<: *backend
+    command: >
+      bash -c "python manage.py migrate && gunicorn app.core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    expose:
+      - "8000"
+
+  frontend:
+    build: ../frontend
+    environment:
+      NODE_ENV: production
+      # El server standalone de Next escucha en $HOSTNAME; en Docker es el id del contenedor
+      HOSTNAME: 0.0.0.0
+    expose:
+      - "3000"
+    restart: unless-stopped

@@ -1,3 +1,6 @@
+# LEGACY: deploy manual anterior (nginx + certbot en el VPS viejo).
+# Produccion ahora usa deploy/docker-compose.yml con Dokploy; borrar tras la migracion.
+
 networks:
   backend:
   frontend:

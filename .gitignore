@@ -1,0 +1,5 @@
+# Respaldos de la base de datos (nunca versionar datos de prod)
+backups/
+
+# Variables de entorno que Dokploy escribe junto al compose
+deploy/.env
