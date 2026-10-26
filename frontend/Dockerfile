@@ -1,7 +1,7 @@
 # -----------------------------
 # 1. Base
 # -----------------------------
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 WORKDIR /app
 
 # -----------------------------
@@ -22,7 +22,7 @@ RUN npm run build
 # -----------------------------
 # 4. Runtime (PRODUCCIÓN)
 # -----------------------------
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production

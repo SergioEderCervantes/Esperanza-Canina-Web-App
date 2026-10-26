@@ -39,6 +39,8 @@ const extraPrefixesMap: Record<string, Slot> = {
 };
 const extraPrefixes = Object.entries(extraPrefixesMap);
 
+const unsafeKeys = new Set(['__proto__', 'constructor', 'prototype']);
+
 type KeyMap = Map<
   string,
   {
@@ -117,6 +119,10 @@ export const buildClientParams = (
       }
     } else {
       for (const [key, value] of Object.entries(arg ?? {})) {
+        if (unsafeKeys.has(key)) {
+          continue;
+        }
+
         const field = map.get(key);
 
         if (field) {
