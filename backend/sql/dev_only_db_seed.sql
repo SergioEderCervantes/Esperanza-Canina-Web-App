@@ -609,7 +609,6 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$1000000$uDu7rq97YqiPRksLUVoZSp$yVgRIoTmsu7adEjlXRdkj6CPTJGP8TRwNzOutAwctUY=	2025-12-17 19:53:28.138429+00	t	admin				t	t	2025-12-17 01:22:31.404724+00
 \.
 
 
@@ -643,87 +642,6 @@ COPY public.comportamientos (id, beheavior_name, beheavior_description, color) F
 --
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
-1	2025-12-17 02:05:28.823777+00	37	Nala	2	[{"changed": {"name": "Foto de perro", "object": "Imagen de Nala", "fields": ["Archivo de imagen"]}}]	13	1
-2	2025-12-17 02:07:16.216434+00	1	Jugueton	1	[{"added": {}}]	12	1
-3	2025-12-17 02:09:42.346834+00	38	Milo	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Milo"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Milo"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Milo"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Milo"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Milo", "fields": ["Archivo de imagen"]}}]	13	1
-4	2025-12-17 02:10:00.376293+00	38	Milo	2	[{"changed": {"name": "Foto de perro", "object": "Imagen de Milo", "fields": ["Principal"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Milo", "fields": ["Principal"]}}]	13	1
-5	2025-12-17 02:10:37.222353+00	39	Nina	2	[{"changed": {"name": "Foto de perro", "object": "Imagen de Nina", "fields": ["Archivo de imagen"]}}]	13	1
-6	2025-12-17 02:11:58.356833+00	40	Toby	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Toby"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Toby"}}]	13	1
-7	2025-12-17 02:12:09.845046+00	40	Toby	2	[]	13	1
-8	2025-12-17 02:14:28.912736+00	41	Terry	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Terry", "fields": ["Archivo de imagen"]}}]	13	1
-9	2025-12-17 02:15:18.557874+00	37	Nala	2	[{"changed": {"fields": ["Descripcion"]}}]	13	1
-10	2025-12-17 02:15:27.535558+00	38	Milo	2	[{"changed": {"fields": ["Descripcion"]}}]	13	1
-11	2025-12-17 02:15:37.371319+00	39	Nina	2	[{"changed": {"fields": ["Descripcion"]}}]	13	1
-12	2025-12-17 02:15:43.268563+00	40	Toby	2	[{"changed": {"fields": ["Descripcion"]}}]	13	1
-13	2025-12-17 02:15:51.615232+00	40	Toby	2	[]	13	1
-14	2025-12-17 02:15:57.156114+00	41	Terry	2	[{"changed": {"fields": ["Descripcion"]}}]	13	1
-15	2025-12-17 02:16:57.181623+00	42	Molly	2	[{"changed": {"fields": ["Descripcion"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Molly", "fields": ["Archivo de imagen"]}}]	13	1
-16	2025-12-17 02:17:38.022283+00	43	Nina	2	[{"changed": {"fields": ["Descripcion"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Nina", "fields": ["Archivo de imagen"]}}]	13	1
-17	2025-12-17 02:20:22.922673+00	44	Luna	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Luna"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Luna"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Luna", "fields": ["Archivo de imagen"]}}]	13	1
-18	2025-12-17 02:21:31.821385+00	45	Chispa	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Chispa"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Chispa"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Chispa", "fields": ["Archivo de imagen"]}}]	13	1
-19	2025-12-17 02:22:36.082209+00	46	Luna	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Luna"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Luna", "fields": ["Archivo de imagen"]}}]	13	1
-20	2025-12-17 02:24:34.724976+00	47	Sasha	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Sasha"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Sasha"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Sasha"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Sasha", "fields": ["Archivo de imagen"]}}]	13	1
-21	2025-12-17 02:25:47.282165+00	48	Canela	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Canela"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Canela"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Canela", "fields": ["Archivo de imagen"]}}]	13	1
-22	2025-12-17 02:26:45.705586+00	49	Dulce	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Dulce"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Dulce", "fields": ["Archivo de imagen"]}}]	13	1
-23	2025-12-17 02:27:39.305389+00	50	Terry	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Terry", "fields": ["Archivo de imagen"]}}]	13	1
-24	2025-12-17 02:29:19.686827+00	51	Sasha	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Sasha"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Sasha", "fields": ["Archivo de imagen"]}}]	13	1
-25	2025-12-17 02:29:41.501304+00	51	Sasha	2	[]	13	1
-26	2025-12-17 02:30:20.208481+00	52	Rocky	2	[{"changed": {"fields": ["Descripcion"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Rocky", "fields": ["Archivo de imagen"]}}]	13	1
-27	2025-12-17 02:30:55.120117+00	53	Sasha	2	[{"changed": {"fields": ["Descripcion"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Sasha", "fields": ["Archivo de imagen"]}}]	13	1
-28	2025-12-17 02:31:58.891619+00	54	Nala	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nala"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Nala", "fields": ["Archivo de imagen", "Principal"]}}]	13	1
-29	2025-12-17 02:33:01.313342+00	55	Toby	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Toby"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Toby"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Toby", "fields": ["Archivo de imagen"]}}]	13	1
-30	2025-12-17 02:33:55.148105+00	56	Chispa	2	[{"changed": {"fields": ["Descripcion"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Chispa"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Chispa", "fields": ["Archivo de imagen", "Principal"]}}]	13	1
-31	2025-12-17 02:34:18.565946+00	57	Duke	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Duke"}}]	13	1
-32	2025-12-17 02:34:36.665058+00	58	Kira	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kira"}}]	13	1
-33	2025-12-17 02:34:43.607268+00	59	Lucky	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Lucky"}}]	13	1
-34	2025-12-17 02:34:49.458169+00	60	Chispa	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Chispa"}}]	13	1
-35	2025-12-17 02:35:02.266179+00	61	Mila	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Mila"}}]	13	1
-36	2025-12-17 02:35:23.032975+00	62	Chispa	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Chispa"}}]	13	1
-37	2025-12-17 02:35:30.734139+00	63	Kira	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kira"}}]	13	1
-38	2025-12-17 02:35:34.973174+00	64	Terry	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Terry"}}]	13	1
-39	2025-12-17 02:35:40.161777+00	65	Bella	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Bella"}}]	13	1
-40	2025-12-17 02:35:45.266312+00	66	Bobby	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Bobby"}}]	13	1
-41	2025-12-17 02:35:50.421646+00	67	Maya	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Maya"}}]	13	1
-42	2025-12-17 02:35:56.078115+00	68	Kiara	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-43	2025-12-17 02:36:03.655867+00	69	Max	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Max"}}]	13	1
-44	2025-12-17 02:36:12.91965+00	70	Nala	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Nala"}}]	13	1
-45	2025-12-17 02:36:16.987569+00	71	Nina	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Nina"}}]	13	1
-46	2025-12-17 02:36:21.516905+00	72	Kiara	2	[{"changed": {"fields": ["Descripcion"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-47	2025-12-17 02:38:24.912276+00	72	Kiara	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-48	2025-12-17 02:39:22.005489+00	71	Nina	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Nina"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nina"}}]	13	1
-49	2025-12-17 02:41:14.166638+00	70	Nala	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Nala"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nala"}}]	13	1
-50	2025-12-17 02:42:08.248098+00	68	Kiara	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-51	2025-12-17 02:42:39.188051+00	66	Bobby	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Bobby"}}]	13	1
-52	2025-12-17 02:43:51.905769+00	65	Bella	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Bella"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Bella"}}]	13	1
-53	2025-12-17 02:45:53.558559+00	69	Max	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Max"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Max"}}]	13	1
-54	2025-12-17 02:46:42.375674+00	68	Kiara	2	[{"changed": {"name": "Foto de perro", "object": "Imagen de Kiara", "fields": ["Archivo de imagen"]}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-55	2025-12-17 02:47:17.39551+00	67	Maya	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Maya"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Maya"}}]	13	1
-56	2025-12-17 02:48:08.503668+00	66	Bobby	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Bobby"}}]	13	1
-57	2025-12-17 02:48:14.46186+00	65	Bella	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Bella"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Bella"}}]	13	1
-58	2025-12-17 02:49:55.37161+00	57	Duke	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Duke"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Duke"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Duke"}}]	13	1
-59	2025-12-17 02:50:37.90316+00	58	Kira	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kira"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Kira"}}]	13	1
-60	2025-12-17 02:51:34.439055+00	59	Lucky	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Lucky"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Lucky"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Lucky"}}]	13	1
-61	2025-12-17 02:52:17.552798+00	60	Chispa	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Chispa"}}]	13	1
-62	2025-12-17 02:52:51.220626+00	61	Mila	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Mila"}}]	13	1
-63	2025-12-17 02:53:21.226893+00	62	Chispa	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Chispa"}}]	13	1
-64	2025-12-17 02:54:18.666078+00	63	Kira	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kira"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Kira"}}]	13	1
-65	2025-12-17 02:54:45.234248+00	64	Terry	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Terry"}}]	13	1
-66	2025-12-17 02:59:18.315027+00	65	Bella	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Bella"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Bella"}}]	13	1
-67	2025-12-17 03:00:08.251452+00	66	Bobby	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Bobby"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Bobby"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Bobby"}}]	13	1
-68	2025-12-17 03:02:35.138754+00	67	Maya	2	[{"changed": {"name": "Foto de perro", "object": "Imagen de Maya", "fields": ["Archivo de imagen"]}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Maya", "fields": ["Archivo de imagen"]}}]	13	1
-69	2025-12-17 03:03:45.651854+00	68	Kiara	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}, {"changed": {"name": "Foto de perro", "object": "Imagen de Kiara", "fields": ["Archivo de imagen"]}}]	13	1
-70	2025-12-17 03:06:08.454036+00	69	Max	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Max"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Max"}}]	13	1
-71	2025-12-17 03:06:14.118524+00	70	Nala	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Nala"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Nala"}}]	13	1
-72	2025-12-17 03:06:19.301722+00	71	Nina	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Nina"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Nina"}}]	13	1
-73	2025-12-17 03:06:24.783221+00	72	Kiara	2	[{"deleted": {"name": "Foto de perro", "object": "Imagen de Kiara"}}, {"deleted": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-74	2025-12-17 20:29:03.433401+00	72	Kiara.	2	[{"changed": {"fields": ["Nombre", "Comportamientos"]}}]	13	1
-75	2025-12-17 20:29:21.768888+00	72	Kiara	2	[{"changed": {"fields": ["Nombre"]}}]	13	1
-76	2025-12-17 20:43:15.727065+00	72	Kiara	2	[{"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Kiara"}}]	13	1
-77	2025-12-17 20:45:52.613904+00	71	Nina	2	[{"changed": {"fields": ["Comportamientos"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nina"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nina"}}]	13	1
-78	2025-12-17 20:46:53.15597+00	70	Nala	2	[{"changed": {"fields": ["Comportamientos"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nala"}}, {"added": {"name": "Foto de perro", "object": "Imagen de Nala"}}]	13	1
-79	2025-12-17 20:47:20.146295+00	69	Max	2	[{"changed": {"fields": ["Comportamientos"]}}, {"added": {"name": "Foto de perro", "object": "Imagen de Max"}}]	13	1
-80	2025-12-17 21:35:49.259334+00	73	Coco	1	[{"added": {}}]	13	1
-81	2025-12-17 21:36:12.282796+00	73	Coco	3		13	1
 \.
 
 
@@ -837,7 +755,6 @@ COPY public.django_q_task (name, func, hook, args, kwargs, result, started, stop
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
-g3clylrqgnz0r2wjr207j9j070wlgd2w	.eJxVjLsOwjAMAP8lM4ocE7cpIzvfEOVhkwJqpKadEP-OInWA9e50b-XDvhW_N179nNVFGXX6ZTGkJy9d5EdY7lWnumzrHHVP9GGbvtXMr-vR_g1KaKVvgdgaGilPmRwlJB7QnsUCYUJEAhhGO0UOEJ0YABEGA9ZBZJYk6vMFrI03Kg:1vVxaS:TJo4A4DYCLU1De6ktoHoYCqoF_DzMGk2owAnF61dnac	2025-12-31 19:53:28.140369+00
 \.
 
 
