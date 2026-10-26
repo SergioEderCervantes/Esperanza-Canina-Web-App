@@ -1,9 +1,11 @@
-import os
+import shutil
 import subprocess
+import tempfile
 from pathlib import Path
 
 from django.conf import settings
 from django.core.mail import EmailMessage
+from django.utils.html import escape
 from docx import Document
 
 from app.dogs_api.domain import (
@@ -24,11 +26,16 @@ class AdoptionFormManager:
         self.domain_object = domain_object
 
         # Sanitiza el nombre del perro para que sea seguro para un nombre de archivo
-        safe_dog_name = self.domain_object.datos_del_animal.dog_name.replace(" ", "_").lower()
+        safe_dog_name = "".join(
+            c for c in self.domain_object.datos_del_animal.dog_name.replace(" ", "_").lower()
+            if c.isalnum() or c in "_-"
+        ) or "perro"
 
-
-        self.filled_docx_path = self.FORM_TEMPLATES_DIR / f"formulario_adopcion_{safe_dog_name}.docx"
-        self.filled_pdf_path = self.FORM_TEMPLATES_DIR / f"formulario_adopcion_{safe_dog_name}.pdf"
+        # Directorio propio por solicitud: dos formularios del mismo perro no deben
+        # pisarse ni borrarse los archivos entre si
+        self.output_dir = Path(tempfile.mkdtemp(prefix="adopcion_"))
+        self.filled_docx_path = self.output_dir / f"formulario_adopcion_{safe_dog_name}.docx"
+        self.filled_pdf_path = self.output_dir / f"formulario_adopcion_{safe_dog_name}.pdf"
 
 
     def execute(self):
@@ -77,7 +84,7 @@ class AdoptionFormManager:
     def docx_to_pdf(self):
         try:
             subprocess.run(
-                ["libreoffice", "--headless", "--convert-to", "pdf", self.filled_docx_path, "--outdir", self.FORM_TEMPLATES_DIR],
+                ["libreoffice", "--headless", "--convert-to", "pdf", self.filled_docx_path, "--outdir", self.output_dir],
                 check=True,
                 capture_output=True,  # Captura stdout y stderr
             )
@@ -90,7 +97,7 @@ class AdoptionFormManager:
             raise PdfConversionError(f"Ocurrió un error inesperado durante la conversión a PDF: {e}") from e
 
     def send_mail(self):
-        html = f"<h1>Solicitud de adopcion recibida!!!</h1><p>Una persona ha solicitado la adopcion de {self.domain_object.datos_del_animal.dog_name}, los datos de la adopcion se encuentran en el siguiente pdf</p>"
+        html = f"<h1>Solicitud de adopcion recibida!!!</h1><p>Una persona ha solicitado la adopcion de {escape(self.domain_object.datos_del_animal.dog_name)}, los datos de la adopcion se encuentran en el siguiente pdf</p>"
         email = EmailMessage(
             subject="Solicitud de adopcion Esperanza Canina",
             body=html,
@@ -107,11 +114,9 @@ class AdoptionFormManager:
             raise EmailSendError(f"Error al enviar correo: {e}") from e
 
     def cleanup(self):
-        for path in [self.filled_docx_path, self.filled_pdf_path]:
-            try:
-                if os.path.exists(path):
-                    os.remove(path)
-                    print(f"Archivo temporal eliminado: {path}")
-            except OSError as e:
-                # Loggear este error en lugar de solo imprimirlo sería una buena mejora
-                print(f"Error al eliminar el archivo {path}: {e}")
+        try:
+            shutil.rmtree(self.output_dir)
+            print(f"Archivos temporales eliminados: {self.output_dir}")
+        except OSError as e:
+            # Loggear este error en lugar de solo imprimirlo sería una buena mejora
+            print(f"Error al eliminar el directorio {self.output_dir}: {e}")
